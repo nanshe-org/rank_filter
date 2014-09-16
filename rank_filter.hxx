@@ -8,14 +8,17 @@
 #include <cassert>
 #include <iostream>
 #include <iterator>
+#include <type_traits>
 
 #include <vigra/multi_array.hxx>
 #include <vigra/linear_algebra.hxx>
 
-template <class T1, class S1,
-          class T2, class S2>
-inline void lineRankOrderFilter(const vigra::MultiArrayView<1, T1, S1> & src,
-                                vigra::MultiArrayView<1, T2, S2> dest,
+template <unsigned int N,
+          class T1, class S1,
+          class T2, class S2,
+          typename std::enable_if<(N == 1)>::type* = nullptr>
+inline void lineRankOrderFilter(const vigra::MultiArrayView<N, T1, S1> & src,
+                                vigra::MultiArrayView<N, T2, S2> dest,
                                 unsigned long half_length, double rank)
 {
     // Will ignore boundaries initially.
@@ -27,17 +30,17 @@ inline void lineRankOrderFilter(const vigra::MultiArrayView<1, T1, S1> & src,
     const int rank_pos = round(rank * (2*half_length));
 
     // The position of the
-    typename vigra::MultiArrayView<1, T1, S1>::difference_type_1 window_begin(0);
+    typename vigra::MultiArrayView<N, T1, S1>::difference_type_1 window_begin(0);
     std::multiset<T1> sorted_window;
     std::list< typename std::multiset<T1>::iterator > window_iters;
 
     // Get the initial sorted window.
     // Include the reflection.
-    for (typename vigra::MultiArrayView<1, T1, S1>::difference_type_1 j(half_length); j > 0; j--)
+    for (typename vigra::MultiArrayView<N, T1, S1>::difference_type_1 j(half_length); j > 0; j--)
     {
         window_iters.push_back(sorted_window.insert(src[window_begin + j]));
     }
-    for (typename vigra::MultiArrayView<1, T1, S1>::difference_type_1 j(0); j <= half_length; j++)
+    for (typename vigra::MultiArrayView<N, T1, S1>::difference_type_1 j(0); j <= half_length; j++)
     {
         window_iters.push_back(sorted_window.insert(src[window_begin + j]));
     }
