@@ -28,7 +28,7 @@ inline void lineRankOrderFilter(const vigra::MultiArrayView<N, T1, S1> & src,
     // Rank must be in the range 0 to 1
     assert((0 <= rank) && (rank <= 1));
 
-    const int rank_pos = round(rank * (2*half_length));
+    const int rank_pos = round(rank * (2 * half_length));
 
     // The position of the
     typename vigra::MultiArrayView<N, T1, S1>::difference_type_1 window_begin(0);
