@@ -14,6 +14,9 @@
 #include <vigra/multi_array.hxx>
 #include <vigra/linear_algebra.hxx>
 
+namespace vigra
+{
+
 template<unsigned int N,
         class T1, class S1,
         class T2, class S2>
@@ -178,5 +181,8 @@ inline void lineRankOrderFilter(const vigra::MultiArrayView <N, T1, S1> &src,
 {
     lineRankOrderFilterND(src, dest, half_length, rank, axis);
 }
+
+}
+
 
 #endif //__RANK_FILTER__
