@@ -156,6 +156,40 @@ public:
 
         should(expected_result == result);
     };
+
+    void test_rank_filter_9()
+    {
+        expected_result = array;
+        expected_result[0] = expected_result[1] = expected_result[2];
+        expected_result[expected_result.size()  - 1] = expected_result[expected_result.size() - 2] = expected_result[expected_result.size() - 3];
+
+//        expected_result[9] = 2; expected_result[8] = 2; expected_result[7] = 2; expected_result[6] = 3;
+//        expected_result[5] = 4; expected_result[4] = 5; expected_result[3] = 6; expected_result[2] = 7;
+//        expected_result[1] = 7; expected_result[0] = 7;
+
+        result = 0;
+
+        lineRankOrderFilter(array.insertSingletonDimension(0), result.insertSingletonDimension(0), 3, 0.5);
+
+        should(expected_result == result);
+    };
+
+    void test_rank_filter_10()
+    {
+        expected_result = reverse_array;
+        expected_result[0] = expected_result[1] = expected_result[2];
+        expected_result[expected_result.size()  - 1] = expected_result[expected_result.size() - 2] = expected_result[expected_result.size() - 3];
+
+//        expected_result[9] = 2; expected_result[8] = 2; expected_result[7] = 2; expected_result[6] = 3;
+//        expected_result[5] = 4; expected_result[4] = 5; expected_result[3] = 6; expected_result[2] = 7;
+//        expected_result[1] = 7; expected_result[0] = 7;
+
+        result = 0;
+
+        lineRankOrderFilter(reverse_array.insertSingletonDimension(0), result.insertSingletonDimension(0), 3, 0.5);
+
+        should(expected_result == result);
+    };
 };
 
 struct RankFilterTestSuite
@@ -172,6 +206,8 @@ struct RankFilterTestSuite
         add( testCase( &RankFilterTest::test_rank_filter_6 ) );
         add( testCase( &RankFilterTest::test_rank_filter_7 ) );
         add( testCase( &RankFilterTest::test_rank_filter_8 ) );
+        add( testCase( &RankFilterTest::test_rank_filter_9 ) );
+        add( testCase( &RankFilterTest::test_rank_filter_10 ) );
     }
 }; // struct RankFilterTestSuite
 
