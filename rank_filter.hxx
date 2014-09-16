@@ -9,6 +9,7 @@
 #include <iostream>
 #include <iterator>
 #include <type_traits>
+#include <utility>
 
 #include <vigra/multi_array.hxx>
 #include <vigra/linear_algebra.hxx>
@@ -116,6 +117,55 @@ inline void lineRankOrderFilter(const vigra::MultiArrayView<N, T1, S1> & src,
                 rank_point++;
             }
         }
+    }
+}
+
+template <unsigned int N,
+          class T1, class S1,
+          class T2, class S2,
+          typename std::enable_if<(N > 1)>::type* = nullptr>
+inline void lineRankOrderFilter(const vigra::MultiArrayView<N, T1, S1> & src,
+                                vigra::MultiArrayView<N, T2, S2> dest,
+                                unsigned long half_length, double rank, unsigned int axis = N - 1)
+{
+    typename vigra::MultiArrayView<N, T1, S1>::difference_type transposed_axes;
+
+    for (unsigned int i = 0; i < N; i++)
+    {
+        transposed_axes[i] = i;
+    }
+
+    std::swap(transposed_axes[N - 1], transposed_axes[axis]);
+
+    vigra::MultiArray<N, T1> src_transposed(src.transpose(transposed_axes));
+
+    vigra::MultiArrayView<N, T1, S1> dest_transposed_view(dest.transpose(transposed_axes));
+
+
+    typename vigra::MultiArrayView<N - 1, T1, S1>::difference_type pos;
+    pos = 0;
+
+    bool done = false;
+
+    while (!done)
+    {
+        lineRankOrderFilter(src_transposed.bindInner(pos), dest_transposed_view.bindInner(pos), half_length, rank);
+
+        bool carry = false;
+        for (unsigned int i = 0; ( carry && (i < N) ); i++)
+        {
+            if ( (++pos[N - (i + 1)]) < src.shape()[N - (i + 1)])
+            {
+                carry = false;
+            }
+            else
+            {
+                pos[N - (i + 1)] = 0;
+                carry = true;
+            }
+        }
+
+        done = !carry;
     }
 }
 
