@@ -19,11 +19,11 @@ namespace vigra
 
 template<unsigned int N,
         class T1, class S1,
-        class T2, class S2>
+        class T2, class S2,
+        typename std::enable_if<(N == 1), int>::type = 0>
 inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         vigra::MultiArrayView <N, T2, S2> dest,
-        unsigned int half_length, float rank, unsigned int axis = N - 1,
-        typename std::enable_if<(N == 1)>::type *enabled = 0)
+        unsigned int half_length, float rank, unsigned int axis = N - 1)
 {
     // Will ignore boundaries initially.
     // Then will try adding reflection.
@@ -125,11 +125,11 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
 
 template<unsigned int N,
         class T1, class S1,
-        class T2, class S2>
+        class T2, class S2,
+        typename std::enable_if<(N > 1), int>::type = 0>
 inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         vigra::MultiArrayView <N, T2, S2> dest,
-        unsigned int half_length, float rank, unsigned int axis = N - 1,
-        typename std::enable_if<(N > 1)>::type *enabled = 0)
+        unsigned int half_length, float rank, unsigned int axis = N - 1)
 {
     typename vigra::MultiArrayView<N, T1, S1>::difference_type transposed_axes;
 
