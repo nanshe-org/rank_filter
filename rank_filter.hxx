@@ -76,12 +76,12 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
             next_value = src[2 * src.size() - (window_begin + half_length + 2)];
         }
 
-        if ( ( *rank_point < *prev_iter ) && ( *rank_point <= next_value ) )
+        if ( ( *rank_point < prev_value ) && ( *rank_point <= next_value ) )
         {
             sorted_window.erase(prev_iter);
             window_iters.push_back(sorted_window.insert(next_value));
         }
-        else if ( ( *rank_point >= *prev_iter ) && ( *rank_point > next_value ) )
+        else if ( ( *rank_point >= prev_value ) && ( *rank_point > next_value ) )
         {
             if ( rank_point == prev_iter )
             {
@@ -96,14 +96,14 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
                 window_iters.push_back(sorted_window.insert(next_value));
             }
         }
-        else if ( ( *rank_point < *prev_iter ) && ( *rank_point > next_value ) )
+        else if ( ( *rank_point < prev_value ) && ( *rank_point > next_value ) )
         {
             sorted_window.erase(prev_iter);
             window_iters.push_back(sorted_window.insert(next_value));
 
             rank_point--;
         }
-        else if ( ( *rank_point >= *prev_iter ) && ( *rank_point <= next_value ) )
+        else if ( ( *rank_point >= prev_value ) && ( *rank_point <= next_value ) )
         {
             if (rank_point == prev_iter)
             {
