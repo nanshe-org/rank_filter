@@ -142,7 +142,7 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
 
     vigra::MultiArray<N, T1> src_transposed(src.transpose(transposed_axes));
 
-    vigra::MultiArrayView<N, T1, S1> dest_transposed_view(dest.transpose(transposed_axes));
+    vigra::MultiArrayView<N, T1, S1> dest_transposed(dest.transpose(transposed_axes));
 
 
     typename vigra::MultiArrayView<N - 1, T1, S1>::difference_type pos;
@@ -152,7 +152,7 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
 
     while (!done)
     {
-        lineRankOrderFilter(src_transposed.bindInner(pos), dest_transposed_view.bindInner(pos), half_length, rank);
+        lineRankOrderFilter(src_transposed.bindInner(pos), dest_transposed.bindInner(pos), half_length, rank);
 
         bool carry = true;
         for (unsigned int i = 0; ( carry && (i < N) ); i++)
