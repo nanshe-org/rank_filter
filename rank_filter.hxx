@@ -152,7 +152,7 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
 
     while (!done)
     {
-        lineRankOrderFilter(src_transposed.bindInner(pos), dest_transposed.bindInner(pos), half_length, rank);
+        lineRankOrderFilterND(src_transposed.bindInner(pos), dest_transposed.bindInner(pos), half_length, rank);
 
         bool carry = true;
         for (unsigned int i = 0; ( carry && (i < (N - 1)) ); i++)
