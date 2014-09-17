@@ -23,7 +23,7 @@ template<unsigned int N,
         typename std::enable_if<(N == 1), int>::type = 0>
 inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         vigra::MultiArrayView <N, T2, S2> dest,
-        unsigned int half_length, float rank, unsigned int axis = N - 1)
+        unsigned int half_length, float rank, unsigned int axis = 0)
 {
     // Will ignore boundaries initially.
     // Then will try adding reflection.
@@ -129,7 +129,7 @@ template<unsigned int N,
         typename std::enable_if<(N > 1), int>::type = 0>
 inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         vigra::MultiArrayView <N, T2, S2> dest,
-        unsigned int half_length, float rank, unsigned int axis = N - 1)
+        unsigned int half_length, float rank, unsigned int axis = 0)
 {
     typename vigra::MultiArrayView<N, T1, S1>::difference_type transposed_axes;
 
@@ -138,7 +138,7 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         transposed_axes[i] = i;
     }
 
-    std::swap(transposed_axes[N - 1], transposed_axes[axis]);
+    std::swap(transposed_axes[0], transposed_axes[axis]);
 
     vigra::MultiArray<N, T1> src_transposed(src.transpose(transposed_axes));
 
@@ -152,18 +152,18 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
 
     while (!done)
     {
-        lineRankOrderFilterND(src_transposed.bindInner(pos), dest_transposed.bindInner(pos), half_length, rank);
+        lineRankOrderFilterND(src_transposed.bindOuter(pos), dest_transposed.bindOuter(pos), half_length, rank);
 
         bool carry = true;
-        for (unsigned int i = 0; ( carry && (i < (N - 1)) ); i++)
+        for (unsigned int i = 1; ( carry && (i < N) ); i++)
         {
-            if ( (++pos[N - (i + 2)]) < src_transposed.shape(N - (i + 2)) )
+            if ( (++pos[i]) < src_transposed.shape(i) )
             {
                 carry = false;
             }
             else
             {
-                pos[N - (i + 2)] = 0;
+                pos[i] = 0;
                 carry = true;
             }
         }
@@ -177,7 +177,7 @@ template<unsigned int N,
         class T2, class S2>
 inline void lineRankOrderFilter(const vigra::MultiArrayView <N, T1, S1> &src,
         vigra::MultiArrayView <N, T2, S2> dest,
-        unsigned int half_length, float rank, unsigned int axis = N - 1)
+        unsigned int half_length, float rank, unsigned int axis = 0)
 {
     lineRankOrderFilterND(src, dest, half_length, rank, axis);
 }
