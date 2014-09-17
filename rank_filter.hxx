@@ -56,17 +56,19 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         rank_point++;
     }
 
+    typename std::multiset<T1>::iterator prev_iter;
+    T1 prev_value;
+    T1 next_value;
     while ( window_begin < src.size() )
     {
         dest[window_begin] = *rank_point;
 
-        typename std::multiset<T1>::iterator prev_iter(window_iters.front());
-        T1 prev_value = *prev_iter;
+        prev_iter = window_iters.front();
+        prev_value = *prev_iter;
         window_iters.pop_front();
 
         window_begin++;
 
-        T1 next_value;
         if ( window_begin < (src.size() - half_length) )
         {
             next_value = src[window_begin + half_length];
@@ -149,12 +151,12 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
     pos = 0;
 
     bool done = false;
-
+    bool carry = true;
     while (!done)
     {
         lineRankOrderFilterND(src_transposed.bindOuter(pos), dest_transposed.bindOuter(pos), half_length, rank);
 
-        bool carry = true;
+        carry = true;
         for (unsigned int i = 1; ( carry && (i < N) ); i++)
         {
             if ( (++pos[i]) < src_transposed.shape(i) )
