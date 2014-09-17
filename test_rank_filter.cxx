@@ -14,9 +14,16 @@ private:
     vigra::MultiArray< 1, double > expected_result;
     vigra::MultiArray< 1, double > result;
 
+    vigra::MultiArray< 2, double > array_2;
+    vigra::MultiArray< 2, double > reverse_array_2;
+
+    vigra::MultiArray< 2, double > expected_result_2;
+    vigra::MultiArray< 2, double > result_2;
+
 public:
 
-    RankFilterTest() : array(size), reverse_array(size), expected_result(size), result(size)
+    RankFilterTest() : array(size), reverse_array(size), expected_result(size), result(size),
+                       array_2(2, size/2), reverse_array_2(2, size/2), expected_result_2(2, size/2), result_2(2, size/2)
     {
         for (int i = 0; i < array.size(); i++)
         {
@@ -26,6 +33,22 @@ public:
         for (int i = 0; i < reverse_array.size() ; i++)
         {
             reverse_array[i] = reverse_array.size() - i - 1;
+        }
+
+        for (int i = 0; i < array_2.shape(0); i++)
+        {
+            for (int j = 0; j < array_2.shape(1); j++)
+            {
+                array_2(i, j) = i + 2*j;
+            }
+        }
+
+        for (int i = 0; i < reverse_array_2.shape(0); i++)
+        {
+            for (int j = 0; j < reverse_array_2.shape(1); j++)
+            {
+                reverse_array_2(i, j) = (reverse_array_2.shape(0) - i - 1) + 2*(reverse_array_2.shape(1) - j - 1);
+            }
         }
     };
 
@@ -190,6 +213,28 @@ public:
 
         should(expected_result == result);
     };
+
+    void test_rank_filter_11()
+    {
+        expected_result_2 = array_2;
+
+        result_2 = 0;
+
+        lineRankOrderFilter(array_2, result_2, 0, 0.5);
+
+        should(expected_result_2 == result_2);
+    };
+
+    void test_rank_filter_12()
+    {
+        expected_result_2 = reverse_array_2;
+
+        result_2 = 0;
+
+        lineRankOrderFilter(reverse_array_2, result_2, 0, 0.5);
+
+        should(expected_result_2 == result_2);
+    };
 };
 
 struct RankFilterTestSuite
@@ -208,6 +253,8 @@ struct RankFilterTestSuite
         add( testCase( &RankFilterTest::test_rank_filter_8 ) );
         add( testCase( &RankFilterTest::test_rank_filter_9 ) );
         add( testCase( &RankFilterTest::test_rank_filter_10 ) );
+        add( testCase( &RankFilterTest::test_rank_filter_11 ) );
+        add( testCase( &RankFilterTest::test_rank_filter_12 ) );
     }
 }; // struct RankFilterTestSuite
 
