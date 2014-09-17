@@ -192,7 +192,7 @@ public:
 
         result = 0;
 
-        lineRankOrderFilter(array.insertSingletonDimension(0), result.insertSingletonDimension(0), 3, 0.5);
+        lineRankOrderFilter(array.insertSingletonDimension(0), result.insertSingletonDimension(0), 3, 0.5, 1);
 
         should(expected_result == result);
     };
@@ -209,7 +209,7 @@ public:
 
         result = 0;
 
-        lineRankOrderFilter(reverse_array.insertSingletonDimension(0), result.insertSingletonDimension(0), 3, 0.5);
+        lineRankOrderFilter(reverse_array.insertSingletonDimension(0), result.insertSingletonDimension(0), 3, 0.5, 1);
 
         should(expected_result == result);
     };
