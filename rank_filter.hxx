@@ -2,7 +2,7 @@
 #define __RANK_FILTER__
 
 
-#include <list>
+#include <deque>
 #include <set>
 #include <cmath>
 #include <cassert>
@@ -36,7 +36,7 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
     // The position of the
     typename vigra::MultiArrayView<N, T1, S1>::difference_type_1 window_begin(0);
     std::multiset<T1> sorted_window;
-    std::list< typename std::multiset<T1>::iterator > window_iters;
+    std::deque< typename std::multiset<T1>::iterator > window_iters;
 
     // Get the initial sorted window.
     // Include the reflection.
