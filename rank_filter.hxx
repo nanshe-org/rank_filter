@@ -155,15 +155,15 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         lineRankOrderFilter(src_transposed.bindInner(pos), dest_transposed.bindInner(pos), half_length, rank);
 
         bool carry = true;
-        for (unsigned int i = 0; ( carry && (i < N) ); i++)
+        for (unsigned int i = 0; ( carry && (i < (N - 1)) ); i++)
         {
-            if ( (++pos[N - (i + 1)]) < src.shape(N - (i + 1)) )
+            if ( (++pos[N - (i + 2)]) < src_transposed.shape(N - (i + 2)) )
             {
                 carry = false;
             }
             else
             {
-                pos[N - (i + 1)] = 0;
+                pos[N - (i + 2)] = 0;
                 carry = true;
             }
         }
