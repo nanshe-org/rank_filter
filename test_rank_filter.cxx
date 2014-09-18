@@ -235,6 +235,32 @@ public:
 
         should(expected_result_2 == result_2);
     };
+
+    void test_rank_filter_13()
+    {
+        expected_result_2 = array_2;
+        expected_result_2.bindInner(0) = expected_result_2.bindInner(1);
+        expected_result_2.bindInner(expected_result_2.shape(0) - 1) = expected_result_2.bindInner(expected_result_2.shape(0) - 2);
+
+        result_2 = 0;
+
+        lineRankOrderFilter(array_2, result_2, 1, 0.5);
+
+        should(expected_result_2 == result_2);
+    };
+
+    void test_rank_filter_14()
+    {
+        expected_result_2 = reverse_array_2;
+        expected_result_2.bindInner(0) = expected_result_2.bindInner(1);
+        expected_result_2.bindInner(expected_result_2.shape(0) - 1) = expected_result_2.bindInner(expected_result_2.shape(0) - 2);
+
+        result_2 = 0;
+
+        lineRankOrderFilter(reverse_array_2, result_2, 1, 0.5);
+
+        should(expected_result_2 == result_2);
+    };
 };
 
 struct RankFilterTestSuite
@@ -255,6 +281,8 @@ struct RankFilterTestSuite
         add( testCase( &RankFilterTest::test_rank_filter_10 ) );
         add( testCase( &RankFilterTest::test_rank_filter_11 ) );
         add( testCase( &RankFilterTest::test_rank_filter_12 ) );
+        add( testCase( &RankFilterTest::test_rank_filter_13 ) );
+        add( testCase( &RankFilterTest::test_rank_filter_14 ) );
     }
 }; // struct RankFilterTestSuite
 
