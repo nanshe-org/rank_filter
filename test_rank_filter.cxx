@@ -39,7 +39,7 @@ public:
         {
             for (int j = 0; j < array_2.shape(1); j++)
             {
-                array_2(i, j) = i + 2*j;
+                array_2(i, j) = array_2.shape(1)*i + j;
             }
         }
 
@@ -47,7 +47,7 @@ public:
         {
             for (int j = 0; j < reverse_array_2.shape(1); j++)
             {
-                reverse_array_2(i, j) = (reverse_array_2.shape(0) - i - 1) + 2*(reverse_array_2.shape(1) - j - 1);
+                reverse_array_2(i, j) = reverse_array_2.shape(1) * (reverse_array_2.shape(0) - i - 1) + (reverse_array_2.shape(1) - j - 1);
             }
         }
     };
