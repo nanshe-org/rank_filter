@@ -23,7 +23,7 @@ private:
 public:
 
     RankFilterTest() : array(size), reverse_array(size), expected_result(size), result(size),
-                       array_2(2, size/2), reverse_array_2(2, size/2), expected_result_2(2, size/2), result_2(2, size/2)
+                       array_2(size, size), reverse_array_2(size, size), expected_result_2(size, size), result_2(size, size)
     {
         for (int i = 0; i < array.size(); i++)
         {
