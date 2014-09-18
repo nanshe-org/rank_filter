@@ -144,7 +144,7 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
 
     vigra::MultiArray<N, T1> src_transposed(src.transpose(transposed_axes));
 
-    vigra::MultiArrayView<N, T1, S1> dest_transposed(dest.transpose(transposed_axes));
+    vigra::MultiArrayView<N, T2, S2> dest_transposed(dest.transpose(transposed_axes));
 
 
     typename vigra::MultiArrayView<N - 1, T1, S1>::difference_type pos;
