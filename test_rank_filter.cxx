@@ -8,11 +8,17 @@ private:
 
     const unsigned long size = 10;
 
-    vigra::MultiArray< 1, double > array;
-    vigra::MultiArray< 1, double > reverse_array;
 
-    vigra::MultiArray< 1, double > expected_result;
-    vigra::MultiArray< 1, double > result;
+    vigra::MultiArray< 1, double >::difference_type size_1;
+
+    vigra::MultiArray< 1, double > array_1;
+    vigra::MultiArray< 1, double > reverse_array_1;
+
+    vigra::MultiArray< 1, double > expected_result_1;
+    vigra::MultiArray< 1, double > result_1;
+
+
+    vigra::MultiArray< 2, double >::difference_type size_2;
 
     vigra::MultiArray< 2, double > array_2;
     vigra::MultiArray< 2, double > reverse_array_2;
@@ -22,18 +28,19 @@ private:
 
 public:
 
-    RankFilterTest() : array(size), reverse_array(size), expected_result(size), result(size),
-                       array_2(size, size), reverse_array_2(size, size), expected_result_2(size, size), result_2(size, size)
+    RankFilterTest() : size_1(size), array_1(size_1), reverse_array_1(size_1), expected_result_1(size_1), result_1(size_1),
+                       size_2(size, size), array_2(size_2), reverse_array_2(size_2), expected_result_2(size_2), result_2(size_2)
     {
-        for (int i = 0; i < array.size(); i++)
+        for (int i = 0; i < array_1.shape(0); i++)
         {
-            array[i] = i;
+            array_1[i] = i;
         }
 
-        for (int i = 0; i < reverse_array.size() ; i++)
+        for (int i = 0; i < reverse_array_1.shape(0); i++)
         {
-            reverse_array[i] = reverse_array.size() - i - 1;
+            reverse_array_1[i] = reverse_array_1.shape(0) - i - 1;
         }
+
 
         for (int i = 0; i < array_2.shape(0); i++)
         {
@@ -58,128 +65,128 @@ public:
 
     void test_rank_filter_1()
     {
-        expected_result = array;
+        expected_result_1 = array_1;
 
-        result = 0;
+        result_1 = 0;
 
-        lineRankOrderFilter(array, result, 0, 0.5);
+        lineRankOrderFilter(array_1, result_1, 0, 0.5);
 
-        should(expected_result == result);
+        should(expected_result_1 == result_1);
     };
 
     void test_rank_filter_2()
     {
-        expected_result = reverse_array;
+        expected_result_1 = reverse_array_1;
 
-        result = 0;
+        result_1 = 0;
 
-        lineRankOrderFilter(reverse_array, result, 0, 0.5);
+        lineRankOrderFilter(reverse_array_1, result_1, 0, 0.5);
 
-        should(expected_result == result);
+        should(expected_result_1 == result_1);
     };
 
     void test_rank_filter_3()
     {
-        expected_result = array;
-        expected_result[0] = expected_result[1];
-        expected_result[expected_result.size()  - 1] = expected_result[expected_result.size() - 2];
+        expected_result_1 = array_1;
+        expected_result_1[0] = expected_result_1[1];
+        expected_result_1[expected_result_1.size()  - 1] = expected_result_1[expected_result_1.size() - 2];
 
-        result = 0;
+        result_1 = 0;
 
-        lineRankOrderFilter(array, result, 1, 0.5);
+        lineRankOrderFilter(array_1, result_1, 1, 0.5);
 
-        should(expected_result == result);
+        should(expected_result_1 == result_1);
     };
 
     void test_rank_filter_4()
     {
-        expected_result = reverse_array;
-        expected_result[0] = expected_result[1];
-        expected_result[expected_result.size()  - 1] = expected_result[expected_result.size() - 2];
+        expected_result_1 = reverse_array_1;
+        expected_result_1[0] = expected_result_1[1];
+        expected_result_1[expected_result_1.size()  - 1] = expected_result_1[expected_result_1.size() - 2];
 
-        result = 0;
+        result_1 = 0;
 
-        lineRankOrderFilter(reverse_array, result, 1, 0.5);
+        lineRankOrderFilter(reverse_array_1, result_1, 1, 0.5);
 
-        should(expected_result == result);
+        should(expected_result_1 == result_1);
     };
 
     void test_rank_filter_5()
     {
-        expected_result = array;
-        expected_result[0] = expected_result[1];
-        expected_result[expected_result.size()  - 1] = expected_result[expected_result.size() - 2];
+        expected_result_1 = array_1;
+        expected_result_1[0] = expected_result_1[1];
+        expected_result_1[expected_result_1.size()  - 1] = expected_result_1[expected_result_1.size() - 2];
 
-        result = 0;
+        result_1 = 0;
 
-        lineRankOrderFilter(array, result, 2, 0.5);
+        lineRankOrderFilter(array_1, result_1, 2, 0.5);
 
-        should(expected_result == result);
+        should(expected_result_1 == result_1);
     };
 
     void test_rank_filter_6()
     {
-        expected_result = reverse_array;
-        expected_result[0] = expected_result[1];
-        expected_result[expected_result.size()  - 1] = expected_result[expected_result.size() - 2];
+        expected_result_1 = reverse_array_1;
+        expected_result_1[0] = expected_result_1[1];
+        expected_result_1[expected_result_1.size()  - 1] = expected_result_1[expected_result_1.size() - 2];
 
-        result = 0;
+        result_1 = 0;
 
-        lineRankOrderFilter(reverse_array, result, 2, 0.5);
+        lineRankOrderFilter(reverse_array_1, result_1, 2, 0.5);
 
-        should(expected_result == result);
+        should(expected_result_1 == result_1);
     };
 
     void test_rank_filter_7()
     {
-        expected_result = array;
-        expected_result[0] = expected_result[1] = expected_result[2];
-        expected_result[expected_result.size()  - 1] = expected_result[expected_result.size() - 2] = expected_result[expected_result.size() - 3];
+        expected_result_1 = array_1;
+        expected_result_1[0] = expected_result_1[1] = expected_result_1[2];
+        expected_result_1[expected_result_1.size()  - 1] = expected_result_1[expected_result_1.size() - 2] = expected_result_1[expected_result_1.size() - 3];
 
-        result = 0;
+        result_1 = 0;
 
-        lineRankOrderFilter(array, result, 3, 0.5);
+        lineRankOrderFilter(array_1, result_1, 3, 0.5);
 
-        should(expected_result == result);
+        should(expected_result_1 == result_1);
     };
 
     void test_rank_filter_8()
     {
-        expected_result = reverse_array;
-        expected_result[0] = expected_result[1] = expected_result[2];
-        expected_result[expected_result.size()  - 1] = expected_result[expected_result.size() - 2] = expected_result[expected_result.size() - 3];
+        expected_result_1 = reverse_array_1;
+        expected_result_1[0] = expected_result_1[1] = expected_result_1[2];
+        expected_result_1[expected_result_1.size()  - 1] = expected_result_1[expected_result_1.size() - 2] = expected_result_1[expected_result_1.size() - 3];
 
-        result = 0;
+        result_1 = 0;
 
-        lineRankOrderFilter(reverse_array, result, 3, 0.5);
+        lineRankOrderFilter(reverse_array_1, result_1, 3, 0.5);
 
-        should(expected_result == result);
+        should(expected_result_1 == result_1);
     };
 
     void test_rank_filter_9()
     {
-        expected_result = array;
-        expected_result[0] = expected_result[1] = expected_result[2];
-        expected_result[expected_result.size()  - 1] = expected_result[expected_result.size() - 2] = expected_result[expected_result.size() - 3];
+        expected_result_1 = array_1;
+        expected_result_1[0] = expected_result_1[1] = expected_result_1[2];
+        expected_result_1[expected_result_1.size()  - 1] = expected_result_1[expected_result_1.size() - 2] = expected_result_1[expected_result_1.size() - 3];
 
-        result = 0;
+        result_1 = 0;
 
-        lineRankOrderFilter(array.insertSingletonDimension(0), result.insertSingletonDimension(0), 3, 0.5, 1);
+        lineRankOrderFilter(array_1.insertSingletonDimension(0), result_1.insertSingletonDimension(0), 3, 0.5, 1);
 
-        should(expected_result == result);
+        should(expected_result_1 == result_1);
     };
 
     void test_rank_filter_10()
     {
-        expected_result = reverse_array;
-        expected_result[0] = expected_result[1] = expected_result[2];
-        expected_result[expected_result.size()  - 1] = expected_result[expected_result.size() - 2] = expected_result[expected_result.size() - 3];
+        expected_result_1 = reverse_array_1;
+        expected_result_1[0] = expected_result_1[1] = expected_result_1[2];
+        expected_result_1[expected_result_1.size()  - 1] = expected_result_1[expected_result_1.size() - 2] = expected_result_1[expected_result_1.size() - 3];
 
-        result = 0;
+        result_1 = 0;
 
-        lineRankOrderFilter(reverse_array.insertSingletonDimension(0), result.insertSingletonDimension(0), 3, 0.5, 1);
+        lineRankOrderFilter(reverse_array_1.insertSingletonDimension(0), result_1.insertSingletonDimension(0), 3, 0.5, 1);
 
-        should(expected_result == result);
+        should(expected_result_1 == result_1);
     };
 
     void test_rank_filter_11()
