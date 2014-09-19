@@ -35,8 +35,10 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
 
     // The position of the
     typename vigra::MultiArrayView<N, T1, S1>::difference_type_1 window_begin(0);
-    std::multiset<T1> sorted_window;
-    std::deque< typename std::multiset<T1>::iterator > window_iters;
+
+    typedef std::multiset<T1> multiset;
+    multiset sorted_window;
+    std::deque< typename multiset::iterator > window_iters;
 
     // Get the initial sorted window.
     // Include the reflection.
@@ -49,14 +51,14 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         window_iters.push_back(sorted_window.insert(src[window_begin + j]));
     }
 
-    typename std::multiset<T1>::iterator rank_point = sorted_window.begin();
+    typename multiset::iterator rank_point = sorted_window.begin();
 
     for (int i = 0; i < rank_pos; i++)
     {
         rank_point++;
     }
 
-    typename std::multiset<T1>::iterator prev_iter;
+    typename multiset::iterator prev_iter;
     T1 prev_value;
     T1 next_value;
     while ( window_begin < src.size() )
