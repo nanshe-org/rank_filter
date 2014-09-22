@@ -6,13 +6,18 @@
 #include <set>
 #include <cmath>
 #include <cassert>
+#include <functional>
 #include <iostream>
 #include <iterator>
 #include <type_traits>
 #include <utility>
 
+#include <boost/container/set.hpp>
+#include <boost/container/node_allocator.hpp>
+
 #include <vigra/multi_array.hxx>
 #include <vigra/linear_algebra.hxx>
+
 
 namespace vigra
 {
@@ -36,7 +41,11 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
     // The position of the
     typename vigra::MultiArrayView<N, T1, S1>::difference_type_1 window_begin(0);
 
-    typedef std::multiset<T1> multiset;
+    typedef boost::container::multiset< T1,
+            std::less<T1>,
+            boost::container::node_allocator<T1>,
+            boost::container::tree_assoc_options< boost::container::tree_type<boost::container::scapegoat_tree> >::type> multiset;
+
     multiset sorted_window;
     std::deque< typename multiset::iterator > window_iters;
 
