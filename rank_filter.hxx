@@ -46,8 +46,10 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
             boost::container::node_allocator<T1>,
             boost::container::tree_assoc_options< boost::container::tree_type<boost::container::scapegoat_tree> >::type> multiset;
 
+    typedef std::deque< typename multiset::iterator > deque;
+
     multiset sorted_window;
-    std::deque< typename multiset::iterator > window_iters;
+    deque window_iters;
 
     // Get the initial sorted window.
     // Include the reflection.
