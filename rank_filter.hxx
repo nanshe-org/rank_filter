@@ -18,6 +18,8 @@
 #include <vigra/multi_array.hxx>
 #include <vigra/linear_algebra.hxx>
 
+#include "sdeque.hxx"
+
 
 namespace vigra
 {
@@ -46,7 +48,7 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
             boost::container::node_allocator<T1>,
             boost::container::tree_assoc_options< boost::container::tree_type<boost::container::scapegoat_tree> >::type> multiset;
 
-    typedef std::deque< typename multiset::iterator > deque;
+    typedef sdeque< typename multiset::iterator > deque;
 
     multiset sorted_window;
     deque window_iters;
