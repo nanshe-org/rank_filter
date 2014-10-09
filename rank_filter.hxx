@@ -88,7 +88,7 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         }
         else
         {
-            next_value = src[2 * src.size() - (window_begin + half_length + 2)];
+            next_value = *(window_iters[window_iters.size() + 2*src.size() - 2*(window_begin + half_length) - 2]);
         }
 
         if ( ( *rank_point < prev_value ) && ( *rank_point <= next_value ) )
