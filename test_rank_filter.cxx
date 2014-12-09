@@ -2,6 +2,7 @@
 
 #include "rank_filter.hxx"
 
+
 class RankFilterTest
 {
 private:
