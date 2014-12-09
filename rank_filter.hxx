@@ -19,7 +19,7 @@
 #include <vigra/linear_algebra.hxx>
 
 
-namespace vigra
+namespace rank_filter
 {
 
 template<unsigned int N,
