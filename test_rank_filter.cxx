@@ -70,7 +70,7 @@ public:
 
         result_1 = 0;
 
-        lineRankOrderFilter(array_1, result_1, 0, 0.5);
+        rank_filter::lineRankOrderFilter(array_1, result_1, 0, 0.5);
 
         should(expected_result_1 == result_1);
     };
@@ -81,7 +81,7 @@ public:
 
         result_1 = 0;
 
-        lineRankOrderFilter(reverse_array_1, result_1, 0, 0.5);
+        rank_filter::lineRankOrderFilter(reverse_array_1, result_1, 0, 0.5);
 
         should(expected_result_1 == result_1);
     };
@@ -94,7 +94,7 @@ public:
 
         result_1 = 0;
 
-        lineRankOrderFilter(array_1, result_1, 1, 0.5);
+        rank_filter::lineRankOrderFilter(array_1, result_1, 1, 0.5);
 
         should(expected_result_1 == result_1);
     };
@@ -107,7 +107,7 @@ public:
 
         result_1 = 0;
 
-        lineRankOrderFilter(reverse_array_1, result_1, 1, 0.5);
+        rank_filter::lineRankOrderFilter(reverse_array_1, result_1, 1, 0.5);
 
         should(expected_result_1 == result_1);
     };
@@ -120,7 +120,7 @@ public:
 
         result_1 = 0;
 
-        lineRankOrderFilter(array_1, result_1, 2, 0.5);
+        rank_filter::lineRankOrderFilter(array_1, result_1, 2, 0.5);
 
         should(expected_result_1 == result_1);
     };
@@ -133,7 +133,7 @@ public:
 
         result_1 = 0;
 
-        lineRankOrderFilter(reverse_array_1, result_1, 2, 0.5);
+        rank_filter::lineRankOrderFilter(reverse_array_1, result_1, 2, 0.5);
 
         should(expected_result_1 == result_1);
     };
@@ -146,7 +146,7 @@ public:
 
         result_1 = 0;
 
-        lineRankOrderFilter(array_1, result_1, 3, 0.5);
+        rank_filter::lineRankOrderFilter(array_1, result_1, 3, 0.5);
 
         should(expected_result_1 == result_1);
     };
@@ -159,7 +159,7 @@ public:
 
         result_1 = 0;
 
-        lineRankOrderFilter(reverse_array_1, result_1, 3, 0.5);
+        rank_filter::lineRankOrderFilter(reverse_array_1, result_1, 3, 0.5);
 
         should(expected_result_1 == result_1);
     };
@@ -172,7 +172,7 @@ public:
 
         result_1 = 0;
 
-        lineRankOrderFilter(array_1.insertSingletonDimension(0), result_1.insertSingletonDimension(0), 3, 0.5, 1);
+        rank_filter::lineRankOrderFilter(array_1.insertSingletonDimension(0), result_1.insertSingletonDimension(0), 3, 0.5, 1);
 
         should(expected_result_1 == result_1);
     };
@@ -185,7 +185,7 @@ public:
 
         result_1 = 0;
 
-        lineRankOrderFilter(reverse_array_1.insertSingletonDimension(0), result_1.insertSingletonDimension(0), 3, 0.5, 1);
+        rank_filter::lineRankOrderFilter(reverse_array_1.insertSingletonDimension(0), result_1.insertSingletonDimension(0), 3, 0.5, 1);
 
         should(expected_result_1 == result_1);
     };
@@ -196,7 +196,7 @@ public:
 
         result_2 = 0;
 
-        lineRankOrderFilter(array_2, result_2, 0, 0.5);
+        rank_filter::lineRankOrderFilter(array_2, result_2, 0, 0.5);
 
         should(expected_result_2 == result_2);
     };
@@ -207,7 +207,7 @@ public:
 
         result_2 = 0;
 
-        lineRankOrderFilter(reverse_array_2, result_2, 0, 0.5);
+        rank_filter::lineRankOrderFilter(reverse_array_2, result_2, 0, 0.5);
 
         should(expected_result_2 == result_2);
     };
@@ -220,7 +220,7 @@ public:
 
         result_2 = 0;
 
-        lineRankOrderFilter(array_2, result_2, 1, 0.5);
+        rank_filter::lineRankOrderFilter(array_2, result_2, 1, 0.5);
 
         should(expected_result_2 == result_2);
     };
@@ -233,7 +233,7 @@ public:
 
         result_2 = 0;
 
-        lineRankOrderFilter(reverse_array_2, result_2, 1, 0.5);
+        rank_filter::lineRankOrderFilter(reverse_array_2, result_2, 1, 0.5);
 
         should(expected_result_2 == result_2);
     };
@@ -246,7 +246,7 @@ public:
 
         result_2 = 0;
 
-        lineRankOrderFilter(array_2, result_2, 1, 0.5, 1);
+        rank_filter::lineRankOrderFilter(array_2, result_2, 1, 0.5, 1);
 
         should(expected_result_2 == result_2);
     };
@@ -259,7 +259,7 @@ public:
 
         result_2 = 0;
 
-        lineRankOrderFilter(reverse_array_2, result_2, 1, 0.5, 1);
+        rank_filter::lineRankOrderFilter(reverse_array_2, result_2, 1, 0.5, 1);
 
         should(expected_result_2 == result_2);
     };
@@ -272,7 +272,7 @@ public:
 
         result_2 = reverse_array_2;
 
-        lineRankOrderFilter(result_2, result_2, 1, 0.5, 1);
+        rank_filter::lineRankOrderFilter(result_2, result_2, 1, 0.5, 1);
 
         should(expected_result_2 == result_2);
     };
@@ -286,7 +286,7 @@ public:
 
         result_1 = 0;
 
-        lineRankOrderFilter(array_1, result_1, size - 1, 0.5, 1);
+        rank_filter::lineRankOrderFilter(array_1, result_1, size - 1, 0.5, 1);
 
         should(expected_result_1 == result_1);
     };
