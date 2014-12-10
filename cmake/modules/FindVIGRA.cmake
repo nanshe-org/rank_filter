@@ -27,7 +27,6 @@ ENDIF()
 
 
 
-EXECUTE_PROCESS ( COMMAND python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 # handle the QUIETLY and REQUIRED arguments and set VIGRA_FOUND to TRUE if
 # all listed variables are TRUE
