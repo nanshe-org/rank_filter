@@ -38,11 +38,10 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules/)
 
 set(BOOST_ROOT /xopt_ilastik/local/)
 set(VIGRA_ROOT /xopt_ilastik/local/)
-set(PYTHON_EXECUTABLE /xopt_ilastik/local/Frameworks/Python.framework/Versions/2.7/bin/python2.7)
 
+find_package(PYTHON REQUIRED)
 find_package(Boost "1.56.0" REQUIRED COMPONENTS container python)
 find_package(VIGRA REQUIRED)
-find_package(PYTHON REQUIRED)
 find_package(NUMPY REQUIRED)
 
 include(CheckCXXSourceCompiles)
