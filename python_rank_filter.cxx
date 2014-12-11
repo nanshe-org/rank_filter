@@ -2,6 +2,8 @@
 //#define NO_IMPORT_ARRAY
 
 
+#include <exception>
+#include <iostream>
 #include <string>
 #include <utility>
 
@@ -126,11 +128,27 @@ namespace rank_filter
                         "For details see convolveMultiArrayOneDimension_ in the vigra C++ documentation.\n");
     }
 
+
+    void translate_std_exception(const std::exception& e)
+    {
+        using namespace boost::python;
+
+        // Use the Python 'C' API to set up an exception object
+        PyErr_SetString(PyExc_RuntimeError, e.what());
+    }
+
 }
 
 
 BOOST_PYTHON_MODULE_INIT(rank_filter)
 {
-    vigra::import_vigranumpy();
-    rank_filter::defineRankFilter();
+    try
+    {
+        boost::python::register_exception_translator<std::exception>(&rank_filter::translate_std_exception);
+        vigra::import_vigranumpy();
+        rank_filter::defineRankFilter();
+    } catch(std::runtime_error& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
 }
