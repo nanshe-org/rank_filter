@@ -10,7 +10,7 @@
 
 # See if VIGRA_ROOT was set externally, if so use it.
 if (NOT "$ENV{VIGRA_ROOT}" STREQUAL "")
-    set(VIGRA_ROOT $ENV{BOOST_ROOT})
+    set(VIGRA_ROOT $ENV{VIGRA_ROOT})
 elseif (NOT "$ENV{VIGRAROOT}" STREQUAL "")
       set(VIGRA_ROOT $ENV{VIGRAROOT})
       set(ENV{VIGRA_ROOT} $ENV{VIGRA_ROOT})
