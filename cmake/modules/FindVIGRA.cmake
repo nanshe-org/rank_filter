@@ -9,7 +9,7 @@
 
 
 # See if VIGRA_ROOT was set externally, if so use it.
-if (NOT "${VIGRA_ROOT}" STREQUAL "")
+if (("${VIGRA_ROOT}" STREQUAL "") OR ("${VIGRA_ROOT}" STREQUAL "VIGRA_ROOT-NOTFOUND"))
     if (NOT "$ENV{VIGRA_ROOT}" STREQUAL "")
         set(VIGRA_ROOT $ENV{VIGRA_ROOT})
     elseif (NOT "$ENV{VIGRAROOT}" STREQUAL "")
