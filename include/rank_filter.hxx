@@ -28,7 +28,7 @@ template<unsigned int N,
         typename std::enable_if<(N == 1), int>::type = 0>
 inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         vigra::MultiArrayView <N, T2, S2> dest,
-        unsigned int half_length, float rank, unsigned int axis = 0)
+        unsigned long half_length, double rank, unsigned int axis = 0)
 {
     // Will ignore boundaries initially.
     // Then will try adding reflection.
@@ -36,7 +36,7 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
     // Rank must be in the range 0 to 1
     assert((0 <= rank) && (rank <= 1));
 
-    const int rank_pos = round(rank * (2 * half_length));
+    const unsigned long rank_pos = round(rank * (2 * half_length));
 
     // The position of the
     typename vigra::MultiArrayView<N, T1, S1>::difference_type_1 window_begin(0);
@@ -64,7 +64,7 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
 
     typename multiset::iterator rank_point = sorted_window.begin();
 
-    for (int i = 0; i < rank_pos; i++)
+    for (unsigned long i = 0; i < rank_pos; i++)
     {
         rank_point++;
     }
@@ -144,7 +144,7 @@ template<unsigned int N,
         typename std::enable_if<(N > 1), int>::type = 0>
 inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         vigra::MultiArrayView <N, T2, S2> dest,
-        unsigned int half_length, float rank, unsigned int axis = 0)
+        unsigned long half_length, double rank, unsigned int axis = 0)
 {
     typename vigra::MultiArrayView<N, T1, S1>::difference_type transposed_axes;
 
@@ -192,7 +192,7 @@ template<unsigned int N,
         class T2, class S2>
 inline void lineRankOrderFilter(const vigra::MultiArrayView <N, T1, S1> &src,
         vigra::MultiArrayView <N, T2, S2> dest,
-        unsigned int half_length, float rank, unsigned int axis = 0)
+        unsigned long half_length, double rank, unsigned int axis = 0)
 {
     lineRankOrderFilterND(src, dest, half_length, rank, axis);
 }
