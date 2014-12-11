@@ -37,8 +37,8 @@ add_custom_target(distclean COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules/)
 
 #set(PYTHON_EXECUTABLE /xopt_ilastik/local/bin/python)
-set(BOOST_ROOT /xopt_ilastik/local)
-set(VIGRA_ROOT /xopt_ilastik/local)
+#set(BOOST_ROOT /xopt_ilastik/local)
+#set(VIGRA_ROOT /xopt_ilastik/local)
 
 find_package(PYTHON REQUIRED)
 find_package(Boost "1.56.0" REQUIRED COMPONENTS container python)
