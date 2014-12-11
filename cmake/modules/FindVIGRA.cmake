@@ -3,8 +3,8 @@
 # It sets the following variables:
 #  VIGRA_FOUND              - Set to false, or undefined, if vigra isn't found.
 #  VIGRA_INCLUDE_DIR        - Vigra include directory.
-#  VIGRA_VIGRANUMPYCORE_LIBRARY      - Vigra's impex library
-#  VIGRA_VIGRANUMPYCORE_LIBRARY_DIR  - path to Vigra impex library
+#  VIGRA_VIGRANUMPYCORE_LIBRARY      - Vigra's vigranumpycore library
+#  VIGRA_VIGRANUMPYCORE_LIBRARY_DIR  - path to Vigra vigranumpycore library
 
 
 # configVersion.hxx only present, after build of Vigra
