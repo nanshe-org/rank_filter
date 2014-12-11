@@ -2,7 +2,7 @@
 
 
 IF(PYTHONINTERP_FOUND)
-    IF(NOT PYTHON_NUMPY_INCLUDE_DIR)
+    IF(NOT PYTHON_NOSE_CORE)
         execute_process ( COMMAND ${PYTHON_EXECUTABLE} -c
                             "import nose.core; print nose.core.__file__"
                             RESULT_VARIABLE PYTHON_NOSE_NOT_FOUND
@@ -25,11 +25,13 @@ IF(PYTHON_NOSE_CORE)
     SET(NOSE_FOUND TRUE)
 
     IF (NOT NOSE_FIND_QUIETLY)
-      MESSAGE(STATUS "Found Nose")
-      MESSAGE(STATUS "  > includes:      ${PYTHON_NUMPY_INCLUDE_DIR}")
+        MESSAGE(STATUS "Found Nose")
+        MESSAGE(STATUS "  > nose.core:      ${PYTHON_NOSE_CORE}")
     ENDIF()
 ELSE()
     IF(NOSE_FIND_REQUIRED)
-      MESSAGE(FATAL_ERROR "Could not find Nose")
+        MESSAGE(FATAL_ERROR "Could not find Nose")
+    ELSEIF(NOT NOSE_FIND_QUIETLY)
+        MESSAGE(STATUS "Unable to fine Nose")
     ENDIF()
 ENDIF()
