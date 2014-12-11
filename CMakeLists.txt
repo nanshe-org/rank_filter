@@ -48,6 +48,7 @@ find_package(NUMPY REQUIRED)
 include(CheckCXXSourceCompiles)
 
 include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/
     ${PYTHON_INCLUDE_DIR}
     ${VIGRA_INCLUDE_DIR}
     ${Boost_INCLUDE_DIRS}
