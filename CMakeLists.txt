@@ -68,4 +68,4 @@ target_link_libraries(rank_filter ${PYTHON_LIBRARY} ${Boost_LIBRARIES} ${VIGRA_V
 set_target_properties(rank_filter PROPERTIES SUFFIX ".so" PREFIX "")
 
 install(TARGETS rank_filter DESTINATION ${PYTHON_SITE_PACKAGES})
-install(FILES include/rank_filter.hxx DESTINATION ${VIGRA_INCLUDE_DIR})
+#install(FILES include/rank_filter.hxx DESTINATION ${VIGRA_INCLUDE_DIR})
