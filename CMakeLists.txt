@@ -1,9 +1,18 @@
-# Build and install rank_filter module in Python
+### Build and install rank_filter module in Python
 #
-# Requires the following variables or grabs them from the environment:
+### Requires the following variables or grabs them from the environment:
+#
 #  VIGRA_ROOT                      - The root path to find includes and libraries for VIGRA (not Python modules).
 #  BOOST_ROOT                      - The root path to find includes and libraries for Boost.
 #  PYTHON_EXECUTABLE               - The Python interpreter to use (fetches all other relevant variables through it).
+#
+### Allows the following additional targets
+#
+#  rank_filter                      - Module to be built for Python and installed in site-packages.
+#  distclean                        - Removes all CMake files (does not remove final output).
+#  reset                            - Same as distclean, but also deletes the bin, slib, and lib directories.
+#
+###
 
 
 project(rank_filter)
