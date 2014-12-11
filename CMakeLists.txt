@@ -61,12 +61,5 @@ link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS})
 add_library(python_rank_filter SHARED python_rank_filter.cxx)
 target_link_libraries(python_rank_filter ${PYTHON_LIBRARY} ${Boost_LIBRARIES} ${VIGRA_VIGRANUMPYCORE_LIBRARY})
 
-get_target_property(TEMP python_rank_filter COMPILE_FLAGS)
-if(TEMP STREQUAL "TEMP-NOTFOUND")
-  SET(TEMP "") # set to empty string
-else()
-  SET(TEMP "${TEMP} ") # a space to cleanly separate from existing content
-endif()
-# append our values
-SET(TEMP "-std=c++11 ${TEMP}" )
-set_target_properties(python_rank_filter PROPERTIES COMPILE_FLAGS ${TEMP} )
+# Use C++11
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
