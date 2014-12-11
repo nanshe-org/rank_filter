@@ -1,3 +1,11 @@
+# Build and install rank_filter module in Python
+#
+# Requires the following variables or grabs them from the environment:
+#  VIGRA_ROOT                      - The root path to find includes and libraries for VIGRA (not Python modules).
+#  BOOST_ROOT                      - The root path to find includes and libraries for Boost.
+#  PYTHON_EXECUTABLE               - The Python interpreter to use (fetches all other relevant variables through it).
+
+
 project(rank_filter)
 
 cmake_minimum_required(VERSION 2.8)
