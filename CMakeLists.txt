@@ -36,7 +36,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules/)
 
 set(BOOST_ROOT /xopt_ilastik/local/)
 set(VIGRA_INCLUDE_DIR /xopt_ilastik/local/include/vigra/)
-set(VIGRA_IMPEX_LIBRARY /xopt_ilastik/local/lib/libvigraimpex.dylib)
 set(PYTHON_EXECUTABLE /xopt_ilastik/local/Frameworks/Python.framework/Versions/2.7/bin/python2.7)
 
 find_package(Boost "1.56.0" REQUIRED COMPONENTS container python)
