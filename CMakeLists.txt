@@ -42,7 +42,6 @@ set(PYTHON_EXECUTABLE /xopt_ilastik/local/Frameworks/Python.framework/Versions/2
 
 find_package(Boost "1.56.0" REQUIRED COMPONENTS container python)
 find_package(VIGRA REQUIRED)
-
 find_package(PYTHON REQUIRED)
 find_package(NUMPY REQUIRED)
 
