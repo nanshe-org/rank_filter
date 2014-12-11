@@ -61,6 +61,7 @@ find_package(PYTHON REQUIRED)
 find_package(Boost "1.56.0" REQUIRED COMPONENTS container python)
 find_package(VIGRA REQUIRED)
 find_package(NUMPY REQUIRED)
+find_package(NOSE)
 
 include(CheckCXXSourceCompiles)
 
