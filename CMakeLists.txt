@@ -61,7 +61,7 @@ link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS})
 # Use C++11
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-add_library(rank_filter SHARED python_rank_filter.cxx)
+add_library(rank_filter SHARED rank_filter_py.cxx)
 
 target_link_libraries(rank_filter ${PYTHON_LIBRARY} ${Boost_LIBRARIES} ${VIGRA_VIGRANUMPYCORE_LIBRARY})
 set_target_properties(rank_filter PROPERTIES SUFFIX ".so" PREFIX "")
