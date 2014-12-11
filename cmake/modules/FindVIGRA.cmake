@@ -1,6 +1,7 @@
 # This module finds an installed Vigra package.
 #
 # It sets the following variables:
+#  VIGRA_ROOT                      - The root path to find includes and libraries for VIGRA (not Python modules).
 #  VIGRA_FOUND                     - Set to false, or undefined, if vigra isn't found.
 #  VIGRA_INCLUDE_DIR               - Vigra include directory.
 #  VIGRA_VIGRANUMPYCORE_LIBRARY    - Vigra's vigranumpycore library
