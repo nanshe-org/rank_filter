@@ -1,5 +1,14 @@
 #adapted from vigra source code
 
+
+# See if PYTHON_EXECUTABLE was set externally, if so use it.
+if (("${PYTHON_EXECUTABLE}" STREQUAL "") OR ("${PYTHON_EXECUTABLE}" STREQUAL "VIGRA_ROOT-NOTFOUND"))
+    if (NOT "$ENV{PYTHON_EXECUTABLE}" STREQUAL "")
+        set(PYTHON_EXECUTABLE $ENV{PYTHON_EXECUTABLE})
+    endif()
+endif()
+
+
 FIND_PACKAGE(PythonInterp)
 IF(PYTHONINTERP_FOUND)
     IF(NOT PYTHON_ROOT)
