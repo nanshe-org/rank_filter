@@ -65,3 +65,5 @@ add_library(rank_filter SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/rank_filter_py.cx
 
 target_link_libraries(rank_filter ${PYTHON_LIBRARY} ${Boost_LIBRARIES} ${VIGRA_VIGRANUMPYCORE_LIBRARY})
 set_target_properties(rank_filter PROPERTIES SUFFIX ".so" PREFIX "")
+
+install(TARGETS rank_filter DESTINATION ${PYTHON_SITE_PACKAGES})
