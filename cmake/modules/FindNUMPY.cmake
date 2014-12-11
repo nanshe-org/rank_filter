@@ -1,6 +1,6 @@
 #adapted from vigra source code
 
-#FIND_PACKAGE(PythonInterp)
+
 IF(PYTHONINTERP_FOUND)
     IF(NOT PYTHON_NUMPY_INCLUDE_DIR)
         execute_process ( COMMAND ${PYTHON_EXECUTABLE} -c
