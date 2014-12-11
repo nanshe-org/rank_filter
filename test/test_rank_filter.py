@@ -3,9 +3,7 @@ import rank_filter
 import itertools
 
 import numpy
-import ctypes
 
-import unittest
 
 class TestRankFilter(object):
     def setUp(self):
