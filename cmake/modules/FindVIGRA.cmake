@@ -31,8 +31,9 @@ IF(NOT VIGRA_VIGRANUMPYCORE_LIBRARY_NOT_FOUND)
     SET( VIGRANUMPY_SITEPACKAGE_DIR ${VIGRA_VIGRANUMPYCORE_LIBRARY} CACHE PATH "Path to Vigra's vigranumpycore library.")
 
     MESSAGE(STATUS "Found VIGRA")
-    MESSAGE(STATUS "  > vigranumpy: ${VIGRA_VIGRANUMPYCORE_LIBRARY}")
-    MESSAGE(STATUS "  > includes:   ${VIGRA_INCLUDE_DIR}")
+    MESSAGE(STATUS "  > includes:                 ${VIGRA_INCLUDE_DIR}")
+    MESSAGE(STATUS "  > vigranumpy site-package:  ${VIGRANUMPY_SITEPACKAGE_DIR}")
+    MESSAGE(STATUS "  > vigranumpycore library:   ${VIGRA_VIGRANUMPYCORE_LIBRARY}")
 ENDIF()
 
 
