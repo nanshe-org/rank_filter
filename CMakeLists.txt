@@ -59,7 +59,7 @@ include_directories(
 link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS})
 
 # Use C++11
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
 add_library(rank_filter SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/rank_filter_py.cxx)
 
