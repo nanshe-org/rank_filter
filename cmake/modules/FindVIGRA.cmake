@@ -9,11 +9,13 @@
 
 
 # See if VIGRA_ROOT was set externally, if so use it.
-if (NOT "$ENV{VIGRA_ROOT}" STREQUAL "")
-    set(VIGRA_ROOT $ENV{VIGRA_ROOT})
-elseif (NOT "$ENV{VIGRAROOT}" STREQUAL "")
-      set(VIGRA_ROOT $ENV{VIGRAROOT})
-      set(ENV{VIGRA_ROOT} $ENV{VIGRA_ROOT})
+if (NOT "${VIGRA_ROOT}" STREQUAL "")
+    if (NOT "$ENV{VIGRA_ROOT}" STREQUAL "")
+        set(VIGRA_ROOT $ENV{VIGRA_ROOT})
+    elseif (NOT "$ENV{VIGRAROOT}" STREQUAL "")
+          set(VIGRA_ROOT $ENV{VIGRAROOT})
+          set(ENV{VIGRA_ROOT} $ENV{VIGRA_ROOT})
+    endif()
 endif()
 
 # configVersion.hxx only present, after build of Vigra
