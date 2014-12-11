@@ -1,4 +1,7 @@
-### Build and install rank_filter module in Python
+###
+#
+#   Build and install rank_filter module in Python.
+#
 #
 ### Requires the following variables or grabs them from the environment:
 #
@@ -6,6 +9,7 @@
 #  BOOST_ROOT                      - The root path to find includes and libraries for Boost.
 #  PYTHON_EXECUTABLE               - The Python interpreter to use (fetches all other relevant variables through it).
 #
+###
 ### Allows the following additional targets
 #
 #  rank_filter                      - Module to be built for Python and installed in site-packages.
