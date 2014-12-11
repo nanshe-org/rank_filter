@@ -7,6 +7,14 @@
 #  VIGRA_VIGRANUMPYCORE_LIBRARY_DIR  - path to Vigra vigranumpycore library
 
 
+# See if VIGRA_ROOT was set externally, if so use it.
+if (NOT "$ENV{VIGRA_ROOT}" STREQUAL "")
+    set(VIGRA_ROOT $ENV{BOOST_ROOT})
+elseif (NOT "$ENV{VIGRAROOT}" STREQUAL "")
+      set(VIGRA_ROOT $ENV{VIGRAROOT})
+      set(ENV{VIGRA_ROOT} $ENV{VIGRA_ROOT})
+endif()
+
 # configVersion.hxx only present, after build of Vigra
 FIND_PATH(VIGRA_INCLUDE_DIR vigra/configVersion.hxx PATHS $ENV{VIGRA_ROOT}/include ENV CPLUS_INCLUDE_PATH)
 
