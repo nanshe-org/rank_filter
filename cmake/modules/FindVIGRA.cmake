@@ -19,7 +19,7 @@ if (NOT "${VIGRA_ROOT}" STREQUAL "")
 endif()
 
 # configVersion.hxx only present, after build of Vigra
-FIND_PATH(VIGRA_INCLUDE_DIR vigra/configVersion.hxx ${VIGRA_ROOT}/include PATHS ENV CPLUS_INCLUDE_PATH)
+FIND_PATH(VIGRA_INCLUDE_DIR vigra/configVersion.hxx PATHS ${VIGRA_ROOT}/include ENV CPLUS_INCLUDE_PATH)
 
 EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c
                             "import vigra.vigranumpycore; print vigra.vigranumpycore.__file__"
