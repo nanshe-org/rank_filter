@@ -20,11 +20,22 @@ namespace rank_filter
 
     template < unsigned int N, class SrcPixelType >
     vigra::NumpyAnyArray pythonLineRankOrderFilter(const vigra::NumpyArray< N, vigra::Singleband<SrcPixelType> > & image,
-            unsigned long half_length, double rank, unsigned int axis = N - 1,
+            unsigned long half_length, double rank, int axis = N - 1,
             vigra::NumpyArray< N, vigra::Singleband<SrcPixelType> > res = boost::python::object())
     {
         std::string description("rank order filter over 1-Dimension, axis=");
         description += vigra::asString(axis);
+
+        vigra_precondition((-static_cast<int>(N) <= axis) && (axis < static_cast<int>(N)),
+                "lineRankOrderFilter(): Axis out of range.");
+
+        if (axis < 0)
+        {
+            axis += N;
+        }
+
+        vigra_precondition(0 <= half_length,
+                "lineRankOrderFilter(): Window must be non-negative.");
 
         vigra_precondition((half_length + 1) <= image.shape(axis),
                 "lineRankOrderFilter(): Window must be no bigger than the image.");
@@ -35,7 +46,7 @@ namespace rank_filter
         {
             vigra::PyAllowThreads _pythread;
 
-            rank_filter::lineRankOrderFilter(image, res, half_length, rank, axis);
+            rank_filter::lineRankOrderFilter(image, res, half_length, rank, static_cast<unsigned int>(axis));
         }
         return(res);
     }
