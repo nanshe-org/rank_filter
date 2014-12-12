@@ -54,7 +54,8 @@ add_custom_target(distclean COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/
                             COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/Testing
                             COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/cmake_install.cmake
                             COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/Makefile
-                            COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/install_manifest.txt)
+                            COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/install_manifest.txt
+                            COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/bin/cxxtest.out)
 
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules/)
