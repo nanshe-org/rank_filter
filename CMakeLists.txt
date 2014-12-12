@@ -76,7 +76,7 @@ include_directories(
     ${Boost_INCLUDE_DIRS}
     ${PYTHON_NUMPY_INCLUDE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${VIGRA_VIGRANUMPYCORE_LIBRARY_PATH}
+    ${VIGRANUMPY_SITEPACKAGE_DIR}
 )
 
 # Set all directories to search for libraries
