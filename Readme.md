@@ -38,7 +38,7 @@ The second way the variables can be set is by invoking `cmake` with them, which 
 
 	cmake -DBOOST_ROOT=<path-to-Boost-root> -DVIGRA_ROOT=<path-to-VIGRA-root> .
 	
-Additionally, the prefered python interpreter can be set by using the `PYTHON_EXECUTABLE` variable. If `PYTHON_EXECUTABLE` is not specified at all, the first python interpreter found on the path will be used.
+Additionally, the preferred python interpreter can be set by using the `PYTHON_EXECUTABLE` variable. If `PYTHON_EXECUTABLE` is not specified at all, the first python interpreter found on the path will be used.
 	
 ###Building
 
