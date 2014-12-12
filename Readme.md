@@ -46,13 +46,13 @@ Additionally, the preferred python interpreter can be set by using the `PYTHON_E
 Before building the Python bindings it is worth checking if the C++ code passes its own test suite. This can be done using `make` with the command below. It is not required to run this stage, but it will be run every time when building. These test are no guarantee that the Python module will work. All they verify is that the C++ code works.
 
 	make check
-	
+
 ###Building
 
 Building is done easily using `make`. This will create a shared object in the slib directory, which can be imported by Python as a module. As mentioned in the Checking section, the C++ tests will be run first. If they fail, the Python module will not be built. They do not guarantee that the Python module will work. Instead the testing stage can be used to validate the module.
 
 	make
-	
+
 ###Testing
 
 Once the Python module is built, it is worth testing whether it works. This can be done with `make` using the command below. Unlike the C++ tests, these are Python tests that use nose to run the tests. The tests are the Python analogues of the ones used in C++ tests. They not only verify that basic command run, but that they pass with correct results only.
