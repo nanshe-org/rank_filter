@@ -39,23 +39,23 @@ file(MAKE_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 add_custom_target(reset  COMMAND cmake -E remove_directory ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}
                          COMMAND cmake -E remove_directory ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
                          COMMAND cmake -E remove_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
-                         COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/CMakeCache.txt
-                         COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/CMakeFiles
-                         COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/CTestTestfile.cmake
-                         COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/Testing
-                         COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/cmake_install.cmake
-                         COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/Makefile
-                         COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/install_manifest.txt)
+                         COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/CMakeCache.txt
+                         COMMAND cmake -E remove_directory ${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles
+                         COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/CTestTestfile.cmake
+                         COMMAND cmake -E remove_directory ${CMAKE_CURRENT_BINARY_DIR}/Testing
+                         COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/cmake_install.cmake
+                         COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/Makefile
+                         COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/install_manifest.txt)
 
 # Add a target to wipe out all CMake files generated.
-add_custom_target(distclean COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/CMakeCache.txt
-                            COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/CMakeFiles
-                            COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/CTestTestfile.cmake
-                            COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/Testing
-                            COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/cmake_install.cmake
-                            COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/Makefile
-                            COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/install_manifest.txt
-                            COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/bin/cxxtest.out)
+add_custom_target(distclean COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/CMakeCache.txt
+                            COMMAND cmake -E remove_directory ${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles
+                            COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/CTestTestfile.cmake
+                            COMMAND cmake -E remove_directory ${CMAKE_CURRENT_BINARY_DIR}/Testing
+                            COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/cmake_install.cmake
+                            COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/Makefile
+                            COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/install_manifest.txt
+                            COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/bin/cxxtest.out)
 
 # Import needed CMakes for finding dependencies.
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules/)
