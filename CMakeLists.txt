@@ -94,8 +94,9 @@ set_target_properties(cxxtest PROPERTIES SUFFIX ".out" PREFIX "")
 add_custom_target(check COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/bin/cxxtest.out DEPENDS cxxtest)
 
 # Build Python module with Python bindings to the C++ library.
+# The linking order is strictly necessary. Incorrect ordering causes "RuntimeError: unidentifiable C++ exception" on import.
 add_library(rank_filter SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/rank_filter_py.cxx)
-target_link_libraries(rank_filter ${PYTHON_LIBRARY} ${Boost_LIBRARIES} ${VIGRA_VIGRANUMPYCORE_LIBRARY})
+target_link_libraries(rank_filter ${VIGRA_VIGRANUMPYCORE_LIBRARY} ${Boost_LIBRARIES} ${PYTHON_LIBRARY})
 set_target_properties(rank_filter PROPERTIES SUFFIX ".so" PREFIX "")
 
 # Ensure the C++ unitests were run before building the Python module.
