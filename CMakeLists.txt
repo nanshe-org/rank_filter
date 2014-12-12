@@ -82,6 +82,12 @@ link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS})
 # Use C++11
 set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
+add_executable(cxxtest ${CMAKE_CURRENT_SOURCE_DIR}/test/test_rank_filter)
+target_link_libraries(cxxtest ${Boost_LIBRARIES})
+set_target_properties(cxxtest PROPERTIES SUFFIX ".out" PREFIX "")
+
+add_custom_target(check COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/bin/cxxtest.out DEPENDS cxxtest)
+
 add_library(rank_filter SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/rank_filter_py.cxx)
 target_link_libraries(rank_filter ${PYTHON_LIBRARY} ${Boost_LIBRARIES} ${VIGRA_VIGRANUMPYCORE_LIBRARY})
 set_target_properties(rank_filter PROPERTIES SUFFIX ".so" PREFIX "")
