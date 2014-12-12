@@ -91,7 +91,7 @@ target_link_libraries(cxxtest ${Boost_LIBRARIES})
 set_target_properties(cxxtest PROPERTIES SUFFIX ".out" PREFIX "")
 
 # Run C++ unitests binary
-add_custom_target(check COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/bin/cxxtest.out DEPENDS cxxtest)
+add_custom_target(check COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cxxtest.out DEPENDS cxxtest)
 
 # Build Python module with Python bindings to the C++ library.
 # The linking order is strictly necessary. Incorrect ordering causes "RuntimeError: unidentifiable C++ exception" on import.
