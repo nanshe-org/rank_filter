@@ -42,6 +42,7 @@ add_custom_target(reset  COMMAND cmake -E remove_directory ${CMAKE_ARCHIVE_OUTPU
                          COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/CMakeCache.txt
                          COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/CMakeFiles
                          COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/CTestTestfile.cmake
+                         COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/Testing
                          COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/cmake_install.cmake
                          COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/Makefile
                          COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/install_manifest.txt)
@@ -50,6 +51,7 @@ add_custom_target(reset  COMMAND cmake -E remove_directory ${CMAKE_ARCHIVE_OUTPU
 add_custom_target(distclean COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/CMakeCache.txt
                             COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/CMakeFiles
                             COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/CTestTestfile.cmake
+                            COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/Testing
                             COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/cmake_install.cmake
                             COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/Makefile
                             COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/install_manifest.txt)
