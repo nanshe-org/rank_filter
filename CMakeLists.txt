@@ -25,9 +25,10 @@ include_directories(
     ${Boost_INCLUDE_DIRS}
     ${PYTHON_NUMPY_INCLUDE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
+    ${VIGRA_VIGRANUMPYCORE_LIBRARY_PATH}
 )
 
 link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS})
 
 add_library(python_rank_filter SHARED python_rank_filter.cxx)
-target_link_libraries(python_rank_filter "python2.7" ${Boost_LIBRARIES} )
+target_link_libraries(python_rank_filter "python2.7" ${Boost_LIBRARIES} ${VIGRA_VIGRANUMPYCORE_LIBRARY})
