@@ -19,7 +19,7 @@ if (("${VIGRA_ROOT}" STREQUAL "") OR ("${VIGRA_ROOT}" STREQUAL "VIGRA_ROOT-NOTFO
 endif()
 
 # configVersion.hxx only present, after build of Vigra
-FIND_PATH(VIGRA_INCLUDE_DIR vigra/configVersion.hxx PATHS ${VIGRA_ROOT}/include ENV CPLUS_INCLUDE_PATH)
+FIND_PATH(VIGRA_INCLUDE_DIR NAMES vigra/configVersion.hxx vigra/config_version.hxx PATHS ${VIGRA_ROOT}/include ENV CPLUS_INCLUDE_PATH)
 
 if (NOT "${VIGRA_ROOT}" STREQUAL "")
     set(VIGRA_LIBRARY_DIR ${VIGRA_ROOT}/lib)
