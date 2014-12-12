@@ -12,6 +12,7 @@ In order to build this package, the following requirements are needed.
 2. Boost (requires 1.56 or later)
 3. NumPy (only tested with 1.7.0)
 4. VIGRA (only tested with a revision after release 1.10.0, commit [05cf09388e28ab9db49fda3763500f128445897d](https://github.com/ukoethe/vigra/commit/05cf09388e28ab9db49fda3763500f128445897d) )
+5. Nose (optional for running test, tested with 1.2.1)
 
 ##Building
 
@@ -40,15 +41,27 @@ The second way the variables can be set is by invoking `cmake` with them, which 
 	
 Additionally, the preferred python interpreter can be set by using the `PYTHON_EXECUTABLE` variable. If `PYTHON_EXECUTABLE` is not specified at all, the first python interpreter found on the path will be used.
 	
+###Checking
+
+Before building the Python bindings it is worth checking if the C++ code passes its own test suite. This can be done using `make` with the command below. It is not required to run this stage, but it will be run every time when building. These test are no guarantee that the Python module will work. All they verify is that the C++ code works.
+
+	make check
+	
 ###Building
 
-Building is done easily using `make`. This will create a shared object in the slib directory, which can be imported by Python as a module.
+Building is done easily using `make`. This will create a shared object in the slib directory, which can be imported by Python as a module. As mentioned in the Checking section, the C++ tests will be run first. If they fail, the Python module will not be built. They do not guarantee that the Python module will work. Instead the testing stage can be used to validate the module.
 
 	make
+	
+###Testing
+
+Once the Python module is built, it is worth testing whether it works. This can be done with `make` using the command below. Unlike the C++ tests, these are Python tests that use nose to run the tests. The tests are the Python analogues of the ones used in C++ tests. They not only verify that basic command run, but that they pass with correct results only.
+
+	make test
 
 ###Installing
 
-Installing is also done easily using `make`. This will install the shared object in the identified Python's site-package folder allowing for importing this module using that Python.
+After building and testing, it is time to install. Using `make`, the command below will install the module in the identified Python's site-package folder allowing for importing this module using that Python.
 
 	make install
 
