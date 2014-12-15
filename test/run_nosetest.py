@@ -8,9 +8,9 @@ import nose
 def main(argv):
     argv = list(argv)
 
-    os.environ["PYTHONPATH"] = os.getcwd() + "/slib" + ":" + os.environ["PYTHONPATH"]
+    os.environ["PYTHONPATH"] = argv[1] + ":" + os.environ["PYTHONPATH"]
 
-    return(subprocess.check_call([sys.executable, nose.core.__file__] + argv[1:],
+    return(subprocess.check_call([sys.executable, nose.core.__file__] + argv[2:],
                                  stdin=sys.stdin,
                                  stdout=sys.stdout,
                                  stderr=sys.stderr)
