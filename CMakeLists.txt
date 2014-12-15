@@ -90,7 +90,7 @@ set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
 # Build binary for running C++ unitests
 add_executable(cxxtest ${CMAKE_CURRENT_SOURCE_DIR}/test/test_rank_filter)
-target_link_libraries(cxxtest ${Boost_LIBRARIES})
+target_link_libraries(cxxtest ${Boost_CONTAINER_LIBRARY})
 set_target_properties(cxxtest PROPERTIES SUFFIX ".out" PREFIX "")
 
 # Run C++ unitests binary
