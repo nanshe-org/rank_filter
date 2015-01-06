@@ -74,10 +74,3 @@ There are a few additional options regarding cleaning. It is possible to clean a
 If it is desirable to eliminate the build products as well as all intermediates, then the call below can be used.
 
 	make reset
-
-##Notes
-
-At present, the import order of rank_filter and vigra is not invariant. The causes of this is somewhat complicated ( <https://github.com/jakirkham/rank_filter/issues/3> ). It does not seem that this can be easily resolved at this point. However, as long as one is aware of this issue, it can be easily avoided. Simply follow the import order seen below.
-
-	import rank_filter
-	import vigra
