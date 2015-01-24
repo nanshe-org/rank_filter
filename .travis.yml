@@ -11,7 +11,9 @@ install:
    - sudo apt-get update
    - sudo apt-get install -y make cmake git gcc-4.8 g++-4.8 python2.7
    - sudo apt-get install -y libhdf5-serial-dev libjpeg-dev libtiff4-dev libpng12-dev
-   - pip install -r .travis_scripts/requirements/development-stage2.txt --use-mirrors 
+   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8
+   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8
+   - sudo pip install -r .travis_scripts/requirements/development-stage2.txt --use-mirrors
    - sudo sh .travis_scripts/install_boost.sh $VIRTUAL_ENV
    - sudo sh .travis_scripts/install_vigra.sh $VIRTUAL_ENV
    - mkdir build && cd build
