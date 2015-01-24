@@ -23,7 +23,6 @@ install:
    - sudo pip install -r .travis_scripts/requirements/development-stage2.txt --use-mirrors
    - sudo sh .travis_scripts/install_boost.sh $VIRTUAL_ENV
    - sudo sh .travis_scripts/install_vigra.sh $VIRTUAL_ENV
-   - /usr/local/bin/python -c "import vigra.vigranumpycore; print vigra.vigranumpycore.__file__"
 script:
    - mkdir build && cd build
    - cmake -DCMAKE_BUILD_TYPE=Release -DDEPENDENCY_SEARCH_PREFIX=$VIRTUAL_ENV ..
