@@ -3,7 +3,7 @@ python:
    - "2.7"
 before_install:
    - echo $VIRTUAL_ENV
-   - "export PYTHON_EXECUTABLE=$(which python)"
+   - export PYTHON_EXECUTABLE=$(which python)
    - echo $PYTHON_EXECUTABLE
    - export PYTHON_SHARED_OBJECT=$(python -c "from distutils.sysconfig import get_config_var; from os.path import join; print join(get_config_var(\"LIBDIR\"), get_config_var(\"LDLIBRARY\"))")
    - echo $PYTHON_SHARED_OBJECT
