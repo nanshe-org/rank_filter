@@ -6,7 +6,7 @@ before_install:
    - "export VIGRA_ROOT=/usr/local/"
    - "export BOOST_ROOT=/usr/local/"
 install:
-   - sudo apt-get install -y git gcc-4.9 g++-4.9 cmake
+   - sudo apt-get install -y git gcc-4.8 g++-4.8 cmake
    - sudo apt-get install -y libboost-dev libboost-python-dev libboost-container-dev
    - sudo apt-get install -y libhdf5-serial-dev libjpeg-dev libtiff4-dev libpng12-dev
    - pip install -r .travis_scripts/requirements/development-stage2.txt --use-mirrors 
