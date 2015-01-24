@@ -16,8 +16,6 @@ install:
    - sudo ln -s /usr/bin/cpp-4.8 /usr/bin/cpp
    - sudo ln -s /usr/bin/gcc-4.8 /usr/bin/gcc
    - sudo ln -s /usr/bin/g++-4.8 /usr/bin/g++
-   - export VIRTUAL_ENV=$1
-   - echo "VIRTUAL_ENV is $VIRTUAL_ENV"
    - export PATH=$VIRTUAL_ENV/bin:$PATH
    - export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib:$LD_LIBRARY_PATH
    - sudo pip install -r .travis_scripts/requirements/development-stage2.txt --use-mirrors
