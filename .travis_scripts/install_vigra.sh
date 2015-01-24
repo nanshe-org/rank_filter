@@ -9,4 +9,4 @@ mkdir -p /tmp/vigra/build
 cd /tmp/vigra/build
 
 cmake -DDEPENDENCY_SEARCH_PREFIX=$VIRTUAL_ENV -DVIGRANUMPY_LIBRARIES="/usr/lib/libpython2.7.so;/usr/local/lib/libboost_python.so" ..
-make -j4 install
+make -j2 install
