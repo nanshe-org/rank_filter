@@ -29,5 +29,5 @@ script:
    - cmake -DCMAKE_BUILD_TYPE=Release -DDEPENDENCY_SEARCH_PREFIX=$VIRTUAL_ENV -DVIGRA_ROOT=$VIRTUAL_ENV -DBOOST_ROOT=$VIRTUAL_ENV -DPYTHON_EXECUTABLE=$PYTHON_EXECUTABLE ..
    - make
    - make check
-   - make install
    - make test
+   - make install
