@@ -19,7 +19,7 @@ install:
    - pip install --upgrade pip
    - export PATH=$VIRTUAL_ENV/bin:$PATH
    - export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib:$LD_LIBRARY_PATH
-   - sudo pip install -r .travis_scripts/requirements/development-stage2.txt --use-mirrors
+   - pip install -r .travis_scripts/requirements/development-stage2.txt --use-mirrors
    - sudo sh .travis_scripts/install_boost.sh $VIRTUAL_ENV $PYTHON_EXECUTABLE
    - sudo sh .travis_scripts/install_vigra.sh $VIRTUAL_ENV
 script:
