@@ -4,6 +4,7 @@ python:
 before_install:
    - "export PYTHON_EXECUTABLE=$(which python)"
    - echo $PYTHON_EXECUTABLE
+   - ls -l $PYTHON_EXECUTABLE
    - echo $VIRTUAL_ENV
    - ls $VIRTUAL_ENV
    - ls $VIRTUAL_ENV/lib
