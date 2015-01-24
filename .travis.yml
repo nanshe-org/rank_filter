@@ -26,6 +26,6 @@ install:
    - /usr/local/bin/python -c "import vigra.vigranumpycore; print vigra.vigranumpycore.__file__"
 script:
    - mkdir build && cd build
-   - cmake -DCMAKE_BUILD_TYPE=Release -DVIGRA_ROOT=/usr/local/ -DBOOST_ROOT=/usr/local/ ..
+   - cmake -DCMAKE_BUILD_TYPE=Release -DDEPENDENCY_SEARCH_PREFIX=$VIRTUAL_ENV ..
    - make -j8
    - make install
