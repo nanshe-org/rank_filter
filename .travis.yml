@@ -9,13 +9,17 @@ install:
    - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
    - sudo add-apt-repository -y ppa:git-core/ppa
    - sudo apt-get update
-   - sudo apt-get install -y make cmake git gcc-4.8 g++-4.8 python2.7
+   - sudo apt-get install -y make cmake git gcc-4.8 g++-4.8
    - sudo apt-get install -y libopenblas-dev libhdf5-serial-dev libjpeg-dev libtiff4-dev libpng12-dev
    - sudo rm /usr/bin/cc /usr/bin/cpp /usr/bin/gcc /usr/bin/g++
    - sudo ln -s /usr/bin/cc-4.8 /usr/bin/cc
    - sudo ln -s /usr/bin/cpp-4.8 /usr/bin/cpp
    - sudo ln -s /usr/bin/gcc-4.8 /usr/bin/gcc
    - sudo ln -s /usr/bin/g++-4.8 /usr/bin/g++
+   - export VIRTUAL_ENV=$1
+   - echo "VIRTUAL_ENV is $VIRTUAL_ENV"
+   - export PATH=$VIRTUAL_ENV/bin:$PATH
+   - export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib:$LD_LIBRARY_PATH
    - sudo pip install -r .travis_scripts/requirements/development-stage2.txt --use-mirrors
    - sudo sh .travis_scripts/install_boost.sh $VIRTUAL_ENV
    - sudo sh .travis_scripts/install_vigra.sh $VIRTUAL_ENV
