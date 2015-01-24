@@ -10,6 +10,7 @@ before_install:
    - ls $VIRTUAL_ENV/lib
    - ls $VIRTUAL_ENV/lib/python2.7
    - $PYTHON_EXECUTABLE -c "import distutils; import distutils.sysconfig; print distutils.sysconfig.get_config_var(\"LIBDIR\")"
+   - ls /opt/python/2.7.9/lib
 install:
    - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
    - sudo add-apt-repository -y ppa:git-core/ppa
