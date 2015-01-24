@@ -25,6 +25,6 @@ install:
    - sudo sh .travis_scripts/install_vigra.sh $VIRTUAL_ENV
 script:
    - mkdir build && cd build
-   - cmake -DCMAKE_BUILD_TYPE=Release -DDEPENDENCY_SEARCH_PREFIX=$VIRTUAL_ENV -DVIGRA_ROOT=/usr/local/ -DBOOST_ROOT=/usr/local/ -DVIGRANUMPY_SITEPACKAGE_DIR=/usr/lib/python2.7/dist-packages/vigra/ ..
+   - cmake -DCMAKE_BUILD_TYPE=Release -DDEPENDENCY_SEARCH_PREFIX=$VIRTUAL_ENV -DVIGRA_ROOT=/usr/local/ -DBOOST_ROOT=/usr/local/ -DVIGRANUMPY_SITEPACKAGE_DIR=/usr/lib/python2.7/dist-packages/vigra/ -DVIGRA_VIGRANUMPYCORE_LIBRARY=/usr/lib/python2.7/dist-packages/vigra/vigranumpycore.so ..
    - make -j8
    - make install
