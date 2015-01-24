@@ -1,0 +1,18 @@
+language: python
+python:
+   - "2.7"
+before_install:
+   - "export PYTHON_EXECUTABLE=/usr/local/bin/python"
+   - "export VIGRA_ROOT=/usr/local/"
+   - "export BOOST_ROOT=/usr/local/"
+install:
+   - sudo apt-get install -y git gcc-4.9 g++-4.9 cmake
+   - sudo apt-get install -y libboost-dev libboost-python-dev libboost-container-dev
+   - sudo apt-get install -y libhdf5-serial-dev libjpeg-dev libtiff4-dev libpng12-dev
+   - pip install -r .travis_scripts/requirements/development-stage2.txt --use-mirrors 
+   - sudo sh .travis_scripts/install_vigra.sh $VIRTUAL_ENV
+   - mkdir build && cd build
+   - cmake -DCMAKE_BUILD_TYPE=Release ..
+   - make -j8
+script:
+   - make test
