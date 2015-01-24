@@ -2,6 +2,8 @@
 
 #This script originates from the ilastik project.
 
+export VIRTUAL_ENV=$1
+
 git clone http://github.com/ukoethe/vigra /tmp/vigra 2> /dev/null
 cd /tmp/vigra
 git pull
