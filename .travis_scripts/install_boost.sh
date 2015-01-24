@@ -7,6 +7,6 @@ wget -O boost_1_56_0.tar.bz2 http://sourceforge.net/projects/boost/files/boost/1
 tar -xjf boost_1_56_0.tar.bz2
 cd boost_1_56_0 
 
-./bootstrap.sh --with-libraries=container,python 
+./bootstrap.sh --with-libraries=container,python --with-python=$PYTHON_EXE --prefix=$VIRTUAL_ENV
 ./b2
 ./b2 install
