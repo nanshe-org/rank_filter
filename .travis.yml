@@ -2,6 +2,7 @@ language: python
 python:
    - "2.7"
 before_install:
+   - python -c "import os; print(os.__file__);"
    - "export PYTHON_EXECUTABLE=/usr/local/bin/python"
    - "export VIGRA_ROOT=/usr/local/"
    - "export BOOST_ROOT=/usr/local/"
