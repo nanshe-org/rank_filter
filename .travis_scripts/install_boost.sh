@@ -1,7 +1,5 @@
 #!/bin/bash -v
 
-#This script originates from the ilastik project.
-
 export VIRTUAL_ENV=$1
 export PYTHON_EXECUTABLE=$2
 
