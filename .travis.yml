@@ -19,8 +19,6 @@ install:
    - sudo ln -s /usr/bin/gcc-4.8 /usr/bin/gcc
    - sudo ln -s /usr/bin/g++-4.8 /usr/bin/g++
    - pip install --upgrade pip
-   - export PATH=$VIRTUAL_ENV/bin:$PATH
-   - export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib:$LD_LIBRARY_PATH
    - pip install -r .travis_scripts/requirements/development-stage2.txt --use-mirrors
    - sh .travis_scripts/install_boost.sh $VIRTUAL_ENV $PYTHON_EXECUTABLE
    - sh .travis_scripts/install_vigra.sh $VIRTUAL_ENV $PYTHON_SHARED_OBJECT
