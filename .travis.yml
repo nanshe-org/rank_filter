@@ -25,6 +25,6 @@ install:
    - sudo sh .travis_scripts/install_vigra.sh $VIRTUAL_ENV
 script:
    - mkdir build && cd build
-   - cmake -DCMAKE_BUILD_TYPE=Release -DDEPENDENCY_SEARCH_PREFIX=$VIRTUAL_ENV ..
+   - cmake -DCMAKE_BUILD_TYPE=Release -DDEPENDENCY_SEARCH_PREFIX=$VIRTUAL_ENV -DVIGRA_ROOT=/usr/local/ -DBOOST_ROOT=/usr/local/ ..
    - make -j8
    - make install
