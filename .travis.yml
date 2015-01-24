@@ -30,7 +30,7 @@ install:
    - export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib:$LD_LIBRARY_PATH
    - pip install -r .travis_scripts/requirements/development-stage2.txt --use-mirrors
    - sh .travis_scripts/install_boost.sh $VIRTUAL_ENV $PYTHON_EXECUTABLE
-   - sh .travis_scripts/install_vigra.sh $VIRTUAL_ENV
+   - sh .travis_scripts/install_vigra.sh $VIRTUAL_ENV $PYTHON_SHARED_OBJECT
 script:
    - mkdir build && cd build
    - cmake -DCMAKE_BUILD_TYPE=Release -DDEPENDENCY_SEARCH_PREFIX=$VIRTUAL_ENV -DVIGRA_ROOT=$VIRTUAL_ENV -DBOOST_ROOT=$VIRTUAL_ENV -DPYTHON_EXECUTABLE=$PYTHON_EXECUTABLE ..
