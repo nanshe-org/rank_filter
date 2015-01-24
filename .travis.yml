@@ -5,6 +5,9 @@ before_install:
    - "export PYTHON_EXECUTABLE=$(which python)"
    - echo $PYTHON_EXECUTABLE
    - echo $VIRTUAL_ENV
+   - ls $VIRTUAL_ENV
+   - ls $VIRTUAL_ENV/lib
+   - ls $VIRTUAL_ENV/lib/python*
 install:
    - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
    - sudo add-apt-repository -y ppa:git-core/ppa
