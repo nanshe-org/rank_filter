@@ -4,6 +4,7 @@ python:
 before_install:
    - python -c "import numpy; print(numpy.__file__);"
    - "export PYTHON_EXECUTABLE=/usr/local/bin/python"
+   - echo $VIRTUAL_ENV
    - "export VIGRA_ROOT=/usr/local/"
    - "export BOOST_ROOT=/usr/local/"
 install:
