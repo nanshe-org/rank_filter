@@ -14,6 +14,7 @@ before_install:
    - $PYTHON_EXECUTABLE -c "import distutils; import distutils.sysconfig; print distutils.sysconfig.get_python_lib()"
    - ls /opt/python/2.7.9/lib
    - export PYTHON_SHARED_OBJECT=$(python -c "from distutils.sysconfig import get_config_var; from os.path import join; print join(get_config_var(\"LIBDIR\"), get_config_var(\"LDLIBRARY\"))")
+   - echo $PYTHON_SHARED_OBJECT
 install:
    - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
    - sudo add-apt-repository -y ppa:git-core/ppa
