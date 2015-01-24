@@ -14,5 +14,5 @@ echo "VIRTUAL_ENV is $VIRTUAL_ENV"
 export PATH=$VIRTUAL_ENV/bin:$PATH
 export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib:$LD_LIBRARY_PATH
 
-cmake -DDEPENDENCY_SEARCH_PREFIX=$VIRTUAL_ENV -DVIGRANUMPY_LIBRARIES="/usr/lib/libpython2.7.so;/usr/lib/libboost_python.so" ..
+cmake -DDEPENDENCY_SEARCH_PREFIX=$VIRTUAL_ENV -DVIGRANUMPY_LIBRARIES="/usr/lib/libpython2.7.so;/usr/local/lib/libboost_python.so" ..
 make -j4 install
