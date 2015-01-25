@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jakirkham/rank_filter.svg?branch=master)](https://travis-ci.org/jakirkham/rank_filter)
+[![Build Status](https://travis-ci.org/jakirkham/rank_filter.svg?branch=old_travis)](https://travis-ci.org/jakirkham/rank_filter)
 
 -----------------------------------------------------------------------------------------
 
