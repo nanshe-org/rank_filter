@@ -2,7 +2,13 @@
 RANK_FILTER_CXX_FLAGS="${CXXFLAGS}"
 RANK_FILTER_LDFLAGS="${CXX_LDFLAGS}"
 
+#
+# We OVERRIDE conda's default value for MACOSX_DEPLOYMENT_TARGET,
+#  because we want to link against libc++ (not stdlibc++) for C++ libraries (like vigra)
+#
+
 if [[ `uname` == 'Darwin' ]]; then
+    export MACOSX_DEPLOYMENT_TARGET=10.7
     LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
     CXXFLAGS="${CXXFLAGS} -stdlib=libc++"
     CXX_LDFLAGS="${LDFLAGS} -stdlib=libc++"
