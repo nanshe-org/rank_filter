@@ -1,5 +1,5 @@
 language: c++
-compiler: clang
+compiler: gcc
 env:
    - PYTHON_VERSION="2.7"
 before_install:
@@ -9,6 +9,10 @@ before_install:
    - cd ../..
    - pwd
 install:
+   # Update `gcc` to something with C++11 features.
+   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+   - sudo apt-get -qq update -y
+   - sudo apt-get -qq install -y g++-4.8
    # Download and configure conda.
    - wget http://repo.continuum.io/miniconda/Miniconda`echo ${PYTHON_VERSION:0:1} | grep 3`-latest-Linux-x86_64.sh -O miniconda.sh
    - bash miniconda.sh -b -p $HOME/miniconda
@@ -41,4 +45,4 @@ script:
    - conda build rank_filter.recipe
    - mv .git/shallow-not .git/shallow || true
 # Use container format for TravisCI.
-sudo: false
+#sudo: false  # Currently not possible as we need a newer copy of `gcc` that has C++11 features.
