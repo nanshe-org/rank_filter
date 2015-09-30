@@ -58,6 +58,8 @@ build:
   script_env:
     - CC
     - CXX
+    - CXXFLAGS
+    - CXX_LDFLAGS
 
   # The build number should be incremented for new builds of the same version
   #number: 1       # (defaults to 0)
