@@ -3,9 +3,6 @@ compiler: gcc
 env:
    - PYTHON_VERSION="2.7"
 before_install:
-   # Set environment variables.
-   - export CXXFLAGS=""
-   - export CXX_LDFLAGS=""
    # Move out of git directory to build root.
    - git fetch --unshallow --tags
    - git describe
