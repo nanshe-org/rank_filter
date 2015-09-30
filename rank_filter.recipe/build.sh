@@ -14,6 +14,9 @@ else
     CXX_LDFLAGS="${LDFLAGS}"
 fi
 
+CXXFLAGS="${CXXFLAGS} -std=c++11"
+CXX_LDFLAGS="${CXX_LDFLAGS} -std=c++11"
+
 # CONFIGURE
 SRC=$(pwd)
 mkdir -pv build
