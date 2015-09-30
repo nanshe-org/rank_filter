@@ -6,12 +6,8 @@
 if [[ `uname` == 'Darwin' ]]; then
     export MACOSX_DEPLOYMENT_TARGET=10.7
     LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
-    CXXFLAGS="${CXXFLAGS} -stdlib=libc++"
-    CXX_LDFLAGS="${LDFLAGS} -stdlib=libc++"
 else
     LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
-    CXXFLAGS="${CXXFLAGS}"
-    CXX_LDFLAGS="${LDFLAGS}"
 fi
 
 CXXFLAGS="${CXXFLAGS} -std=c++11"
