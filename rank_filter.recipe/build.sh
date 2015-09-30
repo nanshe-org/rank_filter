@@ -4,8 +4,12 @@ RANK_FILTER_LDFLAGS="${CXX_LDFLAGS}"
 
 if [[ `uname` == 'Darwin' ]]; then
     LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
+    CXXFLAGS="${CXXFLAGS} -stdlib=libc++"
+    CXX_LDFLAGS="${LDFLAGS} -stdlib=libc++"
 else
     LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
+    CXXFLAGS="${CXXFLAGS}"
+    CXX_LDFLAGS="${LDFLAGS}"
 fi
 
 # CONFIGURE
