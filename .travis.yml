@@ -38,7 +38,7 @@ install:
 script:
    # Building the recipe will run the tests too.
    - mv .git/shallow .git/shallow-not || true
-   - conda build rank_filter.recipe
+   - CXXFLAGS="${CXXFLAGS} -stdlib=libc++" CXX_LDFLAGS="${LDFLAGS} -stdlib=libc++" conda build rank_filter.recipe
    - mv .git/shallow-not .git/shallow || true
 # Use container format for TravisCI.
 sudo: false
