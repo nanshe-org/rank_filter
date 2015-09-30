@@ -5,6 +5,7 @@ env:
 before_install:
    # Move out of git directory to build root.
    - git fetch --unshallow --tags
+   - git describe
    - cd ../..
    - pwd
 install:
