@@ -10,7 +10,7 @@ else
     LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
 fi
 
-CXXFLAGS="${CXXFLAGS} -std=c++11"
+CXX_FLAGS="${CXX_FLAGS} -std=c++11"
 CXX_LDFLAGS="${CXX_LDFLAGS} -std=c++11"
 
 # CONFIGURE
@@ -26,8 +26,8 @@ cmake ${SRC}\
 \
         -DCMAKE_SHARED_LINKER_FLAGS="${CXX_LDFLAGS}" \
 \
-        -DCMAKE_CXX_LINK_FLAGS="${CXXFLAGS}" \
-        -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
+        -DCMAKE_CXX_LINK_FLAGS="${CXX_FLAGS}" \
+        -DCMAKE_CXX_FLAGS="${CXX_FLAGS}" \
 \
         -DBOOST_ROOT="${PREFIX}" \
         -DVIGRA_ROOT="${PREFIX}" \
