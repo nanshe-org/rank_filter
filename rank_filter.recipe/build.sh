@@ -10,6 +10,8 @@ cd build
 BLD=$(pwd)
 
 cmake ${SRC}\
+        -DCMAKE_MACOSX_RPATH=false \
+\
         -DCMAKE_PREFIX_PATH="${PREFIX}" \
 \
         -DCMAKE_SHARED_LINKER_FLAGS="${RANK_FILTER_LDFLAGS}" \
