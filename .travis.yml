@@ -4,6 +4,7 @@ env:
    - PYTHON_VERSION="2.7"
 before_install:
    # Move out of git directory to build root.
+   - git fetch --unshallow --tags
    - cd ../..
    - pwd
 install:
