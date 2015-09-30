@@ -1,7 +1,3 @@
-# Get commonly needed env vars
-RANK_FILTER_CXX_FLAGS="${CXXFLAGS}"
-RANK_FILTER_LDFLAGS="${CXX_LDFLAGS}"
-
 #
 # We OVERRIDE conda's default value for MACOSX_DEPLOYMENT_TARGET,
 #  because we want to link against libc++ (not stdlibc++) for C++ libraries (like vigra)
@@ -29,10 +25,10 @@ cmake ${SRC}\
 \
         -DCMAKE_PREFIX_PATH="${PREFIX}" \
 \
-        -DCMAKE_SHARED_LINKER_FLAGS="${RANK_FILTER_LDFLAGS}" \
+        -DCMAKE_SHARED_LINKER_FLAGS="${CXX_LDFLAGS}" \
 \
-        -DCMAKE_CXX_LINK_FLAGS="${RANK_FILTER_CXX_FLAGS}" \
-        -DCMAKE_CXX_FLAGS="${RANK_FILTER_CXX_FLAGS}" \
+        -DCMAKE_CXX_LINK_FLAGS="${CXXFLAGS}" \
+        -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
 \
         -DBOOST_ROOT="${PREFIX}" \
         -DVIGRA_ROOT="${PREFIX}" \
