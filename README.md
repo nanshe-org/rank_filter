@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jakirkham/rank_filter.svg?branch=master)](https://travis-ci.org/jakirkham/rank_filter)
+[![Build Status](https://travis-ci.org/nanshe-org/rank_filter.svg?branch=master)](https://travis-ci.org/nanshe-org/rank_filter)
 
 -----------------------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ Building is done using CMake. This makes it flexible and easy to use on differen
 
 To start simply clone the repo and change directory to the repo.
 
-	git clone https://github.com/jakirkham/rank_filter
+	git clone https://github.com/nanshe-org/rank_filter
 	cd rank_filter
 
 ###Configuring
