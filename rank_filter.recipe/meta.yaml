@@ -189,7 +189,7 @@ test:
   # recipe
 
 about:
-  home: http://github.com/jakirkham/rank_filter
+  home: http://github.com/nanshe-org/rank_filter
   license: 
   summary: C++ boosted rank filter with Python bindings.
 
