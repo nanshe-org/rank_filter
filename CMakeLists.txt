@@ -83,7 +83,7 @@ include_directories(
 )
 
 # Set all directories to search for libraries
-link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS})
+link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS} ${VIGRANUMPY_SITEPACKAGE_DIR})
 
 # Use C++11
 set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
