@@ -152,5 +152,6 @@ intermediates, then the call below can be used.
 
     make reset
 
+
 .. |Build Status| image:: https://travis-ci.org/nanshe-org/rank_filter.svg?branch=master
    :target: https://travis-ci.org/nanshe-org/rank_filter
