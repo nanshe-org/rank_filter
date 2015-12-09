@@ -270,9 +270,4 @@ class TestRankFilter(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    import sys
-    import nose
-    sys.argv.append("--nocapture")
-    sys.argv.append("--nologcapture")
-
-    sys.exit(nose.run(defaultTest=__file__))
+    unittest.main()
