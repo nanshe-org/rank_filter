@@ -146,112 +146,12 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         vigra::MultiArrayView <N, T2, S2> dest,
         unsigned long half_length, double rank, unsigned int axis = 0)
 {
-    // Will ignore boundaries initially.
-    // Then will try adding reflection.
+    typename vigra::MultiArrayView <N, T1, S1>::const_iterator src_begin = src.begin();
+    typename vigra::MultiArrayView <N, T1, S1>::const_iterator src_end = src.end();
+    typename vigra::MultiArrayView <N, T2, S2>::iterator dest_begin = dest.begin();
+    typename vigra::MultiArrayView <N, T2, S2>::iterator dest_end = dest.end();
 
-    // Rank must be in the range 0 to 1
-    assert((0 <= rank) && (rank <= 1));
-
-    const unsigned long rank_pos = round(rank * (2 * half_length));
-
-    // The position of the
-    typename vigra::MultiArrayView<N, T1, S1>::difference_type_1 window_begin(0);
-
-    typedef boost::container::multiset< T1,
-            std::less<T1>,
-            boost::container::node_allocator<T1>,
-            boost::container::tree_assoc_options< boost::container::tree_type<boost::container::scapegoat_tree> >::type> multiset;
-
-    typedef std::deque< typename multiset::iterator > deque;
-
-    multiset sorted_window;
-    deque window_iters;
-
-    // Get the initial sorted window.
-    // Include the reflection.
-    for (typename vigra::MultiArrayView<N, T1, S1>::difference_type_1 j(half_length); j > 0; j--)
-    {
-        window_iters.push_back(sorted_window.insert(src[window_begin + j]));
-    }
-    for (typename vigra::MultiArrayView<N, T1, S1>::difference_type_1 j(0); j <= half_length; j++)
-    {
-        window_iters.push_back(sorted_window.insert(src[window_begin + j]));
-    }
-
-    typename multiset::iterator rank_point = sorted_window.begin();
-
-    for (unsigned long i = 0; i < rank_pos; i++)
-    {
-        rank_point++;
-    }
-
-    typename multiset::iterator prev_iter;
-    T1 prev_value;
-    T1 next_value;
-    while ( window_begin < src.size() )
-    {
-        dest[window_begin] = *rank_point;
-
-        prev_iter = window_iters.front();
-        prev_value = *prev_iter;
-        window_iters.pop_front();
-
-        window_begin++;
-
-        if ( window_begin < (src.size() - half_length) )
-        {
-            next_value = src[window_begin + half_length];
-        }
-        else
-        {
-            next_value = *(window_iters[window_iters.size() + 2*src.size() - 2*(window_begin + half_length) - 2]);
-        }
-
-        if ( ( *rank_point < prev_value ) && ( *rank_point <= next_value ) )
-        {
-            sorted_window.erase(prev_iter);
-            window_iters.push_back(sorted_window.insert(next_value));
-        }
-        else if ( ( *rank_point >= prev_value ) && ( *rank_point > next_value ) )
-        {
-            if ( rank_point == prev_iter )
-            {
-                window_iters.push_back(sorted_window.insert(next_value));
-                rank_point--;
-
-                sorted_window.erase(prev_iter);
-            }
-            else
-            {
-                sorted_window.erase(prev_iter);
-                window_iters.push_back(sorted_window.insert(next_value));
-            }
-        }
-        else if ( ( *rank_point < prev_value ) && ( *rank_point > next_value ) )
-        {
-            sorted_window.erase(prev_iter);
-            window_iters.push_back(sorted_window.insert(next_value));
-
-            rank_point--;
-        }
-        else if ( ( *rank_point >= prev_value ) && ( *rank_point <= next_value ) )
-        {
-            if (rank_point == prev_iter)
-            {
-                window_iters.push_back(sorted_window.insert(next_value));
-                rank_point++;
-
-                sorted_window.erase(prev_iter);
-            }
-            else
-            {
-                sorted_window.erase(prev_iter);
-                window_iters.push_back(sorted_window.insert(next_value));
-
-                rank_point++;
-            }
-        }
-    }
+    lineRankOrderFilter1D(src_begin, src_end, dest_begin, dest_end, half_length, rank);
 }
 
 template<unsigned int N,
