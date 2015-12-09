@@ -1,8 +1,8 @@
-import rank_filter
-
 import itertools
 
 import numpy
+
+import rank_filter
 
 
 class TestRankFilter(object):
