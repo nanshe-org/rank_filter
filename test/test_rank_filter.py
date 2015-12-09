@@ -1,11 +1,15 @@
-import rank_filter
+#!/usr/bin/env python
+
 
 import itertools
+import unittest
 
 import numpy
 
+import rank_filter
 
-class TestRankFilter(object):
+
+class TestRankFilter(unittest.TestCase):
     def setUp(self):
         self.size = 10
 
@@ -269,9 +273,4 @@ class TestRankFilter(object):
 
 
 if __name__ == "__main__":
-    import sys
-    import nose
-    sys.argv.append("--nocapture")
-    sys.argv.append("--nologcapture")
-
-    sys.exit(nose.run(defaultTest=__file__))
+    unittest.main()
