@@ -1,11 +1,12 @@
 import itertools
+import unittest
 
 import numpy
 
 import rank_filter
 
 
-class TestRankFilter(object):
+class TestRankFilter(unittest.TestCase):
     def setUp(self):
         self.size = 10
 
