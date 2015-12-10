@@ -3,7 +3,6 @@
 
 
 #include <string>
-#include <utility>
 
 #include "rank_filter.hxx"
 
