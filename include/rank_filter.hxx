@@ -3,7 +3,6 @@
 
 
 #include <deque>
-#include <cmath>
 #include <cassert>
 #include <functional>
 #include <iostream>
