@@ -89,7 +89,7 @@ link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS} ${VIGRANUMPY_SITEPA
 set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
 # Build binary for running C++ unitests
-add_executable(cxxtest ${CMAKE_CURRENT_SOURCE_DIR}/test/test_rank_filter)
+add_executable(cxxtest ${CMAKE_CURRENT_SOURCE_DIR}/test/test_rank_filter_vigra)
 target_link_libraries(cxxtest ${Boost_CONTAINER_LIBRARY})
 set_target_properties(cxxtest PROPERTIES SUFFIX ".out" PREFIX "")
 
