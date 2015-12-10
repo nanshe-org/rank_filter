@@ -16,7 +16,6 @@
 #include <boost/container/node_allocator.hpp>
 
 #include <vigra/multi_array.hxx>
-#include <vigra/linear_algebra.hxx>
 
 
 namespace rank_filter
