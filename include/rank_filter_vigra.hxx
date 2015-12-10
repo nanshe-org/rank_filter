@@ -1,5 +1,5 @@
-#ifndef __RANK_FILTER__
-#define __RANK_FILTER__
+#ifndef __RANK_FILTER_VIGRA__
+#define __RANK_FILTER_VIGRA__
 
 
 #include <iostream>
@@ -145,4 +145,4 @@ std::ostream& operator<<(std::ostream& out, const vigra::MultiArrayView<N, T, S>
 }
 
 
-#endif //__RANK_FILTER__
+#endif //__RANK_FILTER_VIGRA__
