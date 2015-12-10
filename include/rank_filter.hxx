@@ -7,7 +7,6 @@
 #include <cassert>
 #include <functional>
 #include <iostream>
-#include <utility>
 
 #include <boost/container/set.hpp>
 #include <boost/container/node_allocator.hpp>
