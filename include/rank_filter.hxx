@@ -7,7 +7,6 @@
 #include <cassert>
 #include <functional>
 #include <iostream>
-#include <type_traits>
 #include <utility>
 
 #include <boost/container/set.hpp>
