@@ -1,11 +1,11 @@
-#define BOOST_TEST_MODULE RankFilterModule
+#define BOOST_TEST_MODULE RankFilterVigraModule
 #include <boost/test/included/unit_test.hpp>
 
 
-#include "rank_filter.hxx"
+#include "rank_filter_vigra.hxx"
 
 
-struct RankFilterFixture
+struct RankFilterVigraFixture
 {
     public:
 
@@ -31,7 +31,7 @@ struct RankFilterFixture
 
     public:
 
-        RankFilterFixture() : size_1(size), array_1(size_1), reverse_array_1(size_1), expected_result_1(size_1), result_1(size_1),
+        RankFilterVigraFixture() : size_1(size), array_1(size_1), reverse_array_1(size_1), expected_result_1(size_1), result_1(size_1),
         size_2(size, size), array_2(size_2), reverse_array_2(size_2), expected_result_2(size_2), result_2(size_2)
         {
             for (int i = 0; i < array_1.shape(0); i++)
@@ -62,17 +62,17 @@ struct RankFilterFixture
             }
         };
 
-        ~RankFilterFixture()
+        ~RankFilterVigraFixture()
         {
         };
 };
 
 
 
-BOOST_AUTO_TEST_SUITE( RankFilterSuite )
+BOOST_AUTO_TEST_SUITE( RankFilterVigraSuite )
 
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_1, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_1, RankFilterVigraFixture)
 {
     expected_result_1 = array_1;
 
@@ -83,7 +83,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_1, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_1, result_1);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_2, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_2, RankFilterVigraFixture)
 {
     expected_result_1 = reverse_array_1;
 
@@ -94,7 +94,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_2, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_1, result_1);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_3, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_3, RankFilterVigraFixture)
 {
     expected_result_1 = array_1;
     expected_result_1[0] = expected_result_1[1];
@@ -107,7 +107,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_3, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_1, result_1);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_4, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_4, RankFilterVigraFixture)
 {
     expected_result_1 = reverse_array_1;
     expected_result_1[0] = expected_result_1[1];
@@ -120,7 +120,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_4, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_1, result_1);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_5, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_5, RankFilterVigraFixture)
 {
     expected_result_1 = array_1;
     expected_result_1[0] = expected_result_1[1];
@@ -133,7 +133,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_5, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_1, result_1);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_6, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_6, RankFilterVigraFixture)
 {
     expected_result_1 = reverse_array_1;
     expected_result_1[0] = expected_result_1[1];
@@ -146,7 +146,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_6, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_1, result_1);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_7, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_7, RankFilterVigraFixture)
 {
     expected_result_1 = array_1;
     expected_result_1[0] = expected_result_1[1] = expected_result_1[2];
@@ -159,7 +159,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_7, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_1, result_1);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_8, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_8, RankFilterVigraFixture)
 {
     expected_result_1 = reverse_array_1;
     expected_result_1[0] = expected_result_1[1] = expected_result_1[2];
@@ -172,7 +172,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_8, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_1, result_1);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_9, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_9, RankFilterVigraFixture)
 {
     expected_result_1 = array_1;
     expected_result_1[0] = expected_result_1[1] = expected_result_1[2];
@@ -185,7 +185,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_9, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_1, result_1);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_10, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_10, RankFilterVigraFixture)
 {
     expected_result_1 = reverse_array_1;
     expected_result_1[0] = expected_result_1[1] = expected_result_1[2];
@@ -198,7 +198,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_10, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_1, result_1);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_11, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_11, RankFilterVigraFixture)
 {
     expected_result_2 = array_2;
 
@@ -209,7 +209,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_11, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_2, result_2);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_12, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_12, RankFilterVigraFixture)
 {
     expected_result_2 = reverse_array_2;
 
@@ -220,7 +220,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_12, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_2, result_2);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_13, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_13, RankFilterVigraFixture)
 {
     expected_result_2 = array_2;
     expected_result_2.bindInner(0) = expected_result_2.bindInner(1);
@@ -233,7 +233,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_13, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_2, result_2);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_14, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_14, RankFilterVigraFixture)
 {
     expected_result_2 = reverse_array_2;
     expected_result_2.bindInner(0) = expected_result_2.bindInner(1);
@@ -246,7 +246,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_14, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_2, result_2);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_15, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_15, RankFilterVigraFixture)
 {
     expected_result_2 = array_2;
     expected_result_2.bindOuter(0) = expected_result_2.bindOuter(1);
@@ -259,7 +259,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_15, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_2, result_2);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_16, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_16, RankFilterVigraFixture)
 {
     expected_result_2 = reverse_array_2;
     expected_result_2.bindOuter(0) = expected_result_2.bindOuter(1);
@@ -272,7 +272,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_16, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_2, result_2);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_17, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_17, RankFilterVigraFixture)
 {
     expected_result_2 = reverse_array_2;
     expected_result_2.bindOuter(0) = expected_result_2.bindOuter(1);
@@ -285,7 +285,7 @@ BOOST_FIXTURE_TEST_CASE(test_rank_filter_17, RankFilterFixture)
     BOOST_CHECK_EQUAL(expected_result_2, result_2);
 }
 
-BOOST_FIXTURE_TEST_CASE(test_rank_filter_18, RankFilterFixture)
+BOOST_FIXTURE_TEST_CASE(test_rank_filter_vigra_18, RankFilterVigraFixture)
 {
     for (size_t i = 0; i < array_1.size(); i++)
     {
