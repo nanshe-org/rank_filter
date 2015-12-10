@@ -55,7 +55,8 @@ add_custom_target(distclean COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/
                             COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/cmake_install.cmake
                             COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/Makefile
                             COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/install_manifest.txt
-                            COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/bin/cxxtest.out)
+                            COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/bin/cxxtest_base.out
+                            COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/bin/cxxtest_vigra.out)
 
 # Import needed CMakes for finding dependencies.
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules/)
@@ -88,13 +89,18 @@ link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS} ${VIGRANUMPY_SITEPA
 # Use C++11
 set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
-# Build binary for running C++ unitests
-add_executable(cxxtest ${CMAKE_CURRENT_SOURCE_DIR}/test/test_rank_filter_vigra)
-target_link_libraries(cxxtest ${Boost_CONTAINER_LIBRARY})
-set_target_properties(cxxtest PROPERTIES SUFFIX ".out" PREFIX "")
+# Build binary for running base API C++ unitests
+add_executable(cxxtest_base ${CMAKE_CURRENT_SOURCE_DIR}/test/test_rank_filter_base)
+target_link_libraries(cxxtest_base ${Boost_CONTAINER_LIBRARY})
+set_target_properties(cxxtest_base PROPERTIES SUFFIX ".out" PREFIX "")
+
+# Build binary for running base API C++ unitests
+add_executable(cxxtest_vigra ${CMAKE_CURRENT_SOURCE_DIR}/test/test_rank_filter_vigra)
+target_link_libraries(cxxtest_vigra ${Boost_CONTAINER_LIBRARY})
+set_target_properties(cxxtest_vigra PROPERTIES SUFFIX ".out" PREFIX "")
 
 # Run C++ unitests binary
-add_custom_target(check COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cxxtest.out DEPENDS cxxtest)
+add_custom_target(check COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cxxtest_base.out COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cxxtest_vigra.out DEPENDS cxxtest_base cxxtest_vigra)
 
 # Build Python module with Python bindings to the C++ library.
 # The linking order is strictly necessary. Incorrect ordering causes "RuntimeError: unidentifiable C++ exception" on import.
