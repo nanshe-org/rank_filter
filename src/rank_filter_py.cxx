@@ -2,10 +2,7 @@
 //#define NO_IMPORT_ARRAY
 
 
-#include <exception>
-#include <iostream>
 #include <string>
-#include <utility>
 
 #include "rank_filter.hxx"
 

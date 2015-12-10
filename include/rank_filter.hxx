@@ -3,20 +3,14 @@
 
 
 #include <deque>
-#include <set>
-#include <cmath>
 #include <cassert>
 #include <functional>
 #include <iostream>
-#include <iterator>
-#include <type_traits>
-#include <utility>
 
 #include <boost/container/set.hpp>
 #include <boost/container/node_allocator.hpp>
 
 #include <vigra/multi_array.hxx>
-#include <vigra/linear_algebra.hxx>
 
 
 namespace rank_filter
