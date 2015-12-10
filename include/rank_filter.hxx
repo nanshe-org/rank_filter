@@ -199,5 +199,60 @@ inline void lineRankOrderFilter(const vigra::MultiArrayView <N, T1, S1> &src,
 
 }
 
+namespace vigra {
+
+template <unsigned int N, class T, class S, typename std::enable_if<(N == 1), int>::type = 0>
+std::ostream& println(std::ostream& out, const vigra::MultiArrayView<N, T, S>& array, unsigned int indent=0)
+{
+    for (unsigned int i = 0; i < indent; i++)
+    {
+        out << " ";
+    }
+    out << "{ ";
+
+    for (unsigned int i = 0; i < (array.shape(0) - 1); i++)
+    {
+        out << array[i] << ", ";
+    }
+    out << array[array.shape(0) - 1] << " }";
+
+    return(out);
+}
+
+
+template <unsigned int N, class T, class S, typename std::enable_if<(N > 1), int>::type = 0>
+std::ostream& println(std::ostream& out, const vigra::MultiArrayView<N, T, S>& array, unsigned int indent=0)
+{
+    for (unsigned int i = 0; i < indent; i++)
+    {
+        out << " ";
+    }
+    out << "{" << std::endl;
+
+    for (unsigned int i = 0; i < (array.shape(0) - 1); i++)
+    {
+        println(out, array.bindOuter(i), indent+1);
+        out << ", " << std::endl;
+    }
+    println(out, array.bindOuter(array.shape(0) - 1), indent+1);
+    out << std::endl;
+
+    for (unsigned int i = 0; i < indent; i++)
+    {
+        out << " ";
+    }
+    out << "}";
+
+    return(out);
+}
+
+template <unsigned int N, class T, class S>
+std::ostream& operator<<(std::ostream& out, const vigra::MultiArrayView<N, T, S>& array)
+{
+    return(println(out, array));
+}
+
+}
+
 
 #endif //__RANK_FILTER__
