@@ -146,6 +146,7 @@ requirements:
   # listed explicitly if they are required.
   build:
     - cmake
+    - patchelf >=0.8    # [linux]
     - boost
     - python
     - nose

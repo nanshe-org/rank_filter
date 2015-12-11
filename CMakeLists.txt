@@ -115,5 +115,6 @@ add_dependencies(rank_filter check)
 add_test(NAME nosetest COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test/run_nosetest.py ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR})
 
 # Install the module in the Python site-packages folder.
+install(CODE "execute_process(COMMAND patchelf --remove-needed vigranumpycore.so ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/rank_filter.so)")
 install(TARGETS rank_filter DESTINATION ${PYTHON_SITE_PACKAGES})
 #install(FILES include/rank_filter.hxx DESTINATION ${VIGRA_INCLUDE_DIR})
