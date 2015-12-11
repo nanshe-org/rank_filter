@@ -65,7 +65,3 @@ eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make -j${CPU_COUNT}
 
 # "install" to the build prefix (conda will relocate these files afterwards)
 eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make install
-
-if [[ `uname` == 'Linux' ]]; then
-    patchelf --remove-needed vigranumpycore.so $PREFIX/lib/python2.7/site-packages/rank_filter.so
-fi
