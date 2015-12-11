@@ -152,7 +152,6 @@ requirements:
     - cython
     - nose
     - numpy
-    - vigra
     
   # Packages required to run the package. These are the dependencies that
   # will be installed automatically whenever the package is installed.
@@ -161,7 +160,6 @@ requirements:
     - python
     - nose
     - numpy
-    - vigra
 
 test:
   ## files which are copied from the recipe into the (temporary) test
@@ -184,7 +182,6 @@ test:
   imports:
     - itertools
     - numpy
-    - vigra
     - rank_filter
 
   # The script run_test.py will be run automatically if it is part of the
