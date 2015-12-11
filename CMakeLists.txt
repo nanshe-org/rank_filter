@@ -112,7 +112,7 @@ set_target_properties(rank_filter PROPERTIES SUFFIX ".so" PREFIX "")
 add_dependencies(rank_filter check)
 
 # Run nosetest on completion to ensure all works and is accurate
-add_test(NAME nosetest COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test/run_nosetest.py ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR})
+add_test(NAME nosetest COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/run_nosetest.py ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR})
 
 # Install the module in the Python site-packages folder.
 install(CODE "execute_process(COMMAND patchelf --remove-needed vigranumpycore.so ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/rank_filter.so)")
