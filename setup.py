@@ -5,6 +5,8 @@ from distutils.sysconfig import get_config_var, get_python_inc
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext as _build_ext
 
+import versioneer
+
 
 class build_ext(_build_ext):
     def finalize_options(self):
@@ -19,7 +21,7 @@ def readme():
         return(f.read())
 
 
-version="0.3.0"
+version=versioneer.get_version()
 
 cython_dep = ["Cython >= 0.23"]
 numpy_dep = ["numpy >= 1.7"]
@@ -63,7 +65,12 @@ setup(
     author_email="kirkhamj@janelia.hhmi.org",
     url="https://github.com/nanshe-org/rank_filter",
     download_url="https://github.com/nanshe-org/rank_filter/archive/v%s.tar.gz" % version,
-    cmdclass={'build_ext':build_ext},
+    cmdclass=dict(
+        versioneer.get_cmdclass().items() +
+        [
+            ('build_ext', build_ext)
+        ]
+    ),
     setup_requires=setup_requires,
     build_requires=build_requires,
     install_requires=install_requires,
