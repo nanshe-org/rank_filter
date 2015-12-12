@@ -37,6 +37,7 @@ setup_requires = cython_dep + numpy_dep
 setup_requires = [] if sys.argv[1] == "bdist_conda" else setup_requires
 build_requires = cython_dep + numpy_dep + boost_dep
 install_requires = numpy_dep + boost_dep
+install_requires += [] if sys.argv[1] == "bdist_conda" else cython_dep
 tests_require = cython_dep + numpy_dep
 
 include_dirs = [
