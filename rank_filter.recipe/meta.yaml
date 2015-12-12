@@ -60,6 +60,7 @@ build:
     - CXX
     - CXX_FLAGS
     - CXX_LDFLAGS
+    - USE_CYTHON
 
   # The build number should be incremented for new builds of the same version
   #number: 1       # (defaults to 0)
