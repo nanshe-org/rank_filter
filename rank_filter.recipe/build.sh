@@ -18,6 +18,10 @@ else
     DEFAULT_CXX_LDFLAGS=""
 fi
 
+if [ -z "${USE_CYTHON}" ] || [ "${USE_CYTHON}" == "<UNDEFINED>" ];
+then
+    unset USE_CYTHON
+fi
 if [ -z "${CC}" ] || [ "${CC}" == "<UNDEFINED>" ];
 then
     CC=$DEFAULT_CC
