@@ -6,6 +6,8 @@ import itertools as it
 
 import numpy as np
 
+include "version.pxi"
+
 
 @cython.boundscheck(False)
 def lineRankOrderFilter(image, int half_length, float rank, int axis=-1, out=None):

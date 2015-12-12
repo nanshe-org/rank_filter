@@ -23,6 +23,11 @@ def readme():
 
 version=versioneer.get_version()
 
+with open("src/version.pxi", "w") as f:
+     f.writelines([
+         "__version__ = " + "\"" + str(version) + "\""
+     ])
+
 cython_dep = ["Cython >= 0.23"]
 numpy_dep = ["numpy >= 1.7"]
 boost_dep = ["boost >= 1.56"]
