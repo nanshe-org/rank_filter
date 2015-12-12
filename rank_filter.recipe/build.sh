@@ -38,9 +38,33 @@ fi
 CXX_FLAGS="${CXXFLAGS} ${CXX_FLAGS} -std=c++11"
 CXX_LDFLAGS="${LDFLAGS} ${CXX_LDFLAGS} -std=c++11"
 
-# Build and install
-eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib ${PYTHON} setup.py build
-eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib ${PYTHON} setup.py test
-eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib ${PYTHON} setup.py install
+# CONFIGURE
+SRC=$(pwd)
+mkdir -pv build
+cd build
+BLD=$(pwd)
 
-git clean -fdx
+cmake ${SRC}\
+        -DCMAKE_MACOSX_RPATH=false \
+\
+        -DCMAKE_PREFIX_PATH="${PREFIX}" \
+\
+        -DCMAKE_SHARED_LINKER_FLAGS="${CXX_LDFLAGS}" \
+\
+        -DCMAKE_CXX_LINK_FLAGS="${CXX_FLAGS}" \
+        -DCMAKE_CXX_FLAGS="${CXX_FLAGS}" \
+\
+        -DBOOST_ROOT="${PREFIX}" \
+        -DVIGRA_ROOT="${PREFIX}" \
+\
+        -DPYTHON_EXECUTABLE="${PYTHON}" \
+\
+
+# BUILD (in parallel)
+eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make -j${CPU_COUNT}
+
+# "install" to the build prefix (conda will relocate these files afterwards)
+eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make install
+
+# Clean up any loose ends including CMake files.
+make reset
