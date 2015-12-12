@@ -3,6 +3,7 @@ compiler: gcc
 env:
    - PYTHON_VERSION="2.7" HAS_VIGRA="true"
    - PYTHON_VERSION="2.7" HAS_VIGRA="false"
+   - PYTHON_VERSION="3.5" HAS_VIGRA="false"
 before_install:
    # Move out of git directory to build root.
    - git fetch --unshallow --tags
