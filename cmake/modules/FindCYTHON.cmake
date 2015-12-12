@@ -4,7 +4,7 @@
 IF(PYTHONINTERP_FOUND)
     IF(NOT PYTHON_CYTHON)
         execute_process ( COMMAND ${PYTHON_EXECUTABLE} -c
-                            "import cython; print cython.__file__"
+                            "import cython; print(cython.__file__)"
                             RESULT_VARIABLE PYTHON_CYTHON_NOT_FOUND
                             OUTPUT_VARIABLE PYTHON_CYTHON
                             OUTPUT_STRIP_TRAILING_WHITESPACE)
