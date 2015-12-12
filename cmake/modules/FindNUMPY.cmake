@@ -4,7 +4,7 @@
 IF(PYTHONINTERP_FOUND)
     IF(NOT PYTHON_NUMPY_INCLUDE_DIR)
         execute_process ( COMMAND ${PYTHON_EXECUTABLE} -c
-                            "import numpy; print numpy.get_include()"
+                            "import numpy; print(numpy.get_include())"
                             RESULT_VARIABLE PYTHON_NUMPY_NOT_FOUND
                             OUTPUT_VARIABLE PYTHON_NUMPY_INCLUDE_DIR
                             OUTPUT_STRIP_TRAILING_WHITESPACE)
