@@ -26,7 +26,7 @@ if (NOT "${VIGRA_ROOT}" STREQUAL "")
 endif()
 
 EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c
-                            "import vigra.vigranumpycore; print vigra.vigranumpycore.__file__"
+                            "import vigra.vigranumpycore; print(vigra.vigranumpycore.__file__)"
                             RESULT_VARIABLE VIGRA_VIGRANUMPYCORE_LIBRARY_NOT_FOUND
                             OUTPUT_VARIABLE VIGRA_VIGRANUMPYCORE_LIBRARY
                             OUTPUT_STRIP_TRAILING_WHITESPACE)
