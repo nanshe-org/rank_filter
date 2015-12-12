@@ -149,6 +149,7 @@ requirements:
     - patchelf >=0.8    # [linux]
     - boost
     - python
+    - cython
     - nose
     - numpy
     - vigra
