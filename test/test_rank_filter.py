@@ -2,11 +2,16 @@
 
 
 import itertools
+import sys
 import unittest
 
 import numpy
 
 import rank_filter
+
+
+if sys.version_info.major >= 3:
+    xrange = range
 
 
 class TestRankFilter(unittest.TestCase):
