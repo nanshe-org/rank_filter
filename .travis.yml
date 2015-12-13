@@ -1,6 +1,7 @@
 language: c++
 compiler: gcc
 env:
+   - PYTHON_VERSION="2.7" HAS_VIGRA="true" USE_CYTHON="false"
    - PYTHON_VERSION="2.7" HAS_VIGRA="true"
    - PYTHON_VERSION="2.7" HAS_VIGRA="false"
    - PYTHON_VERSION="3.5" HAS_VIGRA="false"
