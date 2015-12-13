@@ -64,7 +64,9 @@ def lineRankOrderFilter(image, int half_length, float rank, int axis=-1, out=Non
     out_swap = out.swapaxes(axis, -1).copy()
     out_strip = None
 
-    for each_slice in itertools.product(*[xrange(_) for _ in out_swap.shape[:-1]]):
+    for each_slice in itertools.product(*[
+        xrange(_) for _ in out_swap.shape[:-1]
+    ]):
         out_strip = out_swap[each_slice]
         lineRankOrderFilter1D(out_strip, out_strip)
 
