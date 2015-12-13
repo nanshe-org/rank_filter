@@ -10,7 +10,11 @@ include "version.pxi"
 
 
 @cython.boundscheck(False)
-def lineRankOrderFilter(image, int half_length, float rank, int axis=-1, out=None):
+def lineRankOrderFilter(image,
+                        int half_length,
+                        float rank,
+                        int axis=-1,
+                        out=None):
     """
         Runs a linear rank filter kernel along one dimension of an array.
 
