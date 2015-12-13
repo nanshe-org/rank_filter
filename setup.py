@@ -21,7 +21,7 @@ def readme():
         return(f.read())
 
 
-version=versioneer.get_version()
+version = versioneer.get_version()
 
 with open("src/version.pxi", "w") as f:
      f.writelines([
@@ -55,7 +55,7 @@ extra_compile_args += ["-mmacosx-version-min=10.7", "-stdlib=libc++"] if sys.pla
 setup(
     name="rank_filter",
     version=version,
-    description = "A simple python module containing an in-place linear rank filter optimized in C++.",
+    description="A simple python module containing an in-place linear rank filter optimized in C++.",
     long_description=readme(),
     platforms=['Linux'],
     classifiers=[
