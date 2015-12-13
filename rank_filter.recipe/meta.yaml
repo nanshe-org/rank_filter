@@ -150,7 +150,6 @@ requirements:
     - boost
     - python
     - cython
-    - nose
     - numpy
     
   # Packages required to run the package. These are the dependencies that
@@ -158,7 +157,6 @@ requirements:
   run:
     - boost
     - python
-    - nose
     - numpy
 
 test:
@@ -170,8 +168,8 @@ test:
   # in addition to the run-time requirements, you can specify requirements
   # needed during testing. The run time requirements specified above are
   # included automatically.
-  requires:
-    - nose
+  #requires:
+  #  - nose
 
   ## commands we want to make sure they work, which are expected to get
   ## installed by the package
