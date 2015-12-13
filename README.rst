@@ -1,4 +1,4 @@
-|Travis Build Status|
+|Travis Build Status| |License|
 
 --------------
 
@@ -155,3 +155,6 @@ intermediates, then the call below can be used.
 
 .. |Travis Build Status| image:: https://travis-ci.org/nanshe-org/rank_filter.svg?branch=master
    :target: https://travis-ci.org/nanshe-org/rank_filter
+
+.. |License| image:: https://img.shields.io/badge/license-BSD%203--Clause-blue.svg
+   :target: https://raw.githubusercontent.com/nanshe-org/rank_filter/master/LICENSE.txt
