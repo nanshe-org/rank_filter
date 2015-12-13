@@ -38,6 +38,7 @@ def lineRankOrderFilter(image, int half_length, float rank, int axis=-1, out=Non
     if out is None:
         out = image.copy()
     else:
+        assert (image.dtype == out.dtype), "Both `image` and `out` must have the same type."
         out[...] = image
 
     lineRankOrderFilter1D = None
