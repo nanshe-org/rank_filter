@@ -32,13 +32,16 @@ def lineRankOrderFilter(image, int half_length, float rank, int axis=-1, out=Non
             out(numpy.ndarray):        the result of running the linear rank filter on image.
     """
 
-    assert (half_length >= 0), "Window must be non-negative."
-    assert ((half_length + 1) <= image.shape[axis]), "Window must be no bigger than the image."
+    assert (half_length >= 0), \
+            "Window must be non-negative."
+    assert ((half_length + 1) <= image.shape[axis]), \
+            "Window must be no bigger than the image."
 
     if out is None:
         out = image.copy()
     else:
-        assert (image.dtype == out.dtype), "Both `image` and `out` must have the same type."
+        assert (image.dtype == out.dtype), \
+                "Both `image` and `out` must have the same type."
         out[...] = image
 
     lineRankOrderFilter1D = None
@@ -47,7 +50,9 @@ def lineRankOrderFilter(image, int half_length, float rank, int axis=-1, out=Non
     elif out.dtype.type == np.float64:
         lineRankOrderFilter1D = lambda a1, a2: lineRankOrderFilter1D_floating[cython.double](a1, a2, half_length, rank)
     else:
-        raise TypeError("Only `float32` and `float64` are supported for `image` and `out`.")
+        raise TypeError(
+            "Only `float32` and `float64` are supported for `image` and `out`."
+        )
 
     out_swap = out.swapaxes(axis, -1).copy()
     out_strip = None
