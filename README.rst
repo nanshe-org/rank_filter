@@ -19,13 +19,11 @@ Requirements
 
 In order to build this package, the following requirements are needed.
 
-1. Python (only tested on 2.7.6)
-2. Boost (requires 1.56 or later)
-3. NumPy (only tested with 1.7.0)
-4. VIGRA (only tested with a revision after release 1.10.0, commit
-   `05cf09388e28ab9db49fda3763500f128445897d <https://github.com/ukoethe/vigra/commit/05cf09388e28ab9db49fda3763500f128445897d>`__
-   )
-5. Nose (optional for running test, tested with 1.2.1)
+1. Python (2.7.x or 3.5.x)
+2. Boost (1.56.0 or later)
+3. NumPy (1.7.0 or later)
+4. Cython (0.23.0 or later)
+5. Setuptools (18.0 or later)
 
 Building
 --------
