@@ -1,4 +1,4 @@
-|Travis Build Status| |License| |PyPI Release|
+|Travis Build Status| |License| |PyPI Release| |Anaconda Release|
 
 --------------
 
@@ -161,3 +161,6 @@ intermediates, then the call below can be used.
 
 .. |PyPI Release| image:: https://img.shields.io/pypi/v/rank_filter.svg
    :target: https://pypi.python.org/pypi/rank_filter
+
+.. |Anaconda Release| image:: https://anaconda.org/nanshe/rank_filter/badges/version.svg
+   :target: https://anaconda.org/nanshe/rank_filter
