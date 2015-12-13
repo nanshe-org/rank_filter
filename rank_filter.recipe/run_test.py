@@ -8,7 +8,7 @@ import sys
 def main(*argv):
     argv = list(argv)
 
-    test = os.path.join(os.environ["SRC_DIR"], "test", "test_rank_filter.py")
+    test = os.path.join(os.environ["SRC_DIR"], "test")
 
     return(subprocess.check_call(["python", "-m", "unittest", test] + argv[1:],
                                  stdin=sys.stdin,
