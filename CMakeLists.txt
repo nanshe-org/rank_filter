@@ -93,7 +93,6 @@ else()
     find_package(VIGRA REQUIRED)
 endif()
 find_package(NUMPY REQUIRED)
-find_package(NOSE)
 
 include(CheckCXXSourceCompiles)
 
