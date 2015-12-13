@@ -17,19 +17,20 @@ def lineRankOrderFilter(image, int half_length, float rank, int axis=-1, out=Non
         Args:
             image(numpy.ndarray):      array to run the rank filter over.
 
-            half_window_size(int):     half the window size to use for the kernel.
+            half_window_size(int):     half the window size for the kernel.
 
-            rank(float):               the quantile to use between ``0.0`` and ``1.0``.
+            rank(float):               quantile to use from ``0.0`` to ``1.0``.
 
-            axis(int):                 which axis to direct and run the kernel over
-                                       defaults to the last one (e.g. ``-1``.
+            axis(int):                 which axis to direct and run the kernel
+                                       over defaults to the last one
+                                       (e.g. ``-1``).
 
-            out(numpy.ndarray):        where to store the results to. Creates a new
-                                       array if not specified. If it is the same as
-                                       image, it will run in-place.
+            out(numpy.ndarray):        where to store the results to. Creates a
+                                       new array if not specified. If it is the
+                                       same as image, it will run in-place.
 
         Returns:
-            out(numpy.ndarray):        the result of running the linear rank filter on image.
+            out(numpy.ndarray):        result of running the linear rank filter.
     """
 
     assert (half_length >= 0), \
