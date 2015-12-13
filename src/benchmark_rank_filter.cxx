@@ -27,7 +27,7 @@ int main(int argc, char** argv)
         }
     }
 
-    lineRankOrderFilter(input, output, 800L, 0.5, 0);
+    lineRankOrderFilter(input, output, 25L, 0.5, 0);
 
     return(0);
 }
