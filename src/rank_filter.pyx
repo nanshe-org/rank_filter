@@ -4,7 +4,7 @@ import cython
 
 import itertools as it
 
-import numpy as np
+import numpy
 
 include "version.pxi"
 
@@ -46,9 +46,9 @@ def lineRankOrderFilter(image, int half_length, float rank, int axis=-1, out=Non
         out[...] = image
 
     lineRankOrderFilter1D = None
-    if out.dtype.type == np.float32:
+    if out.dtype.type == numpy.float32:
         lineRankOrderFilter1D = lambda a1, a2: lineRankOrderFilter1D_floating[cython.float](a1, a2, half_length, rank)
-    elif out.dtype.type == np.float64:
+    elif out.dtype.type == numpy.float64:
         lineRankOrderFilter1D = lambda a1, a2: lineRankOrderFilter1D_floating[cython.double](a1, a2, half_length, rank)
     else:
         raise TypeError(
