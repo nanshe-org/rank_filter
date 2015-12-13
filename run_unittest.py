@@ -9,7 +9,7 @@ import sys
 def main(*argv):
     argv = list(argv)
 
-    os.environ["PYTHONPATH"] = argv[1] + ":" + os.environ.get("PYTHONPATH", "")
+    sys.path.insert(0, argv[1])
 
     return(subprocess.check_call([sys.executable, "-m", "unittest"] + argv[2:],
                                  stdin=sys.stdin,
