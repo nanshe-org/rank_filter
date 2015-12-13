@@ -1,4 +1,4 @@
-|Travis Build Status| |License|
+|Travis Build Status| |License| |PyPI Release|
 
 --------------
 
@@ -158,3 +158,6 @@ intermediates, then the call below can be used.
 
 .. |License| image:: https://img.shields.io/badge/license-BSD%203--Clause-blue.svg
    :target: https://raw.githubusercontent.com/nanshe-org/rank_filter/master/LICENSE.txt
+
+.. |PyPI Release| image:: https://img.shields.io/pypi/v/rank_filter.svg
+   :target: https://pypi.python.org/pypi/rank_filter
