@@ -93,7 +93,6 @@ else()
     find_package(VIGRA REQUIRED)
 endif()
 find_package(NUMPY REQUIRED)
-find_package(NOSE)
 
 include(CheckCXXSourceCompiles)
 
@@ -168,8 +167,8 @@ endif()
 # Ensure the C++ unitests were run before building the Python module.
 add_dependencies(rank_filter check)
 
-# Run nosetest on completion to ensure all works and is accurate
-add_test(NAME nosetest COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/run_nosetest.py ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} ${CMAKE_CURRENT_SOURCE_DIR})
+# Run unittest on completion to ensure all works and is accurate
+add_test(NAME unittest COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/run_unittest.py ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Install the module in the Python site-packages folder.
 if(${USE_CYTHON})
