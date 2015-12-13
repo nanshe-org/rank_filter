@@ -64,7 +64,7 @@ build:
 
   # The build number should be incremented for new builds of the same version
   #number: 1       # (defaults to 0)
-  string: py{{py}}np{{np}}{{ "" if environ.get('USE_CYTHON', "true") == "true" else "_vg" }}
+  string: py{{py}}np{{np if np else ""}}{{ "" if environ.get('USE_CYTHON', "true") == "true" else "_vg" }}
 
   ## Optional Python entry points
   #entry_points:
