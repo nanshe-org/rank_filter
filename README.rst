@@ -25,6 +25,13 @@ In order to build this package, the following requirements are needed.
 4. Cython (0.23.0 or later)
 5. Setuptools (18.0 or later)
 
+Installation
+------------
+
+The easiest way to install is to install our `conda` package.
+Alternatively, one can install from `pip`, but this will require a
+C++11 compatible compiler and a recent version of `setuptools`.
+
 Building
 --------
 
