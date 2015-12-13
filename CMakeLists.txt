@@ -78,7 +78,7 @@ add_custom_target(distclean COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/
                             COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/rank_filter.so)
 
 # Import needed CMakes for finding dependencies.
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules/)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/)
 
 # Don't use multithreaded libraries for Boost. This causes linking issues for Ubuntu.
 set(Boost_USE_MULTITHREADED OFF)
@@ -169,7 +169,7 @@ endif()
 add_dependencies(rank_filter check)
 
 # Run nosetest on completion to ensure all works and is accurate
-add_test(NAME nosetest COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/run_nosetest.py ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR})
+add_test(NAME nosetest COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/run_nosetest.py ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Install the module in the Python site-packages folder.
 if(${USE_CYTHON})
