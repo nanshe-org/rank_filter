@@ -1,4 +1,4 @@
-|Travis Build Status| |License| |PyPI Release| |Anaconda Release|
+|Travis Build Status| |License| |PyPI Release| |Anaconda Release| |Gitter|
 
 --------------
 
@@ -164,3 +164,7 @@ intermediates, then the call below can be used.
 
 .. |Anaconda Release| image:: https://anaconda.org/nanshe/rank_filter/badges/version.svg
    :target: https://anaconda.org/nanshe/rank_filter
+
+.. |Gitter| image:: https://badges.gitter.im/Join%20Chat.svg
+   :alt: Join the chat at https://gitter.im/nanshe-org/rank_filter
+   :target: https://gitter.im/nanshe-org/rank_filter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
