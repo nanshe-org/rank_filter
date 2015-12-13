@@ -3,7 +3,7 @@ import subprocess
 import sys
 
 
-def main(argv):
+def main(*argv):
     argv = list(argv)
 
     os.environ["PYTHONPATH"] = argv[1] + ":" + os.environ.get("PYTHONPATH", "")
@@ -16,4 +16,4 @@ def main(argv):
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv))
+    sys.exit(main(*sys.argv))
