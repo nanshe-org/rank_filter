@@ -14,8 +14,7 @@ def main(*argv):
     return(subprocess.check_call([sys.executable, "-m", "unittest"] + argv[2:],
                                  stdin=sys.stdin,
                                  stdout=sys.stdout,
-                                 stderr=sys.stderr)
-    )
+                                 stderr=sys.stderr))
 
 
 if __name__ == "__main__":
