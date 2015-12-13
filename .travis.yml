@@ -47,5 +47,8 @@ script:
    - mv .git/shallow .git/shallow-not || true
    - conda build rank_filter.recipe
    - mv .git/shallow-not .git/shallow || true
+   # Run the benchmarks.
+   - conda install --use-local -n testenv rank_filter
+   - src/benchmark_rank_filter.py
 # Use container format for TravisCI.
 #sudo: false  # Currently not possible as we need a newer copy of `gcc` that has C++11 features.
