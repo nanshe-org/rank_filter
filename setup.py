@@ -2,11 +2,17 @@ import os
 import sys
 from glob import glob
 from distutils.sysconfig import get_config_var, get_python_inc
+from distutils.version import LooseVersion
+
+import setuptools
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext as _build_ext
 
 import versioneer
 
+
+assert LooseVersion(setuptools.__version__) >= LooseVersion("18.0"), \
+        "Requires `setuptools` version 18.0 or higher."
 
 class build_ext(_build_ext):
     def finalize_options(self):
