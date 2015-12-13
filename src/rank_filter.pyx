@@ -47,7 +47,7 @@ def lineRankOrderFilter(image, int half_length, float rank, int axis=-1, out=Non
     elif out.dtype.type == np.float64:
         lineRankOrderFilter1D = lambda a1, a2: lineRankOrderFilter1D_floating[cython.double](a1, a2, half_length, rank)
     else:
-        raise TypeError("der")
+        raise TypeError("Only `float32` and `float64` are supported for `image` and `out`.")
 
     out_swap = out.swapaxes(axis, -1).copy()
     out_strip = None
