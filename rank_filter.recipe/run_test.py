@@ -4,8 +4,6 @@ import os
 import subprocess
 import sys
 
-import nose
-
 
 def main(*argv):
     argv = list(argv)
