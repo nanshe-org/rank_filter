@@ -1,4 +1,4 @@
-|Build Status|
+|Travis Build Status| |License| |PyPI Release| |Anaconda Release| |Gitter|
 
 --------------
 
@@ -153,5 +153,18 @@ intermediates, then the call below can be used.
     make reset
 
 
-.. |Build Status| image:: https://travis-ci.org/nanshe-org/rank_filter.svg?branch=master
+.. |Travis Build Status| image:: https://travis-ci.org/nanshe-org/rank_filter.svg?branch=master
    :target: https://travis-ci.org/nanshe-org/rank_filter
+
+.. |License| image:: https://img.shields.io/badge/license-BSD%203--Clause-blue.svg
+   :target: https://raw.githubusercontent.com/nanshe-org/rank_filter/master/LICENSE.txt
+
+.. |PyPI Release| image:: https://img.shields.io/pypi/v/rank_filter.svg
+   :target: https://pypi.python.org/pypi/rank_filter
+
+.. |Anaconda Release| image:: https://anaconda.org/nanshe/rank_filter/badges/version.svg
+   :target: https://anaconda.org/nanshe/rank_filter
+
+.. |Gitter| image:: https://badges.gitter.im/Join%20Chat.svg
+   :alt: Join the chat at https://gitter.im/nanshe-org/rank_filter
+   :target: https://gitter.im/nanshe-org/rank_filter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
