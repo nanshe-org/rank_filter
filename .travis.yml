@@ -1,9 +1,9 @@
 language: c++
 compiler: gcc
 env:
-   - PYTHON_VERSION="2.7" HAS_VIGRA="true"
-   - PYTHON_VERSION="2.7" HAS_VIGRA="false"
-   - PYTHON_VERSION="3.5" HAS_VIGRA="false"
+   - PYTHON_VERSION="2.7" USE_CYTHON="false"
+   - PYTHON_VERSION="2.7"
+   - PYTHON_VERSION="3.5"
 before_install:
    # Move out of git directory to build root.
    - git fetch --unshallow --tags
@@ -39,7 +39,6 @@ install:
    # Create the test environment and install dependencies.
    - conda create --use-local -n testenv python=$PYTHON_VERSION
    - source activate testenv
-   - "[[ ${HAS_VIGRA} == true ]] && conda install vigra || true"
    # Clean up downloads as there are quite a few and they waste space/memory.
    - conda clean -tipsy
    - rm -rfv $HOME/.cache/pip
