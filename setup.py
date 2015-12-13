@@ -49,13 +49,15 @@ library_dirs = [get_config_var("LIBDIR")]
 sources = glob("src/*.pxd") + glob("src/*.pyx") + glob("src/*.cpp")
 libraries = ["boost_container"]
 extra_compile_args = ["-std=c++11"]
-extra_compile_args += ["-mmacosx-version-min=10.7", "-stdlib=libc++"] if sys.platform == "darwin" else []
+extra_compile_args += ["-mmacosx-version-min=10.7", "-stdlib=libc++"] \
+                      if sys.platform == "darwin" else []
 
 
 setup(
     name="rank_filter",
     version=version,
-    description="A simple python module containing an in-place linear rank filter optimized in C++.",
+    description="A simple python module containing an in-place linear rank"
+                " filter optimized in C++.",
     long_description=readme(),
     platforms=['Linux'],
     classifiers=[
@@ -70,7 +72,8 @@ setup(
     author="John Kirkham",
     author_email="kirkhamj@janelia.hhmi.org",
     url="https://github.com/nanshe-org/rank_filter",
-    download_url="https://github.com/nanshe-org/rank_filter/archive/v%s.tar.gz" % version,
+    download_url="https://github.com/nanshe-org/rank_filter/archive/v%s.tar.gz"
+                 % version,
     cmdclass=dict(
         list(versioneer.get_cmdclass().items()) +
         [
