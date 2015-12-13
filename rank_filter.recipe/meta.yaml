@@ -150,8 +150,8 @@ requirements:
     - patchelf >=0.8    # [linux]
     - boost
     - python
-    - cython
     - numpy
+    {{ "- cython" if environ.get('USE_CYTHON', "true") == "true" else "- vigra" }}
     
   # Packages required to run the package. These are the dependencies that
   # will be installed automatically whenever the package is installed.
@@ -159,6 +159,7 @@ requirements:
     - boost
     - python
     - numpy
+    {{ "" if environ.get('USE_CYTHON', "true") == "true" else "- vigra" }}
 
 test:
   ## files which are copied from the recipe into the (temporary) test
