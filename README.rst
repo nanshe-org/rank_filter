@@ -56,21 +56,38 @@ To start simply clone the repo and change directory to the repo.
     git clone https://github.com/nanshe-org/rank_filter
     cd rank_filter
 
-Configuring
+Using Python
+~~~~~~~~~~~~
+
+To build/install with Python directly, simply run the following command.
+
+::
+    python setup.py install
+
+Using Conda
+~~~~~~~~~~~~
+
+To build/install with Conda, simply run the following command.
+
+::
+    conda build rank_filter.recipe
+    conda install --use-local rank_filter.
+
+Using CMake
 ~~~~~~~~~~~
 
-To configure the following variables must be set ``BOOST_ROOT`` and
-``VIGRA_ROOT``. In order to find Boost includes and libraries, the
-directory Boost was installed to must be set as ``BOOST_ROOT``.
-Similarly, in order to find VIGRA includes and libraries, the directory
-VIGRA was installed to must be set as ``VIGRA_ROOT``.
+In order to find Boost includes and libraries, the directory Boost was installed
+to must be set as ``BOOST_ROOT``. Similarly, in order to find VIGRA includes and
+libraries, the directory VIGRA was installed to must be set as ``VIGRA_ROOT``.
+CMake will also pick them up as options.
 
-The first way to set the variables is to set them in the environment.
-This can be done as shown below. The benefit of using this technique is
-that this is the standard technique used by ``make``. Thus, it can work
-nicely with systems using ``make``. The downside is it is easy to forget
-what is in your environment and it is difficult to know how other
-programs will respond to them.
+::
+
+    cmake -DBOOST_ROOT=<path-to-Boost-root> -DVIGRA_ROOT=<path-to-VIGRA-root> .
+
+
+Also the CMake installer will also pick these variables up if they are set in
+the environment and not provided.
 
 ::
 
@@ -78,23 +95,11 @@ programs will respond to them.
     export VIGRA_ROOT=<path-to-VIGRA-root>
     cmake .
 
-The second way the variables can be set is by invoking ``cmake`` with
-them, which can be seen below. Variables set by ``cmake`` arguments like
-those shown below will always take precedence. As a result, if there are
-environment variables, they will be ignored if they have been passed to
-``cmake`` directly.
-
-::
-
-    cmake -DBOOST_ROOT=<path-to-Boost-root> -DVIGRA_ROOT=<path-to-VIGRA-root> .
-
 Additionally, the preferred python interpreter can be set by using the
-``PYTHON_EXECUTABLE`` variable. If ``PYTHON_EXECUTABLE`` is not
-specified at all, the first python interpreter found on the path will be
-used.
+``PYTHON_EXECUTABLE`` variable.
 
 Checking
-~~~~~~~~
+********
 
 Before building the Python bindings it is worth checking if the C++ code
 passes its own test suite. This can be done using ``make`` with the
@@ -107,7 +112,7 @@ module will work. All they verify is that the C++ code works.
     make check
 
 Building
-~~~~~~~~
+********
 
 Building is done easily using ``make``. This will create a shared object
 in the slib directory, which can be imported by Python as a module. As
@@ -121,7 +126,7 @@ to validate the module.
     make
 
 Testing
-~~~~~~~
+*******
 
 Once the Python module is built, it is worth testing whether it works.
 This can be done with ``make`` using the command below. Unlike the C++
@@ -135,7 +140,7 @@ only.
     make test
 
 Installing
-~~~~~~~~~~
+**********
 
 After building and testing, it is time to install. Using ``make``, the
 command below will install the module in the identified Python's
@@ -147,7 +152,7 @@ Python.
     make install
 
 Cleaning
-~~~~~~~~
+********
 
 There are a few additional options regarding cleaning. It is possible to
 clean all build intermediates (including CMake generated files) leaving
