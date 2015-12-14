@@ -14,8 +14,8 @@ cdef extern from "rank_filter_base.hxx" namespace "rank_filter":
 @cython.boundscheck(False)
 @cython.initializedcheck(False)
 @cython.nonecheck(False)
-cdef inline void lineRankOrderFilter1D_floating(floating[:] src,
-                                                floating[:] dest,
+cdef inline void lineRankOrderFilter1D_floating(floating[::1] src,
+                                                floating[::1] dest,
                                                 size_t half_length,
                                                 double rank) nogil:
     cdef floating* src_begin = &src[0]
