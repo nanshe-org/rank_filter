@@ -41,8 +41,8 @@ Building
 There are several ways to build the package.
 
 1. Standard Python build and install.
-2. CMake build and install.
-3. Conda recipe build and install.
+2. Conda recipe build and install.
+3. CMake build and install.
 
 The vanilla install in any of these forms should be basically equivalent.
 
