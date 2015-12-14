@@ -65,7 +65,7 @@ def lineRankOrderFilter(image,
             "Only `float32` and `float64` are supported for `image` and `out`."
         )
 
-    out_swap = out.swapaxes(axis, -1).copy()
+    out_swap = numpy.ascontiguousarray(out.swapaxes(axis, -1))
     out_strip = None
 
     for each_slice in itertools.product(*[
