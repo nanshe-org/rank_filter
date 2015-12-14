@@ -47,6 +47,8 @@ def lineRankOrderFilter(image,
     else:
         assert (image.dtype == out.dtype), \
                 "Both `image` and `out` must have the same type."
+        assert (image.shape == out.shape), \
+                "Both `image` and `out` must have the same shape."
         if id(image) != id(out):
             out[...] = image
 
