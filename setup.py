@@ -85,6 +85,7 @@ setup(
     url="https://github.com/nanshe-org/rank_filter",
     download_url="https://github.com/nanshe-org/rank_filter/archive/v%s.tar.gz"
                  % version,
+    license="BSD",
     cmdclass=dict(
         list(versioneer.get_cmdclass().items()) +
         [
