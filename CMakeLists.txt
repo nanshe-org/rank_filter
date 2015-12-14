@@ -59,7 +59,7 @@ add_custom_target(reset  COMMAND cmake -E remove_directory ${CMAKE_ARCHIVE_OUTPU
                          COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/dist
                          COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/rank_filter.egg-info
                          COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/src/rank_filter.cpp
-                         COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/rank_filter.so)
+                         COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/rank_filter*.so)
 
 # Add a target to wipe out all CMake files generated.
 add_custom_target(distclean COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/CMakeCache.txt
@@ -75,7 +75,7 @@ add_custom_target(distclean COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/
                             COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/dist
                             COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/rank_filter.egg-info
                             COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/src/rank_filter.cpp
-                            COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/rank_filter.so)
+                            COMMAND cmake -E remove ${CMAKE_CURRENT_SOURCE_DIR}/rank_filter*.so)
 
 # Import needed CMakes for finding dependencies.
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/)
