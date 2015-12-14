@@ -68,11 +68,14 @@ setup(
     platforms=['Linux'],
     classifiers=[
         'Intended Audience :: Developers',
+        'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',
         'Operating System :: POSIX :: Linux',
+        'Operating System :: MacOS :: MacOS X',
         'Programming Language :: C++',
         'Programming Language :: Cython',
         'Programming Language :: Python',
+        'Topic :: Scientific/Engineering',
         'Topic :: Software Development :: Libraries'
     ],
     author="John Kirkham",

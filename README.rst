@@ -62,6 +62,7 @@ Using Python
 To build/install with Python directly, simply run the following command.
 
 ::
+
     python setup.py install
 
 Using Conda
@@ -70,6 +71,7 @@ Using Conda
 To build/install with Conda, simply run the following command.
 
 ::
+
     conda build rank_filter.recipe
     conda install --use-local rank_filter.
 
