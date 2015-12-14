@@ -153,7 +153,6 @@ if(${USE_CYTHON})
     add_custom_target(
         rank_filter
         ALL
-        COMMAND ${PYTHON_EXECUTABLE} setup.py build
         COMMAND ${PYTHON_EXECUTABLE} setup.py test
         DEPENDS check
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
