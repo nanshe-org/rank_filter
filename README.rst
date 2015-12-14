@@ -35,9 +35,13 @@ C++11 compatible compiler and a recent version of `setuptools`.
 Building
 --------
 
-Building is done using CMake. This makes it flexible and easy to use on
-different OSes. Also, it makes it easier to integrate with BuildEM (
-https://github.com/janelia-flyem/buildem ), which also uses CMake.
+There are several ways to build the package.
+
+1. Standard Python build and install.
+2. CMake build and install.
+3. Conda recipe build and install.
+
+The vanilla install in any of these forms should be basically equivalent.
 
 Getting Started
 ~~~~~~~~~~~~~~~
