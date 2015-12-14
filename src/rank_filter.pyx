@@ -47,7 +47,10 @@ def lineRankOrderFilter(image,
     else:
         assert (image.dtype == out.dtype), \
                 "Both `image` and `out` must have the same type."
-        out[...] = image
+        assert (image.shape == out.shape), \
+                "Both `image` and `out` must have the same shape."
+        if id(image) != id(out):
+            out[...] = image
 
     lineRankOrderFilter1D = None
     if out.dtype.type == numpy.float32:
@@ -65,7 +68,7 @@ def lineRankOrderFilter(image,
             "Only `float32` and `float64` are supported for `image` and `out`."
         )
 
-    out_swap = out.swapaxes(axis, -1).copy()
+    out_swap = numpy.ascontiguousarray(out.swapaxes(axis, -1))
     out_strip = None
 
     for each_slice in itertools.product(*[
@@ -74,8 +77,7 @@ def lineRankOrderFilter(image,
         out_strip = out_swap[each_slice]
         lineRankOrderFilter1D(out_strip, out_strip)
 
-    out_swap = out_swap.swapaxes(-1, axis).copy()
-    out[...] = out_swap
+    out[...] = out_swap.swapaxes(-1, axis)
 
 
     return(out)
