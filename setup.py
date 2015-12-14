@@ -40,7 +40,9 @@ boost_dep = ["boost >= 1.56"]
 boost_dep = (boost_dep if sys.argv[1] == "bdist_conda" else [])
 
 setup_requires = cython_dep + numpy_dep
-setup_requires = [] if sys.argv[1] == "bdist_conda" else setup_requires
+setup_requires = setup_requires if (sys.argv[1].startswith("bdist") or
+                                    sys.argv[1].startswith("build") or
+                                    sys.argv[1].startswith("install")) else []
 build_requires = cython_dep + numpy_dep + boost_dep
 install_requires = numpy_dep + boost_dep
 install_requires += [] if sys.argv[1] == "bdist_conda" else cython_dep
