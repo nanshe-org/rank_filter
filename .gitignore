@@ -1,3 +1,5 @@
 .idea
-*.pyc
+
+*.py[cod]
+
 src/version.pxi
