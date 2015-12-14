@@ -7,3 +7,8 @@
 *.py[cod]
 
 src/version.pxi
+MANIFEST
+build/
+dist/
+rank_filter.egg-info/
+.eggs/
