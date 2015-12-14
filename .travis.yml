@@ -36,6 +36,9 @@ install:
    - conda install jinja2
    # Return to the git repo.
    - cd $TRAVIS_REPO_SLUG
+   # Get the version.
+   - VERSION=`python setup.py --version`
+   - echo $VERSION
    # Create the test environment and install dependencies.
    - conda create --use-local -n testenv python=$PYTHON_VERSION
    - source activate testenv
@@ -48,7 +51,7 @@ script:
    - conda build rank_filter.recipe
    - mv .git/shallow-not .git/shallow || true
    # Run the benchmarks.
-   - conda install --use-local -n testenv rank_filter
+   - conda install --use-local -n testenv rank_filter==$VERSION
    - src/benchmark_rank_filter.py
 # Use container format for TravisCI.
 #sudo: false  # Currently not possible as we need a newer copy of `gcc` that has C++11 features.
