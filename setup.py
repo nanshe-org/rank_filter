@@ -99,7 +99,7 @@ setup(
     test_suite="test",
     headers=glob("include/*.hxx"),
     ext_modules=[Extension("rank_filter",
-                            sources,
+                            sources=sources,
                             include_dirs=include_dirs,
                             library_dirs=library_dirs,
                             libraries=libraries,
