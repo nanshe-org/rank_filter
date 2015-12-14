@@ -10,7 +10,7 @@ def main(*argv):
 
     sys.path.insert(0, argv[1])
 
-    return(subprocess.check_call([sys.executable, "-m", "unittest"] + argv[2:],
+    return(subprocess.check_call([sys.executable, "-m", "unittest", "discover", "-s"] + argv[2:],
                                  stdin=sys.stdin,
                                  stdout=sys.stdout,
                                  stderr=sys.stderr))
