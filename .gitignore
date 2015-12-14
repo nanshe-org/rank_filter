@@ -1,5 +1,9 @@
 .idea
 
+*~
+*.orig
+*.swp
+
 *.py[cod]
 
 src/version.pxi
