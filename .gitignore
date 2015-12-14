@@ -12,3 +12,9 @@ build/
 dist/
 rank_filter.egg-info/
 .eggs/
+
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+Makefile
+cmake_install.cmake
