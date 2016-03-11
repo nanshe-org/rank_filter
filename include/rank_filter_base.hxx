@@ -2,12 +2,12 @@
 #define __RANK_FILTER_BASE__
 
 
-#include <array>
 #include <deque>
 #include <cassert>
 #include <functional>
 #include <iostream>
 
+#include <boost/array.hpp>
 #include <boost/container/set.hpp>
 #include <boost/container/node_allocator.hpp>
 
@@ -22,8 +22,8 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         size_t half_length, double rank)
 {
     // Types in use.
-    using T1 = typename std::iterator_traits<I1>::value_type;
-    using T2 = typename std::iterator_traits<I2>::value_type;
+    typedef typename std::iterator_traits<I1>::value_type T1;
+    typedef typename std::iterator_traits<I2>::value_type T2;
 
     // Will ignore boundaries initially.
     // Then will try adding reflection.
@@ -143,7 +143,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
 namespace std
 {
     template <class T, size_t N>
-    ostream& operator<<(ostream& out, const array<T, N>& that)
+    ostream& operator<<(ostream& out, const boost::array<T, N>& that)
     {
         out << "{ ";
         for (unsigned int i = 0; i < (N - 1); i++)

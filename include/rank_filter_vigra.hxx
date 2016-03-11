@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+#include <boost/utility/enable_if.hpp>
+
 #include <vigra/multi_array.hxx>
 
 #include "rank_filter_base.hxx"
@@ -15,7 +17,7 @@ namespace rank_filter
 template<unsigned int N,
         class T1, class S1,
         class T2, class S2,
-        typename std::enable_if<(N == 1), int>::type = 0>
+        typename boost::enable_if_c<(N == 1), int>::type = 0>
 inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         vigra::MultiArrayView <N, T2, S2> dest,
         unsigned long half_length, double rank, unsigned int axis = 0)
@@ -31,7 +33,7 @@ inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
 template<unsigned int N,
         class T1, class S1,
         class T2, class S2,
-        typename std::enable_if<(N > 1), int>::type = 0>
+        typename boost::enable_if_c<(N > 1), int>::type = 0>
 inline void lineRankOrderFilterND(const vigra::MultiArrayView <N, T1, S1> &src,
         vigra::MultiArrayView <N, T2, S2> dest,
         unsigned long half_length, double rank, unsigned int axis = 0)
@@ -91,7 +93,7 @@ inline void lineRankOrderFilter(const vigra::MultiArrayView <N, T1, S1> &src,
 
 namespace vigra {
 
-template <unsigned int N, class T, class S, typename std::enable_if<(N == 1), int>::type = 0>
+template <unsigned int N, class T, class S, typename boost::enable_if_c<(N == 1), int>::type = 0>
 std::ostream& println(std::ostream& out, const vigra::MultiArrayView<N, T, S>& array, unsigned int indent=0)
 {
     for (unsigned int i = 0; i < indent; i++)
@@ -110,7 +112,7 @@ std::ostream& println(std::ostream& out, const vigra::MultiArrayView<N, T, S>& a
 }
 
 
-template <unsigned int N, class T, class S, typename std::enable_if<(N > 1), int>::type = 0>
+template <unsigned int N, class T, class S, typename boost::enable_if_c<(N > 1), int>::type = 0>
 std::ostream& println(std::ostream& out, const vigra::MultiArrayView<N, T, S>& array, unsigned int indent=0)
 {
     for (unsigned int i = 0; i < indent; i++)
