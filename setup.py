@@ -56,9 +56,7 @@ include_dirs = [
 library_dirs = [get_config_var("LIBDIR")]
 sources = glob("src/*.pxd") + glob("src/*.pyx") + glob("src/*.cpp")
 libraries = ["boost_container"]
-extra_compile_args = ["-std=c++11"]
-extra_compile_args += ["-mmacosx-version-min=10.7", "-stdlib=libc++"] \
-                      if sys.platform == "darwin" else []
+extra_compile_args = []
 
 
 setup(
