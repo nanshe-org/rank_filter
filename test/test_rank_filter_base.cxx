@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE RankFilterBaseModule
 #include <boost/test/included/unit_test.hpp>
 
-#include <array>
+#include <boost/array.hpp>
 
 
 #include "rank_filter_base.hxx"
@@ -14,20 +14,20 @@ struct RankFilterBaseFixture
 
         static constexpr unsigned long size = 10;
 
-        std::array<double, size> array_1;
-        std::array<double, size> reverse_array_1;
+        boost::array<double, size> array_1;
+        boost::array<double, size> reverse_array_1;
 
-        std::array<double, size> expected_result_1;
-        std::array<double, size> result_1;
+        boost::array<double, size> expected_result_1;
+        boost::array<double, size> result_1;
 
-        std::array<double, size>::iterator array_1_begin;
-        std::array<double, size>::iterator array_1_end;
+        boost::array<double, size>::iterator array_1_begin;
+        boost::array<double, size>::iterator array_1_end;
 
-        std::array<double, size>::iterator reverse_array_1_begin;
-        std::array<double, size>::iterator reverse_array_1_end;
+        boost::array<double, size>::iterator reverse_array_1_begin;
+        boost::array<double, size>::iterator reverse_array_1_end;
 
-        std::array<double, size>::iterator result_1_begin;
-        std::array<double, size>::iterator result_1_end;
+        boost::array<double, size>::iterator result_1_begin;
+        boost::array<double, size>::iterator result_1_end;
 
     public:
 

@@ -2,12 +2,12 @@
 #define __RANK_FILTER_BASE__
 
 
-#include <array>
 #include <deque>
 #include <cassert>
 #include <functional>
 #include <iostream>
 
+#include <boost/array.hpp>
 #include <boost/container/set.hpp>
 #include <boost/container/node_allocator.hpp>
 
@@ -143,7 +143,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
 namespace std
 {
     template <class T, size_t N>
-    ostream& operator<<(ostream& out, const array<T, N>& that)
+    ostream& operator<<(ostream& out, const boost::array<T, N>& that)
     {
         out << "{ ";
         for (unsigned int i = 0; i < (N - 1); i++)
