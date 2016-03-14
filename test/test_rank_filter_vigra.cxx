@@ -9,7 +9,7 @@ struct RankFilterVigraFixture
 {
     public:
 
-        const unsigned long size = 10;
+        static const unsigned long size = 10;
 
 
         vigra::MultiArray< 1, double >::difference_type size_1;
