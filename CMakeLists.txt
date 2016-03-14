@@ -91,6 +91,7 @@ if(${USE_CYTHON})
 else()
     find_package(Boost "1.56.0" REQUIRED COMPONENTS container python)
     find_package(VIGRA REQUIRED)
+    set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 endif()
 find_package(NUMPY REQUIRED)
 
@@ -124,9 +125,6 @@ if(${VIGRA_FOUND})
 else()
     link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS})
 endif()
-
-# Use C++11
-set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
 # Build binary for running base API C++ unitests
 add_executable(cxxtest_base ${CMAKE_CURRENT_SOURCE_DIR}/test/test_rank_filter_base)

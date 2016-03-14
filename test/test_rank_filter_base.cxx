@@ -12,7 +12,7 @@ struct RankFilterBaseFixture
 {
     public:
 
-        static constexpr unsigned long size = 10;
+        static const unsigned long size = 10;
 
         boost::array<double, size> array_1;
         boost::array<double, size> reverse_array_1;
