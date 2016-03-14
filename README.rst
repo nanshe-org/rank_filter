@@ -33,7 +33,7 @@ Installation
 
 The easiest way to install is to install our ``conda`` package.
 Alternatively, one can install from ``pip``, but this will require a
-C++11 compatible compiler and a recent version of ``setuptools``.
+C++ compiler and a recent version of ``setuptools``.
 
 Building
 --------
