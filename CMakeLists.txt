@@ -92,6 +92,7 @@ else()
     find_package(Boost "1.56.0" REQUIRED COMPONENTS container python)
     find_package(VIGRA REQUIRED)
     set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
+    SET(CMAKE_SKIP_RPATH TRUE)
 endif()
 find_package(NUMPY REQUIRED)
 
