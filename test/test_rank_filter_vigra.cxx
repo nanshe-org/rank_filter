@@ -1,6 +1,7 @@
 #define BOOST_TEST_MODULE RankFilterVigraModule
 #include <boost/test/included/unit_test.hpp>
 
+#define __ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES 0
 
 #include "rank_filter_vigra.hxx"
 
