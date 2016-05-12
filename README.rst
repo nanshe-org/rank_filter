@@ -193,8 +193,8 @@ VIGRA install. This is unnecessary for Conda.
 .. |PyPI Release| image:: https://img.shields.io/pypi/v/rank_filter.svg
    :target: https://pypi.python.org/pypi/rank_filter
 
-.. |Anaconda Release| image:: https://anaconda.org/nanshe/rank_filter/badges/version.svg
-   :target: https://anaconda.org/nanshe/rank_filter
+.. |Anaconda Release| image:: https://anaconda.org/conda-forge/rank_filter/badges/version.svg
+   :target: https://anaconda.org/conda-forge/rank_filter
 
 .. |Gitter| image:: https://badges.gitter.im/Join%20Chat.svg
    :alt: Join the chat at https://gitter.im/nanshe-org/rank_filter
