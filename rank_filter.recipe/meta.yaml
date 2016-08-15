@@ -144,6 +144,7 @@ requirements:
   # Packages required to build the package. python and numpy must be
   # listed explicitly if they are required.
   build:
+    - setuptools
     - cmake
     - patchelf >=0.8    # [linux]
     - boost
