@@ -187,7 +187,8 @@ test:
 
 about:
   home: http://github.com/nanshe-org/rank_filter
-  license: 
+  license: BSD 3-Clause
+  license_file: LICENSE.txt
   summary: C++ boosted rank filter with Python bindings.
 
 ## If the app key is present, the package will be an app, meaning it will
