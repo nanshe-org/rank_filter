@@ -1,12 +1,12 @@
 import os
 import sys
 from glob import glob
-from distutils.sysconfig import get_config_var, get_python_inc
-from distutils.version import LooseVersion
 
 import setuptools
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext as _build_ext
+from distutils.sysconfig import get_config_var, get_python_inc
+from distutils.version import LooseVersion
 
 import versioneer
 
