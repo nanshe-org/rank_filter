@@ -3,4 +3,5 @@ include _version.py
 
 include include/*.hxx
 
+include README.rst
 include LICENSE.txt
