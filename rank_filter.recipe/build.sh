@@ -1,8 +1,3 @@
-#
-# We OVERRIDE conda's default value for MACOSX_DEPLOYMENT_TARGET,
-#  because we want to link against libc++ (not stdlibc++) for C++ libraries (like vigra)
-#
-
 if [[ `uname` == 'Darwin' ]]; then
     LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
 else
