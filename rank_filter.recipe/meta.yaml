@@ -7,10 +7,8 @@ source:
 
 build:
   script_env:
-    - CC
-    - CXX
-    - CXX_FLAGS
-    - CXX_LDFLAGS
+    - EXT_CC
+    - EXT_CXX
     - USE_CYTHON
 
   string: np{{np if np else ""}}py{{py}}{{ "" if environ.get('USE_CYTHON', "true") == "true" else "_vg" }}
@@ -19,6 +17,7 @@ build:
 
 requirements:
   build:
+    - toolchain
     - setuptools
     - cmake
     - patchelf >=0.8    # [linux]
