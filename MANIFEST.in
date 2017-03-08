@@ -2,6 +2,7 @@ include versioneer.py
 include _version.py
 
 include include/rank_filter_base.hxx
+recursive-include src *.pxd *.pyx
 
 recursive-include tests *.py
 
