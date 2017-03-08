@@ -40,6 +40,9 @@ test:
   imports:
     - rank_filter
 
+  commands:
+    - python -m unittest discover -s .
+
 about:
   home: http://github.com/nanshe-org/rank_filter
   license: BSD 3-Clause
