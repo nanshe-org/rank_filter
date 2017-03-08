@@ -34,7 +34,6 @@ install:
   # Fix root environment to have the correct Python version.
   - touch $HOME/miniconda/conda-meta/pinned
   - echo "python ${PYTHON_VERSION}.*" >> $HOME/miniconda/conda-meta/pinned
-  - echo "conda-build 1.18.2" >> $HOME/miniconda/conda-meta/pinned
   - conda install python=$PYTHON_VERSION
   # Install basic conda dependencies.
   - touch $HOME/miniconda/conda-meta/pinned
