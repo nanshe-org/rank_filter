@@ -35,8 +35,6 @@ requirements:
 
 test:
   imports:
-    - itertools
-    - numpy
     - rank_filter
 
 about:
