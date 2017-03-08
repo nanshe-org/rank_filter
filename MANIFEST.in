@@ -3,5 +3,7 @@ include _version.py
 
 include include/*.hxx
 
+recursive-include tests *.py
+
 include README.rst
 include LICENSE.txt
