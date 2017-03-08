@@ -54,7 +54,7 @@ include_dirs = [
     get_python_inc()
 ]
 library_dirs = [get_config_var("LIBDIR")]
-sources = glob("src/*.pxd") + glob("src/*.pyx") + glob("src/*.cpp")
+sources = glob("src/*.pxd") + glob("src/*.pyx")
 libraries = ["boost_container"]
 extra_compile_args = []
 
