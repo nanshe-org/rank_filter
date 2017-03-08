@@ -4,18 +4,9 @@
 #
 
 if [[ `uname` == 'Darwin' ]]; then
-    export MACOSX_DEPLOYMENT_TARGET=10.7
     LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
-    DEFAULT_CC="clang"
-    DEFAULT_CXX="clang++"
-    DEFAULT_CXX_FLAGS="-stdlib=libc++"
-    DEFAULT_CXX_LDFLAGS="-stdlib=libc++"
 else
     LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
-    DEFAULT_CC="gcc"
-    DEFAULT_CXX="g++"
-    DEFAULT_CXX_FLAGS=""
-    DEFAULT_CXX_LDFLAGS=""
 fi
 
 if [ -z "${USE_CYTHON}" ] || [ "${USE_CYTHON}" == "<UNDEFINED>" ];
