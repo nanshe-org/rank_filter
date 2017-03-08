@@ -34,6 +34,9 @@ requirements:
     {{ "" if environ.get('USE_CYTHON', "true") == "true" else "- vigra" }}
 
 test:
+  source_files:
+    - test
+
   imports:
     - rank_filter
 
