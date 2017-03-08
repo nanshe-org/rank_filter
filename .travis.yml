@@ -53,7 +53,7 @@ install:
 script:
   # Building the recipe will run the tests too.
   - mv .git/shallow .git/shallow-not || true
-  - conda build --no-remove-work-dir rank_filter.recipe
+  - conda build --no-remove-work-dir --python $PYTHON_VERSION rank_filter.recipe
   - mv .git/shallow-not .git/shallow || true
   # Run the benchmarks.
   - conda install --use-local -n testenv rank_filter==$VERSION
