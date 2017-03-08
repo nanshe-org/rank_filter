@@ -34,10 +34,14 @@ requirements:
     {{ "" if environ.get('USE_CYTHON', "true") == "true" else "- vigra" }}
 
 test:
+  source_files:
+    - test
+
   imports:
-    - itertools
-    - numpy
     - rank_filter
+
+  commands:
+    - python -m unittest discover -s .
 
 about:
   home: http://github.com/nanshe-org/rank_filter
