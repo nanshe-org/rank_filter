@@ -24,13 +24,13 @@ requirements:
     - patchelf >=0.8    # [linux]
     - boost
     - python
-    - numpy
+    - numpy x.x
     {{ "- cython" if environ.get('USE_CYTHON', "true") == "true" else "- vigra" }}
     
   run:
     - boost
     - python
-    - numpy
+    - numpy x.x
     {{ "" if environ.get('USE_CYTHON', "true") == "true" else "- vigra" }}
 
 test:
