@@ -72,7 +72,12 @@ IF(PYTHONINTERP_FOUND)
         ENDIF()
     ENDIF()
     IF(NOT PYTHON_LIBRARY_DIR_NOT_FOUND AND NOT PYTHON_VERSION_NOT_FOUND)
-        find_library(PYTHON_LIBRARY "python${PYTHON_VERSION}" PATHS ${PYTHON_LIBRARY_DIR} NO_DEFAULT_PATH)
+        execute_process ( COMMAND ${PYTHON_EXECUTABLE} -c
+		            "from distutils import sysconfig; print(sysconfig.get_config_var(\"LDLIBRARY\"))"
+                            RESULT_VARIABLE PYTHON_LIBRARY_NAME_NOT_FOUND
+                            OUTPUT_VARIABLE PYTHON_LIBRARY_NAME
+                            OUTPUT_STRIP_TRAILING_WHITESPACE)
+	find_library(PYTHON_LIBRARY "${PYTHON_LIBRARY_NAME}" PATHS ${PYTHON_LIBRARY_DIR} NO_DEFAULT_PATH)
     ENDIF()
 ELSE()
     SET(PYTHON_ROOT "PYTHON_ROOT-NOTFOUND")
