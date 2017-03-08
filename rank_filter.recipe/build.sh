@@ -20,10 +20,10 @@ cmake ${SRC}\
 \
         -DCMAKE_PREFIX_PATH="${PREFIX}" \
 \
-        -DCMAKE_SHARED_LINKER_FLAGS="${CXX_LDFLAGS}" \
+        -DCMAKE_SHARED_LINKER_FLAGS="${LDFLAGS}" \
 \
-        -DCMAKE_CXX_LINK_FLAGS="${CXX_FLAGS}" \
-        -DCMAKE_CXX_FLAGS="${CXX_FLAGS}" \
+        -DCMAKE_CXX_LINK_FLAGS="${CXXFLAGS}" \
+        -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
 \
         -DBOOST_ROOT="${PREFIX}" \
         -DVIGRA_ROOT="${PREFIX}" \
