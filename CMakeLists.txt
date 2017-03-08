@@ -166,7 +166,7 @@ endif()
 add_dependencies(rank_filter check)
 
 # Run unittest on completion to ensure all works and is accurate.
-add_test(NAME unittest COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/run_unittest.py ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} ${CMAKE_CURRENT_SOURCE_DIR})
+add_test(NAME unittest COMMAND ${PYTHON_EXECUTABLE} -m unittest discover -s ${CMAKE_CURRENT_SOURCE_DIR} WORKING_DIRECTORY ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 
 # Install the module in the Python site-packages folder.
 if(${USE_CYTHON})
