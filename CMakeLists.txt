@@ -128,13 +128,13 @@ else()
 endif()
 
 # Build binary for running base API C++ unitests
-add_executable(cxxtest_base ${CMAKE_CURRENT_SOURCE_DIR}/test/test_rank_filter_base)
+add_executable(cxxtest_base ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_rank_filter_base)
 target_link_libraries(cxxtest_base ${Boost_CONTAINER_LIBRARY})
 set_target_properties(cxxtest_base PROPERTIES SUFFIX ".out" PREFIX "")
 
 # Build binary for running base API C++ unitests
 if(${VIGRA_FOUND})
-    add_executable(cxxtest_vigra ${CMAKE_CURRENT_SOURCE_DIR}/test/test_rank_filter_vigra)
+    add_executable(cxxtest_vigra ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_rank_filter_vigra)
     target_link_libraries(cxxtest_vigra ${Boost_CONTAINER_LIBRARY})
     set_target_properties(cxxtest_vigra PROPERTIES SUFFIX ".out" PREFIX "")
 endif()

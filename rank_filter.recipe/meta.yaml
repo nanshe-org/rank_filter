@@ -35,7 +35,7 @@ requirements:
 
 test:
   source_files:
-    - test
+    - tests
 
   imports:
     - rank_filter

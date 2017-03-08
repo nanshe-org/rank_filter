@@ -94,7 +94,7 @@ setup(
     build_requires=build_requires,
     install_requires=install_requires,
     tests_require=tests_require,
-    test_suite="test",
+    test_suite="tests",
     headers=glob("include/*.hxx"),
     ext_modules=[Extension("rank_filter",
                             sources=sources,
