@@ -4,6 +4,16 @@ else
     LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
 fi
 
+if [ ! -z "${EXT_CC}" ] && [ "${EXT_CC}" != "<UNDEFINED>" ];
+then
+    CC="${EXT_CC}"
+fi
+
+if [ ! -z "${EXT_CXX}" ] && [ "${EXT_CXX}" != "<UNDEFINED>" ];
+then
+    CXX="${EXT_CXX}"
+fi
+
 if [ -z "${USE_CYTHON}" ] || [ "${USE_CYTHON}" == "<UNDEFINED>" ];
 then
     unset USE_CYTHON
