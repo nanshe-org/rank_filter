@@ -8,25 +8,6 @@ if [ -z "${USE_CYTHON}" ] || [ "${USE_CYTHON}" == "<UNDEFINED>" ];
 then
     unset USE_CYTHON
 fi
-if [ -z "${CC}" ] || [ "${CC}" == "<UNDEFINED>" ];
-then
-    CC=$DEFAULT_CC
-fi
-if [ -z "${CXX}" ] || [ "${CXX}" == "<UNDEFINED>" ];
-then
-    CXX=$DEFAULT_CXX
-fi
-if [ -z "${CXX_FLAGS}" ] || [ "${CXX_FLAGS}" == "<UNDEFINED>" ];
-then
-    CXX_FLAGS=$DEFAULT_CXX_FLAGS
-fi
-if [ -z "${CXX_LDFLAGS}" ] || [ "${CXX_LDFLAGS}" == "<UNDEFINED>" ];
-then
-    CXX_LDFLAGS=$DEFAULT_CXX_LDFLAGS
-fi
-
-CXX_FLAGS="${CXXFLAGS} ${CXX_FLAGS}"
-CXX_LDFLAGS="${LDFLAGS} ${CXX_LDFLAGS}"
 
 # CONFIGURE
 SRC=$(pwd)
