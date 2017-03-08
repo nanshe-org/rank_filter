@@ -19,6 +19,7 @@ build:
 
 requirements:
   build:
+    - toolchain
     - setuptools
     - cmake
     - patchelf >=0.8    # [linux]
