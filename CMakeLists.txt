@@ -91,7 +91,6 @@ if(${VIGRA_FOUND})
         ${Boost_INCLUDE_DIRS}
         ${PYTHON_NUMPY_INCLUDE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}
-        ${VIGRANUMPY_SITEPACKAGE_DIR}
     )
 else()
     include_directories(
@@ -105,11 +104,7 @@ endif()
 
 
 # Set all directories to search for libraries
-if(${VIGRA_FOUND})
-    link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS} ${VIGRANUMPY_SITEPACKAGE_DIR})
-else()
-    link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS})
-endif()
+link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS})
 
 # Build binary for running base API C++ unitests
 add_executable(cxxtest_base ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_rank_filter_base)
