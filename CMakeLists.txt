@@ -83,24 +83,13 @@ find_package(NUMPY REQUIRED)
 include(CheckCXXSourceCompiles)
 
 # Set all directories to search for includes
-if(${VIGRA_FOUND})
-    include_directories(
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/
-        ${PYTHON_INCLUDE_DIR}
-        ${VIGRA_INCLUDE_DIR}
-        ${Boost_INCLUDE_DIRS}
-        ${PYTHON_NUMPY_INCLUDE_DIR}
-        ${CMAKE_CURRENT_SOURCE_DIR}
-    )
-else()
-    include_directories(
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/
-        ${PYTHON_INCLUDE_DIR}
-        ${Boost_INCLUDE_DIRS}
-        ${PYTHON_NUMPY_INCLUDE_DIR}
-        ${CMAKE_CURRENT_SOURCE_DIR}
-    )
-endif()
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/
+    ${PYTHON_INCLUDE_DIR}
+    ${Boost_INCLUDE_DIRS}
+    ${PYTHON_NUMPY_INCLUDE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
 
 # Set all directories to search for libraries
@@ -115,6 +104,7 @@ set_target_properties(cxxtest_base PROPERTIES SUFFIX ".out" PREFIX "")
 if(${VIGRA_FOUND})
     add_executable(cxxtest_vigra ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_rank_filter_vigra)
     target_compile_options(cxxtest_vigra PUBLIC "-std=c++11")
+    target_include_directories(cxxtest_vigra PUBLIC ${VIGRA_INCLUDE_DIR})
     target_link_libraries(cxxtest_vigra ${Boost_CONTAINER_LIBRARY})
     set_target_properties(cxxtest_vigra PROPERTIES SUFFIX ".out" PREFIX "")
 endif()
