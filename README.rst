@@ -24,9 +24,7 @@ In order to build this package, the following requirements are needed.
 3. NumPy (1.7.0 or later)
 4. Cython (0.23.0 or later)
 5. Setuptools (18.0 or later)
-6. VIGRA, optional (only tested with a revision after release 1.10.0, commit
-   `05cf09388e28ab9db49fda3763500f128445897d <https://github.com/ukoethe/vigra/commit/05cf09388e28ab9db49fda3763500f128445897d>`__
-   )
+6. VIGRA, optional (1.11.0 or later)
 
 Installation
 ------------
