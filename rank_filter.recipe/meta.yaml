@@ -9,6 +9,7 @@ build:
   script_env:
     - EXT_CC
     - EXT_CXX
+    - TST_VIGRA
 
   detect_binary_files_with_prefix: true
 
@@ -22,6 +23,7 @@ requirements:
     - python
     - numpy x.x
     - cython
+    {{ "- vigra" if environ.get("TST_VIGRA", "false") == "true" else "" }}
     
   run:
     - boost-cpp
