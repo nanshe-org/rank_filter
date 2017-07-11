@@ -24,7 +24,7 @@ In order to build this package, the following requirements are needed.
 3. NumPy (1.7.0 or later)
 4. Cython (0.23.0 or later)
 5. Setuptools (18.0 or later)
-6. VIGRA, optional (1.11.0 or later)
+6. VIGRA, optional for testing (1.11.0 or later)
 
 Installation
 ------------
