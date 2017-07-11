@@ -18,13 +18,13 @@ requirements:
     - setuptools
     - cmake
     - patchelf >=0.8    # [linux]
-    - boost
+    - boost-cpp
     - python
     - numpy x.x
     - cython
     
   run:
-    - boost
+    - boost-cpp
     - python
     - numpy x.x
 
