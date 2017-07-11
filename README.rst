@@ -169,18 +169,6 @@ intermediates, then the call below can be used.
 
     make reset
 
-Legacy install
-~~~~~~~~~~~~~~
-
-This package was previously written with VIGRA bindings. While these are
-deprecated, they are older and are likely more stable albeit slower. Due to the
-nature of how these bindings are built they cannot be installed via python
-directly. Instead they must be built with Conda or CMake. To do this the
-variable ``USE_CYTHON`` must be set to ``false``. This must be done with in the
-environment with Conda. For CMake, it will take this via the environment or as
-an option to CMake. Additionally, CMake will need to be able to access a working
-VIGRA install. This is unnecessary for Conda.
-
 
 .. |Travis Build Status| image:: https://travis-ci.org/nanshe-org/rank_filter.svg?branch=master
    :target: https://travis-ci.org/nanshe-org/rank_filter
