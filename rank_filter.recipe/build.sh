@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Override the compiler
 if [ ! -z "${EXT_CC}" ];
 then
     CC="${EXT_CC}"
@@ -10,7 +11,7 @@ then
     CXX="${EXT_CXX}"
 fi
 
-# CONFIGURE
+# Configure, build, and install
 mkdir build && cd build
 cmake "${SRC_DIR}"\
         -DCMAKE_MACOSX_RPATH=false \
@@ -26,10 +27,7 @@ cmake "${SRC_DIR}"\
         -DVIGRA_ROOT="${PREFIX}" \
 \
         -DPYTHON_EXECUTABLE="${PYTHON}" \
-\
 
-# BUILD (in parallel)
 make -j${CPU_COUNT}
 
-# "install" to the build prefix (conda will relocate these files afterwards)
 make install
