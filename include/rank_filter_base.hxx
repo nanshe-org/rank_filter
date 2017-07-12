@@ -25,9 +25,6 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     typedef typename std::iterator_traits<I1>::value_type T1;
     typedef typename std::iterator_traits<I2>::value_type T2;
 
-    // Will ignore boundaries initially.
-    // Then will try adding reflection.
-
     // Rank must be in the range 0 to 1
     assert((0 <= rank) && (rank <= 1));
 
