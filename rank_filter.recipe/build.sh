@@ -9,12 +9,12 @@ then
 fi
 
 # CONFIGURE
-SRC=$(pwd)
+SRC="$(pwd)"
 mkdir -pv build
 cd build
-BLD=$(pwd)
+BLD="$(pwd)"
 
-cmake ${SRC}\
+cmake "${SRC}"\
         -DCMAKE_MACOSX_RPATH=false \
 \
         -DCMAKE_PREFIX_PATH="${PREFIX}" \
