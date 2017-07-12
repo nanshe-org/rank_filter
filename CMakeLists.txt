@@ -71,9 +71,6 @@ add_custom_target(distclean COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/
 # Import needed CMakes for finding dependencies.
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/)
 
-# Don't use multithreaded libraries for Boost. This causes linking issues for Ubuntu.
-set(Boost_USE_MULTITHREADED OFF)
-
 find_package(PYTHON REQUIRED)
 find_package(Boost "1.56.0" REQUIRED COMPONENTS container)
 find_package(CYTHON REQUIRED)
