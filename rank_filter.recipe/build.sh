@@ -13,7 +13,7 @@ fi
 
 # Configure, build, and install
 mkdir build && cd build
-cmake "${SRC_DIR}"\
+cmake "${SRC_DIR}" \
         -DCMAKE_MACOSX_RPATH=false \
 \
         -DCMAKE_PREFIX_PATH="${PREFIX}" \
