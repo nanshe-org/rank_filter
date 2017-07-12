@@ -9,9 +9,7 @@ then
 fi
 
 # CONFIGURE
-mkdir build
-cd build
-
+mkdir build && cd build
 cmake "${SRC_DIR}"\
         -DCMAKE_MACOSX_RPATH=false \
 \
