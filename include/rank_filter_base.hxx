@@ -30,7 +30,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
 
     const size_t rank_pos = round(rank * (2 * half_length));
 
-    // The position of the
+    // The position of the window.
     size_t window_begin = 0;
 
     // Lengths.
