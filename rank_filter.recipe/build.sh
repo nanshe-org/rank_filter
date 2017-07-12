@@ -9,7 +9,7 @@ then
 fi
 
 # CONFIGURE
-mkdir -pv build
+mkdir build
 cd build
 
 cmake "${SRC_DIR}"\
