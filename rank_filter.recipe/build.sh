@@ -14,11 +14,6 @@ then
     CXX="${EXT_CXX}"
 fi
 
-if [ -z "${USE_CYTHON}" ] || [ "${USE_CYTHON}" == "<UNDEFINED>" ];
-then
-    unset USE_CYTHON
-fi
-
 # CONFIGURE
 SRC=$(pwd)
 mkdir -pv build
