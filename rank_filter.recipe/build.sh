@@ -1,9 +1,3 @@
-if [[ `uname` == 'Darwin' ]]; then
-    LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
-else
-    LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
-fi
-
 if [ ! -z "${EXT_CC}" ] && [ "${EXT_CC}" != "<UNDEFINED>" ];
 then
     CC="${EXT_CC}"
@@ -37,7 +31,7 @@ cmake ${SRC}\
 \
 
 # BUILD (in parallel)
-eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make -j${CPU_COUNT}
+make -j${CPU_COUNT}
 
 # "install" to the build prefix (conda will relocate these files afterwards)
-eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make install
+make install
