@@ -12,7 +12,6 @@ fi
 SRC="$(pwd)"
 mkdir -pv build
 cd build
-BLD="$(pwd)"
 
 cmake "${SRC}"\
         -DCMAKE_MACOSX_RPATH=false \
