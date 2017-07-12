@@ -10,6 +10,7 @@
 #include <boost/array.hpp>
 #include <boost/container/set.hpp>
 #include <boost/container/node_allocator.hpp>
+#include <boost/math/special_functions/round.hpp>
 
 
 namespace rank_filter
@@ -28,7 +29,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Rank must be in the range 0 to 1
     assert((0 <= rank) && (rank <= 1));
 
-    const size_t rank_pos = round(rank * (2 * half_length));
+    const size_t rank_pos = static_cast<size_t>(boost::math::round(rank * (2 * half_length)));
 
     // The position of the window.
     size_t window_begin = 0;
