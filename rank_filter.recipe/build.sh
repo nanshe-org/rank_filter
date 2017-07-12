@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ ! -z "${EXT_CC}" ] && [ "${EXT_CC}" != "<UNDEFINED>" ];
+if [ ! -z "${EXT_CC}" ];
 then
     CC="${EXT_CC}"
 fi
 
-if [ ! -z "${EXT_CXX}" ] && [ "${EXT_CXX}" != "<UNDEFINED>" ];
+if [ ! -z "${EXT_CXX}" ];
 then
     CXX="${EXT_CXX}"
 fi
