@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ ! -z "${EXT_CC}" ] && [ "${EXT_CC}" != "<UNDEFINED>" ];
 then
     CC="${EXT_CC}"
