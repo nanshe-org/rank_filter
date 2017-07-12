@@ -13,7 +13,7 @@ SRC="$(pwd)"
 mkdir -pv build
 cd build
 
-cmake "${SRC}"\
+cmake "${SRC_DIR}"\
         -DCMAKE_MACOSX_RPATH=false \
 \
         -DCMAKE_PREFIX_PATH="${PREFIX}" \
