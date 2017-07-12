@@ -9,7 +9,6 @@ then
 fi
 
 # CONFIGURE
-SRC="$(pwd)"
 mkdir -pv build
 cd build
 
