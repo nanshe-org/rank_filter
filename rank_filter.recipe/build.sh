@@ -1,26 +1,19 @@
-if [[ `uname` == 'Darwin' ]]; then
-    LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
-else
-    LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
-fi
+#!/bin/bash
 
-if [ ! -z "${EXT_CC}" ] && [ "${EXT_CC}" != "<UNDEFINED>" ];
+# Override the compiler
+if [ ! -z "${EXT_CC}" ];
 then
     CC="${EXT_CC}"
 fi
 
-if [ ! -z "${EXT_CXX}" ] && [ "${EXT_CXX}" != "<UNDEFINED>" ];
+if [ ! -z "${EXT_CXX}" ];
 then
     CXX="${EXT_CXX}"
 fi
 
-# CONFIGURE
-SRC=$(pwd)
-mkdir -pv build
-cd build
-BLD=$(pwd)
-
-cmake ${SRC}\
+# Configure, build, and install
+mkdir build && cd build
+cmake "${SRC_DIR}" \
         -DCMAKE_MACOSX_RPATH=false \
 \
         -DCMAKE_PREFIX_PATH="${PREFIX}" \
@@ -34,10 +27,7 @@ cmake ${SRC}\
         -DVIGRA_ROOT="${PREFIX}" \
 \
         -DPYTHON_EXECUTABLE="${PYTHON}" \
-\
 
-# BUILD (in parallel)
-eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make -j${CPU_COUNT}
+make -j${CPU_COUNT}
 
-# "install" to the build prefix (conda will relocate these files afterwards)
-eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make install
+make install
