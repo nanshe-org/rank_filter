@@ -39,18 +39,18 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Rank must be in the range 0 to 1
     assert((0 <= rank) && (rank <= 1));
 
-    const size_t rank_pos = static_cast<size_t>(boost::math::round(rank * (2 * half_length)));
+    const I_diff_t rank_pos = static_cast<I_diff_t>(boost::math::round(rank * (2 * half_length)));
 
     // The position of the window.
-    size_t window_begin = 0;
+    I_diff_t window_begin = 0;
 
     // Lengths.
-    const I1_diff_t src_size = std::distance(src_begin, src_end);
-    const I2_diff_t dest_size = std::distance(dest_begin, dest_end);
+    const I_diff_t src_size = std::distance(src_begin, src_end);
+    const I_diff_t dest_size = std::distance(dest_begin, dest_end);
 
-    typedef boost::container::multiset< T1,
-            std::less<T1>,
-            boost::container::node_allocator<T1>,
+    typedef boost::container::multiset< T,
+            std::less<T>,
+            boost::container::node_allocator<T>,
             boost::container::tree_assoc_options< boost::container::tree_type<boost::container::scapegoat_tree> >::type> multiset;
 
     typedef std::deque< typename multiset::iterator > deque;
@@ -60,25 +60,25 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
 
     // Get the initial sorted window.
     // Include the reflection.
-    for (size_t j = half_length; j > 0; j--)
+    for (I_diff_t j = half_length; j > 0; j--)
     {
         window_iters.push_back(sorted_window.insert(src_begin[window_begin + j]));
     }
-    for (size_t j = 0; j <= half_length; j++)
+    for (I_diff_t j = 0; j <= half_length; j++)
     {
         window_iters.push_back(sorted_window.insert(src_begin[window_begin + j]));
     }
 
     typename multiset::iterator rank_point = sorted_window.begin();
 
-    for (size_t i = 0; i < rank_pos; i++)
+    for (I_diff_t i = 0; i < rank_pos; i++)
     {
         rank_point++;
     }
 
     typename multiset::iterator prev_iter;
-    T1 prev_value;
-    T1 next_value;
+    T prev_value;
+    T next_value;
     while ( window_begin < src_size )
     {
         dest_begin[window_begin] = *rank_point;
