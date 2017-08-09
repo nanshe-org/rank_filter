@@ -53,9 +53,33 @@ include_dirs = [
     os.path.dirname(get_python_inc()),
     get_python_inc()
 ]
-library_dirs = [get_config_var("LIBDIR")]
+library_dirs = list(filter(
+    lambda v: v is not None,
+    [get_config_var("LIBDIR")]
+))
 sources = glob("src/*.pxd") + glob("src/*.pyx")
-libraries = ["boost_container"]
+
+libraries = []
+if os.name == "posix":
+    libraries.append("boost_container")
+elif os.name == "nt":
+    libname = "boost_container"
+    if sys.version_info[:2] == (2, 7):
+        libname += "-vc90-mt"
+    elif sys.version_info[:2] == (3, 4):
+        libname += "-vc100-mt"
+    elif sys.version_info[:2] >= (3, 5):
+        libname += "-vc140-mt"
+
+    path = os.environ.get("LIB", "").split(";")
+
+    libmatches = sum(
+        list(glob(os.path.join(p, "%s*.lib" % libname)) for p in path), []
+    )
+    library_dirs.append(os.path.dirname(libmatches[0]))
+    libraries.append(os.path.splitext(os.path.basename(libmatches[0]))[0])
+
+
 extra_compile_args = []
 
 
@@ -65,13 +89,13 @@ setup(
     description="A simple python module containing an in-place linear rank"
                 " filter optimized in C++.",
     long_description=readme(),
-    platforms=['Linux'],
     classifiers=[
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',
         'Operating System :: POSIX :: Linux',
         'Operating System :: MacOS :: MacOS X',
+        'Operating System :: Microsoft :: Windows',
         'Programming Language :: C++',
         'Programming Language :: Cython',
         'Programming Language :: Python',
