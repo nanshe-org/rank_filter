@@ -99,7 +99,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         }
         else
         {
-            next_value = *(window_iters[window_iters.size() + 2*src_size - 2*(window_begin + half_length) - 2]);
+            next_value = *(window_iters[(2 * (src_size - (window_begin + 1)))]);
         }
 
         if ( ( *rank_point < prev_value ) && ( *rank_point <= next_value ) )
