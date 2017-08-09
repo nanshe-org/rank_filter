@@ -38,8 +38,8 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     size_t window_begin = 0;
 
     // Lengths.
-    const typename std::iterator_traits<I1>::difference_type src_size = std::distance(src_begin, src_end);
-    const typename std::iterator_traits<I2>::difference_type dest_size = std::distance(dest_begin, dest_end);
+    const I1_diff_t src_size = std::distance(src_begin, src_end);
+    const I2_diff_t dest_size = std::distance(dest_begin, dest_end);
 
     typedef boost::container::multiset< T1,
             std::less<T1>,
