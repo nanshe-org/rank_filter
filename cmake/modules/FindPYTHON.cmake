@@ -37,7 +37,7 @@ IF(PYTHONINTERP_FOUND)
     ENDIF()
     IF(NOT PYTHON_LIBRARY_DIR)
         execute_process ( COMMAND ${PYTHON_EXECUTABLE} -c
-                            "from distutils import sysconfig; print(sysconfig.get_config_var(\"LIBDIR\"))"
+                            "from distutils import sysconfig; print(sysconfig.get_config_vars()[\"LIBDIR\"])"
                             RESULT_VARIABLE PYTHON_LIBRARY_DIR_NOT_FOUND
                             OUTPUT_VARIABLE PYTHON_LIBRARY_DIR
                             OUTPUT_STRIP_TRAILING_WHITESPACE)
@@ -73,7 +73,7 @@ IF(PYTHONINTERP_FOUND)
     ENDIF()
     IF(NOT PYTHON_LIBRARY_DIR_NOT_FOUND AND NOT PYTHON_VERSION_NOT_FOUND)
         execute_process ( COMMAND ${PYTHON_EXECUTABLE} -c
-		            "from distutils import sysconfig; print(sysconfig.get_config_var(\"LDLIBRARY\"))"
+                            "from distutils import sysconfig; print(sysconfig.get_config_vars()[\"LDLIBRARY\"])"
                             RESULT_VARIABLE PYTHON_LIBRARY_NAME_NOT_FOUND
                             OUTPUT_VARIABLE PYTHON_LIBRARY_NAME
                             OUTPUT_STRIP_TRAILING_WHITESPACE)
