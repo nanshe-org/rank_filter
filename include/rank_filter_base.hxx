@@ -12,6 +12,8 @@
 #include <boost/container/set.hpp>
 #include <boost/container/node_allocator.hpp>
 #include <boost/math/special_functions/round.hpp>
+#include <boost/static_assert.hpp>
+#include <boost/type_traits.hpp>
 
 
 namespace rank_filter
@@ -28,6 +30,11 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     typedef typename std::iterator_traits<I2>::value_type T2;
     typedef typename std::iterator_traits<I1>::difference_type I1_diff_t;
     typedef typename std::iterator_traits<I2>::difference_type I2_diff_t;
+
+    // Establish common types to work with source and destination values.
+    BOOST_STATIC_ASSERT((boost::is_same<T1, T2>::value));
+    typedef T1 T;
+    typedef typename boost::common_type<I1_diff_t, I2_diff_t>::type I_diff_t;
 
     // Rank must be in the range 0 to 1
     assert((0 <= rank) && (rank <= 1));
