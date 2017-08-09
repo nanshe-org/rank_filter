@@ -26,6 +26,8 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Types in use.
     typedef typename std::iterator_traits<I1>::value_type T1;
     typedef typename std::iterator_traits<I2>::value_type T2;
+    typedef typename std::iterator_traits<I1>::difference_type I1_diff_t;
+    typedef typename std::iterator_traits<I2>::difference_type I2_diff_t;
 
     // Rank must be in the range 0 to 1
     assert((0 <= rank) && (rank <= 1));
