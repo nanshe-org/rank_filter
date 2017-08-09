@@ -89,13 +89,13 @@ setup(
     description="A simple python module containing an in-place linear rank"
                 " filter optimized in C++.",
     long_description=readme(),
-    platforms=['Linux'],
     classifiers=[
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',
         'Operating System :: POSIX :: Linux',
         'Operating System :: MacOS :: MacOS X',
+        'Operating System :: Microsoft :: Windows',
         'Programming Language :: C++',
         'Programming Language :: Cython',
         'Programming Language :: Python',
