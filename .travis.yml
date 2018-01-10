@@ -9,18 +9,15 @@ addons:
       - gcc-4.8
       - g++-4.8
 env:
-  - PYTHON_VERSION="2.7" NUMPY_VERSION="1.11" TST_VIGRA="true"
-  - PYTHON_VERSION="2.7" NUMPY_VERSION="1.12"
-  - PYTHON_VERSION="2.7" NUMPY_VERSION="1.13"
-  - PYTHON_VERSION="3.4" NUMPY_VERSION="1.11"
-  - PYTHON_VERSION="3.4" NUMPY_VERSION="1.12"
-  - PYTHON_VERSION="3.4" NUMPY_VERSION="1.13"
-  - PYTHON_VERSION="3.5" NUMPY_VERSION="1.11"
-  - PYTHON_VERSION="3.5" NUMPY_VERSION="1.12"
-  - PYTHON_VERSION="3.5" NUMPY_VERSION="1.13"
-  - PYTHON_VERSION="3.6" NUMPY_VERSION="1.11"
-  - PYTHON_VERSION="3.6" NUMPY_VERSION="1.12"
-  - PYTHON_VERSION="3.6" NUMPY_VERSION="1.13"
+  matrix:
+    - PYTHON_VERSION="2.7" TST_VIGRA="true"
+    - PYTHON_VERSION="2.7"
+    - PYTHON_VERSION="3.4"
+    - PYTHON_VERSION="3.5"
+    - PYTHON_VERSION="3.6"
+matrix:
+  allow_failures:
+    - env: PYTHON_VERSION="2.7" TST_VIGRA="true"
 before_install:
   # Move out of git directory to build root.
   - git fetch --unshallow --tags
@@ -54,7 +51,7 @@ install:
   - VERSION=`python setup.py --version`
   - echo $VERSION
   # Create the test environment and install dependencies.
-  - conda create -n testenv python=$PYTHON_VERSION numpy=$NUMPY_VERSION
+  - conda create -n testenv python=$PYTHON_VERSION numpy
   - source activate testenv
   # Clean up downloads as there are quite a few and they waste space/memory.
   - conda clean -tipsy
@@ -62,7 +59,7 @@ install:
 script:
   # Building the recipe will run the tests too.
   - mv .git/shallow .git/shallow-not || true
-  - conda build --python $PYTHON_VERSION --numpy $NUMPY_VERSION rank_filter.recipe
+  - conda build --python $PYTHON_VERSION rank_filter.recipe
   - mv .git/shallow-not .git/shallow || true
   # Run the benchmarks.
   - conda install --use-local -n testenv rank_filter==$VERSION
