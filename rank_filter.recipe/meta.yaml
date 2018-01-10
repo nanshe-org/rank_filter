@@ -21,14 +21,14 @@ requirements:
     - patchelf >=0.8    # [linux]
     - boost-cpp
     - python
-    - numpy x.x
+    - numpy 1.11.*
     - cython
     {{ "- vigra" if environ.get("TST_VIGRA", "false") == "true" else "" }}
     
   run:
     - boost-cpp
     - python
-    - numpy x.x
+    - numpy >=1.11
 
 test:
   source_files:
