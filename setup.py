@@ -36,7 +36,7 @@ with open("src/version.pxi", "w") as f:
 
 cython_dep = ["cython >= 0.23"]
 numpy_dep = ["numpy >= 1.7"]
-boost_dep = ["boost >= 1.56"]
+boost_dep = ["boost-cpp >= 1.56"]
 boost_dep = (boost_dep if sys.argv[1] == "bdist_conda" else [])
 
 setup_requires = cython_dep + numpy_dep
