@@ -84,10 +84,10 @@ install:
     # AppVeyor gives us 2 cores to work with.
     #
     # ref: https://www.appveyor.com/docs/build-environment/#build-vm-configurations
-    - set CPU_COUNT=2
+    - cmd: set CPU_COUNT=2
 
     # Use a small path for conda-build's working directory.
-    - set "CONDA_BLD_PATH=C:\\bld\\"
+    - cmd: set "CONDA_BLD_PATH=C:\\bld\\"
 
     # Add path, activate `conda` and update conda.
     - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
@@ -96,7 +96,7 @@ install:
     # Configure conda.
     - cmd: conda config --set show_channel_urls true
     - cmd: conda config --set auto_update_conda false
-    - conda config --set add_pip_as_python_dependency false
+    - cmd: conda config --set add_pip_as_python_dependency false
 
     # Add our channels.
     - cmd: conda config --remove channels defaults
@@ -119,4 +119,4 @@ install:
 build: off
 
 test_script:
-    - conda build rank_filter.recipe --quiet
+    - cmd: conda build rank_filter.recipe --quiet
