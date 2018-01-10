@@ -9,11 +9,12 @@ addons:
       - gcc-4.8
       - g++-4.8
 env:
-  - PYTHON_VERSION="2.7" TST_VIGRA="true"
-  - PYTHON_VERSION="2.7"
-  - PYTHON_VERSION="3.4"
-  - PYTHON_VERSION="3.5"
-  - PYTHON_VERSION="3.6"
+  matrix:
+    - PYTHON_VERSION="2.7" TST_VIGRA="true"
+    - PYTHON_VERSION="2.7"
+    - PYTHON_VERSION="3.4"
+    - PYTHON_VERSION="3.5"
+    - PYTHON_VERSION="3.6"
 before_install:
   # Move out of git directory to build root.
   - git fetch --unshallow --tags
