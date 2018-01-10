@@ -91,32 +91,32 @@ install:
 
     # Add path, activate `conda` and update conda.
     - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
-    - cmd: conda update --yes --quiet conda
+    - cmd: conda.exe update --yes --quiet conda
 
     # Configure conda.
-    - cmd: conda config --set show_channel_urls true
-    - cmd: conda config --set auto_update_conda false
-    - cmd: conda config --set add_pip_as_python_dependency false
+    - cmd: conda.exe config --set show_channel_urls true
+    - cmd: conda.exe config --set auto_update_conda false
+    - cmd: conda.exe config --set add_pip_as_python_dependency false
 
     # Add our channels.
-    - cmd: conda config --remove channels defaults
-    - cmd: conda config --add channels defaults
-    - cmd: conda config --add channels conda-forge
+    - cmd: conda.exe config --remove channels defaults
+    - cmd: conda.exe config --add channels defaults
+    - cmd: conda.exe config --add channels conda-forge
 
     # Update and install everything.
-    - cmd: conda update --all --quiet --yes
-    - cmd: conda install --quiet --yes jinja2 conda-build
+    - cmd: conda.exe update --all --quiet --yes
+    - cmd: conda.exe install --quiet --yes jinja2 conda-build
 
     # Patch VS 2008 for 64-bit support.
-    - cmd: conda install --quiet --yes vs2008_express_vc_python_patch
+    - cmd: conda.exe install --quiet --yes vs2008_express_vc_python_patch
     - cmd: call setup_x64
 
     # Show info about conda install.
-    - cmd: conda info
-    - cmd: conda config --get
+    - cmd: conda.exe info
+    - cmd: conda.exe config --get
 
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
-    - cmd: conda build rank_filter.recipe --quiet
+    - cmd: conda.exe build rank_filter.recipe --quiet
