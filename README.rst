@@ -1,4 +1,4 @@
-|Travis Build Status| |License| |PyPI Release| |Anaconda Release| |Gitter|
+|Travis Build Status| |License| |PyPI Release| |conda-forge Release| |Gitter|
 
 --------------
 
@@ -179,7 +179,7 @@ intermediates, then the call below can be used.
 .. |PyPI Release| image:: https://img.shields.io/pypi/v/rank_filter.svg
    :target: https://pypi.python.org/pypi/rank_filter
 
-.. |Anaconda Release| image:: https://anaconda.org/conda-forge/rank_filter/badges/version.svg
+.. |conda-forge Release| image:: https://img.shields.io/conda/vn/conda-forge/rank_filter.svg
    :target: https://anaconda.org/conda-forge/rank_filter
 
 .. |Gitter| image:: https://badges.gitter.im/Join%20Chat.svg

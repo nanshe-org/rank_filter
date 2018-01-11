@@ -84,6 +84,7 @@ setup(
                 " filter optimized in C++.",
     long_description=readme(),
     classifiers=[
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',
@@ -93,6 +94,10 @@ setup(
         'Programming Language :: C++',
         'Programming Language :: Cython',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Scientific/Engineering',
         'Topic :: Software Development :: Libraries'
     ],
