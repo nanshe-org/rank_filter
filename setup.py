@@ -84,6 +84,7 @@ setup(
                 " filter optimized in C++.",
     long_description=readme(),
     classifiers=[
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',
