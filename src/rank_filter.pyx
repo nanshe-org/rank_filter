@@ -1,6 +1,6 @@
 from rank_filter cimport lineRankOrderFilter1D_floating
 
-import cython
+cimport cython
 
 import numpy
 
