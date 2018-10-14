@@ -12,7 +12,7 @@ include "version.pxi"
 @cython.boundscheck(False)
 def lineRankOrderFilter(image,
                         int half_length,
-                        float rank,
+                        double rank,
                         int axis=-1,
                         out=None):
     """
@@ -23,7 +23,7 @@ def lineRankOrderFilter(image,
 
             half_window_size(int):     half the window size for the kernel.
 
-            rank(float):               quantile to use from ``0.0`` to ``1.0``.
+            rank(double):              quantile to use from ``0.0`` to ``1.0``.
 
             axis(int):                 which axis to direct and run the kernel
                                        over defaults to the last one
