@@ -70,8 +70,8 @@ def lineRankOrderFilter(image,
     out_strip_indices = numpy.ndindex(out_swap.shape[:-1])
     out_strip = None
 
-    for each_slice in out_strip_indices:
-        out_strip = out_swap[each_slice]
+    for idx in out_strip_indices:
+        out_strip = out_swap[idx]
         lineRankOrderFilter1D(out_strip, out_strip)
 
     out[...] = out_swap.swapaxes(-1, axis)
