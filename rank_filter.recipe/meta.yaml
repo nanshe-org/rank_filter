@@ -5,9 +5,6 @@ package:
 source:
   git_url: ..
 
-build:
-  detect_binary_files_with_prefix: true
-
 requirements:
   build:
     - {{ compiler("cxx") }}
