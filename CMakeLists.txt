@@ -59,7 +59,7 @@ add_custom_target(distclean COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/
                             COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/cmake_install.cmake
                             COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/Makefile
                             COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/install_manifest.txt
-                            COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/bin/cxxtest_base.out
+                            COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/bin/cxxtest.out
                             COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/build
                             COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/dist
                             COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/rank_filter.egg-info
@@ -90,12 +90,12 @@ include_directories(
 link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS})
 
 # Build binary for running base API C++ unitests
-add_executable(cxxtest_base ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_rank_filter_base)
-target_link_libraries(cxxtest_base ${Boost_CONTAINER_LIBRARY})
-set_target_properties(cxxtest_base PROPERTIES SUFFIX ".out" PREFIX "")
+add_executable(cxxtest ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_rank_filter)
+target_link_libraries(cxxtest ${Boost_CONTAINER_LIBRARY})
+set_target_properties(cxxtest PROPERTIES SUFFIX ".out" PREFIX "")
 
 # Run C++ unitests binary
-add_custom_target(check COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cxxtest_base.out DEPENDS cxxtest_base)
+add_custom_target(check COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cxxtest.out DEPENDS cxxtest)
 
 # Build Python module with Python bindings to the C++ library.
 add_custom_target(
