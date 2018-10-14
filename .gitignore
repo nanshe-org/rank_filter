@@ -20,5 +20,5 @@ CTestTestfile.cmake
 Makefile
 cmake_install.cmake
 
-bin/cxxtest_base.out
+bin/cxxtest.out
 src/rank_filter.cpp
