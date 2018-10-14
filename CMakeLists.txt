@@ -89,7 +89,7 @@ include_directories(
 # Set all directories to search for libraries
 link_directories(${PYTHON_LIBRARY_DIR} ${Boost_LIBRARY_DIRS})
 
-# Build binary for running base API C++ unitests
+# Build binary for running C++ unitests
 add_executable(cxxtest ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_rank_filter)
 target_link_libraries(cxxtest ${Boost_CONTAINER_LIBRARY})
 set_target_properties(cxxtest PROPERTIES SUFFIX ".out" PREFIX "")
