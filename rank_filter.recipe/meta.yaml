@@ -5,19 +5,14 @@ package:
 source:
   git_url: ..
 
-build:
-  script_env:
-    - EXT_CC
-    - EXT_CXX
-
-  detect_binary_files_with_prefix: true
-
 requirements:
   build:
-    - toolchain
-    - setuptools
+    - {{ compiler("cxx") }}
     - cmake
     - patchelf >=0.8    # [linux]
+
+  host:
+    - setuptools
     - boost-cpp
     - python
     - numpy 1.11.*
