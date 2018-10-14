@@ -24,7 +24,6 @@ In order to build this package, the following requirements are needed.
 3. NumPy (1.7.0 or later)
 4. Cython (0.23.0 or later)
 5. Setuptools (18.0 or later)
-6. VIGRA, optional for testing (1.11.0 or later)
 
 Installation
 ------------
@@ -77,13 +76,11 @@ Using CMake
 ~~~~~~~~~~~
 
 In order to find Boost includes and libraries, the directory Boost was installed
-to must be set as ``BOOST_ROOT``. Similarly, in order to find VIGRA includes and
-libraries, the directory VIGRA was installed to must be set as ``VIGRA_ROOT``.
-CMake will also pick them up as options.
+to must be set as ``BOOST_ROOT``.
 
 ::
 
-    cmake -DBOOST_ROOT=<path-to-Boost-root> -DVIGRA_ROOT=<path-to-VIGRA-root> .
+    cmake -DBOOST_ROOT=<path-to-Boost-root> .
 
 
 Also the CMake installer will also pick these variables up if they are set in
@@ -92,7 +89,6 @@ the environment and not provided.
 ::
 
     export BOOST_ROOT=<path-to-Boost-root>
-    export VIGRA_ROOT=<path-to-VIGRA-root>
     cmake .
 
 Additionally, the preferred python interpreter can be set by using the
