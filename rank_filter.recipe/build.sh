@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# Override the compiler
-if [ ! -z "${EXT_CC}" ];
-then
-    CC="${EXT_CC}"
-fi
-
-if [ ! -z "${EXT_CXX}" ];
-then
-    CXX="${EXT_CXX}"
-fi
-
 # Configure, build, and install
 mkdir build && cd build
 cmake "${SRC_DIR}" \
