@@ -2,8 +2,6 @@ from rank_filter cimport lineRankOrderFilter1D_floating
 
 import cython
 
-import itertools
-
 import numpy
 
 include "version.pxi"
@@ -71,9 +69,7 @@ def lineRankOrderFilter(image,
     out_swap = numpy.ascontiguousarray(out.swapaxes(axis, -1))
     out_strip = None
 
-    for each_slice in itertools.product(*[
-        xrange(_) for _ in out_swap.shape[:-1]
-    ]):
+    for each_slice in numpy.ndindex(out_swap.shape[:-1]):
         out_strip = out_swap[each_slice]
         lineRankOrderFilter1D(out_strip, out_strip)
 
