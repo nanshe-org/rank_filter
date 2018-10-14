@@ -14,10 +14,12 @@ build:
 
 requirements:
   build:
-    - toolchain
-    - setuptools
+    - {{ compiler("cxx") }}
     - cmake
     - patchelf >=0.8    # [linux]
+
+  host:
+    - setuptools
     - boost-cpp
     - python
     - numpy 1.11.*
