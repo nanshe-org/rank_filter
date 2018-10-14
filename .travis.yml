@@ -10,7 +10,6 @@ addons:
       - g++-4.8
 env:
   matrix:
-    - PYTHON_VERSION="2.7" TST_VIGRA="true"
     - PYTHON_VERSION="2.7"
     - PYTHON_VERSION="3.5"
     - PYTHON_VERSION="3.6"

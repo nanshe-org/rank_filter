@@ -2,7 +2,7 @@ cimport cython
 from cython cimport floating
 
 
-cdef extern from "rank_filter_base.hxx" namespace "rank_filter":
+cdef extern from "rank_filter.hxx" namespace "rank_filter":
     void lineRankOrderFilter1D[I1, I2](const I1& src_begin,
                                        const I1& src_end,
                                        I2& dest_begin,

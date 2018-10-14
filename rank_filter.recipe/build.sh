@@ -24,7 +24,6 @@ cmake "${SRC_DIR}" \
         -DCMAKE_CXX_FLAGS="${CXXFLAGS} -Wl,-rpath,${PREFIX}/lib -L${PREFIX}/lib" \
 \
         -DBOOST_ROOT="${PREFIX}" \
-        -DVIGRA_ROOT="${PREFIX}" \
 \
         -DPYTHON_EXECUTABLE="${PYTHON}" \
 
