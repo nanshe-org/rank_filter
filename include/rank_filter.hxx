@@ -1,5 +1,5 @@
-#ifndef __RANK_FILTER_BASE__
-#define __RANK_FILTER_BASE__
+#ifndef __RANK_FILTER__
+#define __RANK_FILTER__
 
 
 #include <deque>
@@ -169,4 +169,4 @@ namespace std
 }
 
 
-#endif //__RANK_FILTER_BASE__
+#endif //__RANK_FILTER__
