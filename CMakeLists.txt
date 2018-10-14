@@ -5,7 +5,6 @@
 #
 ### Requires the following variables or grabs them from the environment:
 #
-#  VIGRA_ROOT                      - The root path to find includes and libraries for VIGRA (not Python modules).
 #  BOOST_ROOT                      - The root path to find includes and libraries for Boost.
 #  PYTHON_EXECUTABLE               - The Python interpreter to use (fetches all other relevant variables through it).
 #
@@ -61,7 +60,6 @@ add_custom_target(distclean COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/
                             COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/Makefile
                             COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/install_manifest.txt
                             COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/bin/cxxtest_base.out
-                            COMMAND cmake -E remove ${CMAKE_CURRENT_BINARY_DIR}/bin/cxxtest_vigra.out
                             COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/build
                             COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/dist
                             COMMAND cmake -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/rank_filter.egg-info
@@ -74,7 +72,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/)
 find_package(PYTHON REQUIRED)
 find_package(Boost "1.56.0" REQUIRED COMPONENTS container)
 find_package(CYTHON REQUIRED)
-find_package(VIGRA)
 find_package(NUMPY REQUIRED)
 
 include(CheckCXXSourceCompiles)
@@ -97,21 +94,8 @@ add_executable(cxxtest_base ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_rank_filter_b
 target_link_libraries(cxxtest_base ${Boost_CONTAINER_LIBRARY})
 set_target_properties(cxxtest_base PROPERTIES SUFFIX ".out" PREFIX "")
 
-# Build binary for running base API C++ unitests
-if(${VIGRA_FOUND})
-    add_executable(cxxtest_vigra ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_rank_filter_vigra)
-    target_compile_options(cxxtest_vigra PUBLIC "-std=c++11")
-    target_include_directories(cxxtest_vigra PUBLIC ${VIGRA_INCLUDE_DIR})
-    target_link_libraries(cxxtest_vigra ${Boost_CONTAINER_LIBRARY})
-    set_target_properties(cxxtest_vigra PROPERTIES SUFFIX ".out" PREFIX "")
-endif()
-
 # Run C++ unitests binary
-if(${VIGRA_FOUND})
-    add_custom_target(check COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cxxtest_base.out COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cxxtest_vigra.out DEPENDS cxxtest_base cxxtest_vigra)
-else()
-    add_custom_target(check COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cxxtest_base.out DEPENDS cxxtest_base)
-endif()
+add_custom_target(check COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cxxtest_base.out DEPENDS cxxtest_base)
 
 # Build Python module with Python bindings to the C++ library.
 add_custom_target(
@@ -130,4 +114,3 @@ add_test(NAME unittest COMMAND ${PYTHON_EXECUTABLE} -m unittest discover -s ${CM
 
 # Install the module in the Python site-packages folder.
 install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} setup.py install WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})")
-#install(FILES include/rank_filter.hxx DESTINATION ${VIGRA_INCLUDE_DIR})
