@@ -19,7 +19,7 @@ def lineRankOrderFilter(image,
         Args:
             image(numpy.ndarray):      array to run the rank filter over.
 
-            half_window_size(size_t):  half the window size for the kernel.
+            half_length(size_t):       half the window size for the kernel.
 
             rank(double):              quantile to use from ``0.0`` to ``1.0``.
 
