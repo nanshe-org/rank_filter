@@ -40,6 +40,9 @@ def lineRankOrderFilter(image,
     assert ((half_length + 1) <= image.shape[axis]), \
             "Window must be no bigger than the image."
 
+    assert (0.0 <= rank <= 1.0), \
+            "The rank must be between 0.0 and 1.0."
+
     if out is None:
         out = image.copy()
     else:
