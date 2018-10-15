@@ -69,7 +69,7 @@ def lineRankOrderFilter(image,
         out_strip = out_swap[idx]
         lineRankOrderFilter1D(out_strip, out_strip)
 
-    out[...] = out_swap.swapaxes(-1, axis)
+    numpy.copyto(out, out_swap.swapaxes(-1, axis))
 
 
     return(out)
