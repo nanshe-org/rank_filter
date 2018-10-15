@@ -74,5 +74,4 @@ def lineRankOrderFilter(image not None,
 
     numpy.copyto(out, out_swap.swapaxes(-1, axis))
 
-
     return(out)
