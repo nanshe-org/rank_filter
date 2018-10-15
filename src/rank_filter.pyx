@@ -47,8 +47,7 @@ def lineRankOrderFilter(image,
                 "Both `image` and `out` must have the same type."
         assert (image.shape == out.shape), \
                 "Both `image` and `out` must have the same shape."
-        if id(image) != id(out):
-            out[...] = image
+        numpy.copyto(out, image)
 
     lineRankOrderFilter1D = None
     if out.dtype.type == numpy.float32:
@@ -70,7 +69,7 @@ def lineRankOrderFilter(image,
         out_strip = out_swap[idx]
         lineRankOrderFilter1D(out_strip, out_strip)
 
-    out[...] = out_swap.swapaxes(-1, axis)
+    numpy.copyto(out, out_swap.swapaxes(-1, axis))
 
 
     return(out)
