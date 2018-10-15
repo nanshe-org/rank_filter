@@ -35,6 +35,8 @@ def lineRankOrderFilter(image not None,
             out(numpy.ndarray):        result of running the linear rank filter.
     """
 
+    image = numpy.asarray(image)
+
     assert (half_length >= 0), \
             "Window must be non-negative."
     assert ((half_length + 1) <= image.shape[axis]), \
