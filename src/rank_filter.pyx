@@ -66,11 +66,9 @@ def lineRankOrderFilter(image not None,
 
     out_swap = numpy.ascontiguousarray(out.swapaxes(axis, -1))
     out_strip_indices = numpy.ndindex(out_swap.shape[:-1])
-    out_strip = None
 
     for idx in out_strip_indices:
-        out_strip = out_swap[idx]
-        lineRankOrderFilter1D(out_strip)
+        lineRankOrderFilter1D(out_swap[idx])
 
     numpy.copyto(out, out_swap.swapaxes(-1, axis))
 
