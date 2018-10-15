@@ -47,8 +47,7 @@ def lineRankOrderFilter(image,
                 "Both `image` and `out` must have the same type."
         assert (image.shape == out.shape), \
                 "Both `image` and `out` must have the same shape."
-        if id(image) != id(out):
-            out[...] = image
+        numpy.copyto(out, image)
 
     lineRankOrderFilter1D = None
     if out.dtype.type == numpy.float32:
