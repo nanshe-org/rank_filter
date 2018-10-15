@@ -54,11 +54,11 @@ def lineRankOrderFilter(image not None,
 
     lineRankOrderFilter1D = None
     if out.dtype.type == numpy.float32:
-        lineRankOrderFilter1D = lambda a1, a2: \
-            lineRankOrderFilter1D_floating[float](a1, a2, half_length, rank)
+        lineRankOrderFilter1D = lambda a: \
+            lineRankOrderFilter1D_floating[float](a, a, half_length, rank)
     elif out.dtype.type == numpy.float64:
-        lineRankOrderFilter1D = lambda a1, a2: \
-            lineRankOrderFilter1D_floating[double](a1, a2, half_length, rank)
+        lineRankOrderFilter1D = lambda a: \
+            lineRankOrderFilter1D_floating[double](a, a, half_length, rank)
     else:
         raise TypeError(
             "Only `float32` and `float64` are supported for `image` and `out`."
@@ -70,7 +70,7 @@ def lineRankOrderFilter(image not None,
 
     for idx in out_strip_indices:
         out_strip = out_swap[idx]
-        lineRankOrderFilter1D(out_strip, out_strip)
+        lineRankOrderFilter1D(out_strip)
 
     numpy.copyto(out, out_swap.swapaxes(-1, axis))
 
