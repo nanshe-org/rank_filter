@@ -52,27 +52,23 @@ def lineRankOrderFilter(image not None,
                 "Both `image` and `out` must have the same shape."
         numpy.copyto(out, image)
 
-    lineRankOrderFilter1D = None
+    out_swap = numpy.ascontiguousarray(out.swapaxes(axis, -1))
+    out_strip_indices = numpy.ndindex(out_swap.shape[:-1])
+
     if out.dtype.type == numpy.float32:
-        lineRankOrderFilter1D = lambda a: \
+        for idx in out_strip_indices:
             lineRankOrderFilter1D_floating_inplace[float](
-                a, half_length, rank
+                out_swap[idx], half_length, rank
             )
     elif out.dtype.type == numpy.float64:
-        lineRankOrderFilter1D = lambda a: \
+        for idx in out_strip_indices:
             lineRankOrderFilter1D_floating_inplace[double](
-                a, half_length, rank
+                out_swap[idx], half_length, rank
             )
     else:
         raise TypeError(
             "Only `float32` and `float64` are supported for `image` and `out`."
         )
-
-    out_swap = numpy.ascontiguousarray(out.swapaxes(axis, -1))
-    out_strip_indices = numpy.ndindex(out_swap.shape[:-1])
-
-    for idx in out_strip_indices:
-        lineRankOrderFilter1D(out_swap[idx])
 
     numpy.copyto(out, out_swap.swapaxes(-1, axis))
 
