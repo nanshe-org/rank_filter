@@ -8,7 +8,7 @@ include "version.pxi"
 
 
 @cython.boundscheck(False)
-def lineRankOrderFilter(image,
+def lineRankOrderFilter(image not None,
                         size_t half_length,
                         double rank,
                         int axis=-1,
@@ -34,6 +34,8 @@ def lineRankOrderFilter(image,
         Returns:
             out(numpy.ndarray):        result of running the linear rank filter.
     """
+
+    image = numpy.asarray(image)
 
     assert (half_length >= 0), \
             "Window must be non-negative."
