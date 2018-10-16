@@ -88,14 +88,14 @@ def lineRankOrderFilter(numpy.ndarray image not None,
             lineRankOrderFilter1D_floating_inplace[float](
                 <float[:axis_len]>(<float*>out_strip), half_length, rank
             )
-            stop = ndindex(out_swap_shape[:-1], idx[:-1])
+            stop = ndindex(out_swap_shape_1, idx_1)
     elif out_type_num == numpy.NPY_FLOAT64:
         while not stop:
             out_strip = numpy.PyArray_GetPtr(out_swap, idx_ptr)
             lineRankOrderFilter1D_floating_inplace[double](
                 <double[:axis_len]>(<double*>out_strip), half_length, rank
             )
-            stop = ndindex(out_swap_shape[:-1], idx[:-1])
+            stop = ndindex(out_swap_shape_1, idx_1)
     else:
         raise TypeError(
             "Only `float32` and `float64` are supported for `image` and `out`."
