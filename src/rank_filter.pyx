@@ -69,13 +69,17 @@ def lineRankOrderFilter(numpy.ndarray image not None,
     out_swap = numpy.PyArray_SwapAxes(out, axis, out.ndim - 1)
     out_swap = numpy.PyArray_GETCONTIGUOUS(out_swap)
 
+    cdef numpy.npy_intp out_swap_size = numpy.PyArray_SIZE(out_swap)
+    cdef numpy.npy_intp out_swap_step = out_swap.shape[out.ndim - 1]
     if out_type_num == numpy.NPY_FLOAT32:
         lineRankOrderFilter1D_floating_inplace_loop[float](
-            out_swap, half_length, rank, <float*>NULL
+            <float*>(out_swap.data), out_swap_size, out_swap_step,
+            half_length, rank
         )
     elif out_type_num == numpy.NPY_FLOAT64:
         lineRankOrderFilter1D_floating_inplace_loop[double](
-            out_swap, half_length, rank, <double*>NULL
+            <double*>(out_swap.data), out_swap_size, out_swap_step,
+            half_length, rank
         )
     else:
         raise TypeError(
@@ -92,19 +96,15 @@ def lineRankOrderFilter(numpy.ndarray image not None,
 @cython.boundscheck(False)
 @cython.initializedcheck(False)
 @cython.nonecheck(False)
-cdef inline void lineRankOrderFilter1D_floating_inplace_loop(numpy.ndarray out,
+cdef inline void lineRankOrderFilter1D_floating_inplace_loop(floating* out_data,
+                                                             numpy.npy_intp out_size,
+                                                             numpy.npy_intp out_step,
                                                              size_t half_length,
-                                                             double rank,
-                                                             floating* null) nogil:
+                                                             double rank) nogil:
     cdef numpy.npy_intp i
 
-    cdef numpy.npy_intp out_size_1 = 1
-    for i in range(out.ndim - 1):
-        out_size_1 *= out.shape[i]
-
-    cdef floating* out_ptr = <floating*>out.data
-    cdef numpy.npy_intp out_step = out.shape[out.ndim - 1]
-    for i in range(out_size_1):
+    cdef floating* out_ptr = out_data
+    for i from 0 <= i < out_size by out_step:
         lineRankOrderFilter1D_floating_inplace[floating](
             out_ptr, out_step, half_length, rank
         )
