@@ -36,6 +36,12 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     typedef T1 T;
     typedef typename boost::common_type<I1_diff_t, I2_diff_t>::type I_diff_t;
 
+    typedef boost::container::multiset< T,
+            std::less<T>,
+            boost::container::node_allocator<T>,
+            boost::container::tree_assoc_options< boost::container::tree_type<boost::container::scapegoat_tree> >::type> multiset;
+    typedef std::deque< typename multiset::iterator > deque;
+
     // The position of the window.
     I_diff_t window_begin = 0;
 
@@ -54,13 +60,6 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
 
     // Find window offset corresponding to this rank.
     const I_diff_t rank_pos = static_cast<I_diff_t>(boost::math::round(rank * (2 * half_length)));
-
-    typedef boost::container::multiset< T,
-            std::less<T>,
-            boost::container::node_allocator<T>,
-            boost::container::tree_assoc_options< boost::container::tree_type<boost::container::scapegoat_tree> >::type> multiset;
-
-    typedef std::deque< typename multiset::iterator > deque;
 
     multiset sorted_window;
     deque window_iters(2 * half_length + 1);
