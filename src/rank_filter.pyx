@@ -77,6 +77,8 @@ def lineRankOrderFilter(numpy.ndarray image not None,
     cdef numpy.npy_intp[::1] idx = numpy.PyArray_ZEROS(
         1, &idx_len, numpy.NPY_INTP, 0
     )
+    cdef numpy.npy_intp[::1] out_swap_shape_1 = out_swap_shape[:-1]
+    cdef numpy.npy_intp[::1] idx_1 = idx[:-1]
     cdef numpy.npy_intp* idx_ptr = &idx[0]
     cdef void* out_strip
     cdef bint stop = False
