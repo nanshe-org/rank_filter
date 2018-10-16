@@ -60,12 +60,12 @@ def lineRankOrderFilter(image not None,
     out_swap = numpy.ascontiguousarray(out.swapaxes(axis, -1))
     out_strip_indices = numpy.ndindex(out_swap.shape[:-1])
 
-    if out.dtype.type == numpy.float32:
+    if out_arr.descr.type_num == numpy.NPY_FLOAT32:
         for idx in out_strip_indices:
             lineRankOrderFilter1D_floating_inplace[float](
                 out_swap[idx], half_length, rank
             )
-    elif out.dtype.type == numpy.float64:
+    elif out_arr.descr.type_num == numpy.NPY_FLOAT64:
         for idx in out_strip_indices:
             lineRankOrderFilter1D_floating_inplace[double](
                 out_swap[idx], half_length, rank
