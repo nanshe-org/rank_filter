@@ -102,7 +102,7 @@ cdef extern from "numpy/arrayobject.h":
 cdef inline void lineRankOrderFilter1D_floating_inplace_loop(numpy.ndarray out,
                                                              size_t half_length,
                                                              double rank,
-                                                             floating* null):
+                                                             floating* null) nogil:
     cdef size_t axis_len = out.shape[out.ndim - 1]
     cdef numpy.npy_intp idx_len = out.ndim
     cdef numpy.npy_intp idx_len_1 = idx_len - 1
