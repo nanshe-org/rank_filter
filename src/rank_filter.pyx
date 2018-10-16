@@ -48,8 +48,8 @@ def lineRankOrderFilter(numpy.ndarray image not None,
     elif not (0 <= axis < image.ndim):
         raise ValueError("`axis` needs to be within `image.ndim`")
 
-    assert ((half_length + 1) <= image.shape[axis]), \
-            "Window must be no bigger than the image."
+    if not ((half_length + 1) <= image.shape[axis]):
+        raise ValueError("Window must be no bigger than the image.")
 
     assert (0.0 <= rank <= 1.0), \
             "The rank must be between 0.0 and 1.0."
