@@ -46,13 +46,13 @@ def lineRankOrderFilter(numpy.ndarray image not None,
     if -image.ndim <= axis < 0:
         axis += image.ndim
     elif not (0 <= axis < image.ndim):
-        raise IndexError("`axis` needs to be within `image.ndim`")
+        raise ValueError("`axis` needs to be within `image.ndim`")
 
-    assert ((half_length + 1) <= image.shape[axis]), \
-            "Window must be no bigger than the image."
+    if not ((half_length + 1) <= image.shape[axis]):
+        raise ValueError("Window must be no bigger than the image.")
 
-    assert (0.0 <= rank <= 1.0), \
-            "The rank must be between 0.0 and 1.0."
+    if not (0.0 <= rank <= 1.0):
+        raise ValueError("The rank must be between 0.0 and 1.0.")
 
     if out is None:
         out = numpy.PyArray_NewCopy(image, numpy.NPY_CORDER)
@@ -103,6 +103,6 @@ def lineRankOrderFilter(numpy.ndarray image not None,
 
     out_swap = numpy.PyArray_SwapAxes(out_swap, out.ndim - 1, axis)
     if numpy.PyArray_CopyInto(out, out_swap) == -1:
-        raise RuntimeError("Unable to copy `out` to `out_swap`.")
+        raise RuntimeError("Unable to copy `out_swap` to `out`.")
 
     return(out)
