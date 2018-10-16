@@ -36,6 +36,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     typedef T1 T;
     typedef typename boost::common_type<I1_diff_t, I2_diff_t>::type I_diff_t;
 
+    // Define container types that will be used.
     typedef boost::container::multiset< T,
             std::less<T>,
             boost::container::node_allocator<T>,
