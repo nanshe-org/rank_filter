@@ -38,6 +38,9 @@ def lineRankOrderFilter(image not None,
             out(numpy.ndarray):        result of running the linear rank filter.
     """
 
+    cdef numpy.ndarray image_arr
+    cdef numpy.ndarray out_arr
+
     image = numpy.asarray(image)
 
     assert ((half_length + 1) <= image.shape[axis]), \
