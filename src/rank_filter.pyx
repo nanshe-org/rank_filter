@@ -48,7 +48,7 @@ def lineRankOrderFilter(image not None,
             "The rank must be between 0.0 and 1.0."
 
     if out is None:
-        out = out_arr = image.copy()
+        out = out_arr = numpy.PyArray_NewCopy(image_arr, numpy.NPY_CORDER)
     else:
         assert (image.dtype == out.dtype), \
                 "Both `image` and `out` must have the same type."
