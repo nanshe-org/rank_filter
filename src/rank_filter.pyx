@@ -1,4 +1,4 @@
-from rank_filter cimport lineRankOrderFilter1D_floating_inplace
+from rank_filter cimport lineRankOrderFilter1D_floating_inplace, ndindex
 
 cimport cython
 
@@ -69,18 +69,30 @@ def lineRankOrderFilter(numpy.ndarray image not None,
     out_swap = numpy.PyArray_SwapAxes(out, axis, out.ndim - 1)
     out_swap = numpy.PyArray_GETCONTIGUOUS(out_swap)
 
-    out_strip_indices = numpy.ndindex((<object>out_swap).shape[:-1])
-
+    cdef numpy.npy_intp axis_len = out.shape[axis]
+    cdef numpy.npy_intp idx_len = out_swap.ndim
+    cdef numpy.npy_intp[::1] out_swap_shape = <numpy.npy_intp[:idx_len]>(
+        out_swap.shape
+    )
+    cdef numpy.npy_intp[::1] idx = numpy.PyArray_ZEROS(
+        1, &idx_len, numpy.NPY_INTP, 0
+    )
+    cdef void* out_strip
+    cdef bint stop = False
     if out_type_num == numpy.NPY_FLOAT32:
-        for idx in out_strip_indices:
+        while not stop:
+            out_strip = numpy.PyArray_GetPtr(out_swap, &idx[0])
             lineRankOrderFilter1D_floating_inplace[float](
-                out_swap[idx], half_length, rank
+                <float[:axis_len]>(<float*>out_strip), half_length, rank
             )
+            stop = ndindex(out_swap_shape[:-1], idx[:-1])
     elif out_type_num == numpy.NPY_FLOAT64:
-        for idx in out_strip_indices:
+        while not stop:
+            out_strip = numpy.PyArray_GetPtr(out_swap, &idx[0])
             lineRankOrderFilter1D_floating_inplace[double](
-                out_swap[idx], half_length, rank
+                <double[:axis_len]>(<double*>out_strip), half_length, rank
             )
+            stop = ndindex(out_swap_shape[:-1], idx[:-1])
     else:
         raise TypeError(
             "Only `float32` and `float64` are supported for `image` and `out`."
