@@ -1,4 +1,4 @@
-from rank_filter cimport lineRankOrderFilter1D_floating_inplace
+from rank_filter cimport lineRankOrderFilter1D_floating_inplace_loop
 
 cimport cython
 
@@ -91,21 +91,3 @@ def lineRankOrderFilter(numpy.ndarray image not None,
         raise RuntimeError("Unable to copy `out_swap` to `out`.")
 
     return(out)
-
-
-@cython.boundscheck(False)
-@cython.initializedcheck(False)
-@cython.nonecheck(False)
-cdef inline void lineRankOrderFilter1D_floating_inplace_loop(floating* out_data,
-                                                             numpy.npy_intp out_size,
-                                                             numpy.npy_intp out_step,
-                                                             size_t half_length,
-                                                             double rank) nogil:
-    cdef numpy.npy_intp i
-
-    cdef floating* out_ptr = out_data
-    for i from 0 <= i < out_size by out_step:
-        lineRankOrderFilter1D_floating_inplace[floating](
-            out_ptr, out_step, half_length, rank
-        )
-        out_ptr += out_step
