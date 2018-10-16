@@ -54,7 +54,8 @@ def lineRankOrderFilter(image not None,
                 "Both `image` and `out` must have the same type."
         assert numpy.PyArray_SAMESHAPE(image_arr, out_arr), \
                 "Both `image` and `out` must have the same shape."
-        numpy.copyto(out, image)
+        if numpy.PyArray_CopyInto(out_arr, image_arr) == -1:
+            raise RuntimeError("Unable to copy `image` to `out`.")
 
     out_swap = numpy.ascontiguousarray(out.swapaxes(axis, -1))
     out_strip_indices = numpy.ndindex(out_swap.shape[:-1])
