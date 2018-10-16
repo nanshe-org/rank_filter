@@ -49,6 +49,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Rank must be in the range 0 to 1.
     assert((0 <= rank) && (rank <= 1));
 
+    // Find window offset corresponding to this rank.
     const I_diff_t rank_pos = static_cast<I_diff_t>(boost::math::round(rank * (2 * half_length)));
 
     typedef boost::container::multiset< T,
