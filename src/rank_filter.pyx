@@ -103,14 +103,18 @@ cdef inline void lineRankOrderFilter1D_floating_inplace_loop(numpy.ndarray out,
     cdef numpy.npy_intp idx_len = out.ndim
     cdef numpy.npy_intp idx_len_1 = idx_len - 1
 
-    cdef numpy.npy_intp[::1] out_shape = <numpy.npy_intp[:idx_len]>(out.shape)
-    cdef numpy.npy_intp[::1] idx = <numpy.npy_intp[:idx_len]>(
+    cdef numpy.npy_intp* out_shape_ptr = &out.shape[0]
+    cdef numpy.npy_intp* idx_ptr = <numpy.npy_intp*>(
         libc.stdlib.malloc(idx_len * sizeof(numpy.npy_intp))
     )
-    idx[:] = 0
 
-    cdef numpy.npy_intp* out_shape_ptr = &out_shape[0]
-    cdef numpy.npy_intp* idx_ptr = &idx[0]
+    if idx_ptr == NULL:
+        with gil:
+            raise MemoryError("Unable to allocate `idx_ptr`.")
+
+    cdef size_t i = 0
+    for i in range(idx_len):
+        idx_ptr[i] = 0
 
     cdef floating* out_strip = NULL
     cdef bint stop = False
