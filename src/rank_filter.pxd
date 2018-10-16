@@ -16,31 +16,18 @@ cdef extern from "rank_filter.hxx" namespace "rank_filter":
 @cython.boundscheck(False)
 @cython.initializedcheck(False)
 @cython.nonecheck(False)
-cdef inline void lineRankOrderFilter1D_floating_inplace(floating* a_begin,
-                                                        size_t a_len,
-                                                        size_t half_length,
-                                                        double rank) nogil:
-    cdef floating* a_end = a_begin + a_len
+cdef inline void lineRankOrderFilter1D_floating_inplace_loop(floating* out_data,
+                                                             numpy.npy_intp out_size,
+                                                             numpy.npy_intp out_step,
+                                                             size_t half_length,
+                                                             double rank) nogil:
+    cdef numpy.npy_intp i
 
-    lineRankOrderFilter1D(
-        a_begin, a_end, a_begin, a_end, half_length, rank
-    )
-
-
-@cython.boundscheck(False)
-@cython.initializedcheck(False)
-@cython.nonecheck(False)
-cdef inline bint ndindex(const numpy.npy_intp* shape,
-                         numpy.npy_intp* pos,
-                         Py_ssize_t n) nogil:
-    cdef Py_ssize_t i = n
-    while i > 0:
-        i -= 1
-        pos[i] += 1
-
-        if pos[i] < shape[i]:
-            return False
-        elif i > 0:
-            pos[i] = 0
-
-    return True
+    cdef floating* out_begin = out_data
+    cdef floating* out_end = out_data + out_step
+    for i from 0 <= i < out_size by out_step:
+        lineRankOrderFilter1D(
+            out_begin, out_end, out_begin, out_end, half_length, rank
+        )
+        out_begin += out_step
+        out_end += out_step
