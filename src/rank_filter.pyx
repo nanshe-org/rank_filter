@@ -1,8 +1,5 @@
 from rank_filter cimport lineRankOrderFilter1D_floating_inplace, ndindex
 
-cimport libc
-cimport libc.stdlib
-
 cimport cython
 
 cimport numpy
@@ -103,30 +100,16 @@ cdef inline void lineRankOrderFilter1D_floating_inplace_loop(numpy.ndarray out,
                                                              size_t half_length,
                                                              double rank,
                                                              floating* null) nogil:
-    cdef size_t axis_len = out.shape[out.ndim - 1]
-    cdef numpy.npy_intp idx_len = out.ndim
-    cdef numpy.npy_intp idx_len_1 = idx_len - 1
+    cdef numpy.npy_intp i
 
-    cdef numpy.npy_intp* out_shape_ptr = &out.shape[0]
-    cdef numpy.npy_intp* idx_ptr = <numpy.npy_intp*>(
-        libc.stdlib.malloc(idx_len * sizeof(numpy.npy_intp))
-    )
+    cdef numpy.npy_intp out_size_1 = 1
+    for i in range(out.ndim - 1):
+        out_size_1 *= out.shape[i]
 
-    if idx_ptr == NULL:
-        with gil:
-            raise MemoryError("Unable to allocate `idx_ptr`.")
-
-    cdef size_t i = 0
-    for i in range(idx_len):
-        idx_ptr[i] = 0
-
-    cdef floating* out_strip = NULL
-    cdef bint stop = False
-    while not stop:
-        out_strip = <floating*>PyArray_GetPtr(out, idx_ptr)
+    cdef floating* out_ptr = <floating*>out.data
+    cdef numpy.npy_intp out_step = out.shape[out.ndim - 1]
+    for i in range(out_size_1):
         lineRankOrderFilter1D_floating_inplace[floating](
-            out_strip, axis_len, half_length, rank
+            out_ptr, out_step, half_length, rank
         )
-        stop = ndindex(out_shape_ptr, idx_ptr, idx_len_1)
-
-    libc.stdlib.free(<void*>idx_ptr)
+        out_ptr += out_step
