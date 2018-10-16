@@ -41,6 +41,8 @@ def lineRankOrderFilter(image not None,
     cdef numpy.ndarray image_arr = numpy.asarray(image)
     cdef numpy.ndarray out_arr = out
 
+    cdef numpy.ndarray out_swap
+
     assert ((half_length + 1) <= image.shape[axis]), \
             "Window must be no bigger than the image."
 
