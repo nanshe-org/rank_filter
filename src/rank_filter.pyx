@@ -61,8 +61,10 @@ def lineRankOrderFilter(numpy.ndarray image not None,
         out_type_num = numpy.PyArray_TYPE(out)
         if image_type_num != out_type_num:
             raise TypeError("Both `image` and `out` must have the same type.")
-        assert numpy.PyArray_SAMESHAPE(image, out), \
+        if not numpy.PyArray_SAMESHAPE(image, out):
+            raise ValueError(
                 "Both `image` and `out` must have the same shape."
+            )
         if numpy.PyArray_CopyInto(out, image) == -1:
             raise RuntimeError("Unable to copy `image` to `out`.")
 
