@@ -60,7 +60,7 @@ def lineRankOrderFilter(image not None,
             raise RuntimeError("Unable to copy `image` to `out`.")
 
     out_swap = numpy.ascontiguousarray(out.swapaxes(axis, -1))
-    out_strip_indices = numpy.ndindex(out_swap.shape[:-1])
+    out_strip_indices = numpy.ndindex((<object>out_swap).shape[:-1])
 
     if out_arr.descr.type_num == numpy.NPY_FLOAT32:
         for idx in out_strip_indices:
