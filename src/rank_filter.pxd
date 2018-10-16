@@ -30,9 +30,10 @@ cdef inline void lineRankOrderFilter1D_floating_inplace(floating* a_begin,
 @cython.boundscheck(False)
 @cython.initializedcheck(False)
 @cython.nonecheck(False)
-cdef inline bint ndindex(const numpy.npy_intp[:] shape,
-                         numpy.npy_intp[:] pos) nogil:
-    cdef Py_ssize_t i = shape.shape[0]
+cdef inline bint ndindex(const numpy.npy_intp* shape,
+                         numpy.npy_intp* pos,
+                         Py_ssize_t n) nogil:
+    cdef Py_ssize_t i = n
     while i > 0:
         i -= 1
         pos[i] += 1
