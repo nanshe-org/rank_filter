@@ -89,10 +89,6 @@ def lineRankOrderFilter(numpy.ndarray image not None,
     return(out)
 
 
-cdef extern from "numpy/arrayobject.h":
-    void* PyArray_GetPtr(numpy.ndarray, numpy.npy_intp*) nogil
-
-
 @cython.boundscheck(False)
 @cython.initializedcheck(False)
 @cython.nonecheck(False)
