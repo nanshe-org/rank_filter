@@ -2,6 +2,7 @@ from rank_filter cimport lineRankOrderFilter1D_floating_inplace
 
 cimport cython
 
+cimport numpy
 import numpy
 
 include "version.pxi"
