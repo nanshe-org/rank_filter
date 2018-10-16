@@ -36,7 +36,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     typedef T1 T;
     typedef typename boost::common_type<I1_diff_t, I2_diff_t>::type I_diff_t;
 
-    // Rank must be in the range 0 to 1
+    // Rank must be in the range 0 to 1.
     assert((0 <= rank) && (rank <= 1));
 
     const I_diff_t rank_pos = static_cast<I_diff_t>(boost::math::round(rank * (2 * half_length)));
