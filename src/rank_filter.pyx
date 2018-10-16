@@ -38,6 +38,9 @@ def lineRankOrderFilter(numpy.ndarray image not None,
             out(numpy.ndarray):        result of running the linear rank filter.
     """
 
+    cdef int image_type_num = numpy.PyArray_TYPE(image)
+    cdef int out_type_num
+
     cdef numpy.ndarray out_swap
 
     if -image.ndim <= axis < 0:
@@ -53,8 +56,10 @@ def lineRankOrderFilter(numpy.ndarray image not None,
 
     if out is None:
         out = numpy.PyArray_NewCopy(image, numpy.NPY_CORDER)
+        out_type_num = image_type_num
     else:
-        assert (numpy.PyArray_TYPE(image) == numpy.PyArray_TYPE(out)), \
+        out_type_num = numpy.PyArray_TYPE(out)
+        assert (image_type_num == out_type_num), \
                 "Both `image` and `out` must have the same type."
         assert numpy.PyArray_SAMESHAPE(image, out), \
                 "Both `image` and `out` must have the same shape."
@@ -66,7 +71,6 @@ def lineRankOrderFilter(numpy.ndarray image not None,
 
     out_strip_indices = numpy.ndindex((<object>out_swap).shape[:-1])
 
-    cdef int out_type_num = numpy.PyArray_TYPE(out)
     if out_type_num == numpy.NPY_FLOAT32:
         for idx in out_strip_indices:
             lineRankOrderFilter1D_floating_inplace[float](
