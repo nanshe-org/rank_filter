@@ -1,5 +1,8 @@
 from rank_filter cimport lineRankOrderFilter1D_floating_inplace, ndindex
 
+cimport libc
+cimport libc.stdlib
+
 cimport cython
 
 cimport numpy
@@ -101,9 +104,10 @@ cdef inline void lineRankOrderFilter1D_floating_inplace_loop(numpy.ndarray out,
     cdef numpy.npy_intp idx_len_1 = idx_len - 1
 
     cdef numpy.npy_intp[::1] out_shape = <numpy.npy_intp[:idx_len]>(out.shape)
-    cdef numpy.npy_intp[::1] idx = numpy.PyArray_ZEROS(
-        1, &idx_len, numpy.NPY_INTP, 0
+    cdef numpy.npy_intp[::1] idx = <numpy.npy_intp[:idx_len]>(
+        libc.stdlib.malloc(idx_len * sizeof(numpy.npy_intp))
     )
+    idx[:] = 0
 
     cdef numpy.npy_intp* out_shape_ptr = &out_shape[0]
     cdef numpy.npy_intp* idx_ptr = &idx[0]
@@ -116,3 +120,5 @@ cdef inline void lineRankOrderFilter1D_floating_inplace_loop(numpy.ndarray out,
             out_strip, axis_len, half_length, rank
         )
         stop = ndindex(out_shape_ptr, idx_ptr, idx_len_1)
+
+    libc.stdlib.free(<void*>idx_ptr)
