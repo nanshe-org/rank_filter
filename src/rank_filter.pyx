@@ -38,10 +38,8 @@ def lineRankOrderFilter(image not None,
             out(numpy.ndarray):        result of running the linear rank filter.
     """
 
-    cdef numpy.ndarray image_arr
-    cdef numpy.ndarray out_arr
-
-    image = numpy.asarray(image)
+    cdef numpy.ndarray image_arr = numpy.asarray(image)
+    cdef numpy.ndarray out_arr = out
 
     assert ((half_length + 1) <= image.shape[axis]), \
             "Window must be no bigger than the image."
@@ -50,7 +48,7 @@ def lineRankOrderFilter(image not None,
             "The rank must be between 0.0 and 1.0."
 
     if out is None:
-        out = image.copy()
+        out = out_arr = image.copy()
     else:
         assert (image.dtype == out.dtype), \
                 "Both `image` and `out` must have the same type."
