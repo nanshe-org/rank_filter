@@ -37,9 +37,11 @@ cdef inline void lineRankOrderFilter1D_floating_inplace_loop(floating* out_data,
                                                              double rank) nogil:
     cdef numpy.npy_intp i
 
-    cdef floating* out_ptr = out_data
+    cdef floating* out_begin = out_data
+    cdef floating* out_end = out_data + out_step
     for i from 0 <= i < out_size by out_step:
-        lineRankOrderFilter1D_floating_inplace[floating](
-            out_ptr, out_step, half_length, rank
+        lineRankOrderFilter1D(
+            out_begin, out_end, out_begin, out_end, half_length, rank
         )
-        out_ptr += out_step
+        out_begin += out_step
+        out_end += out_step
