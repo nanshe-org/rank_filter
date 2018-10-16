@@ -43,6 +43,9 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     const I_diff_t src_size = std::distance(src_begin, src_end);
     const I_diff_t dest_size = std::distance(dest_begin, dest_end);
 
+    // Ensure the result will fit.
+    assert(src_size <= dest_size);
+
     // Window length cannot exceed input data with reflection.
     assert((half_length + 1) <= src_size);
 
