@@ -1,4 +1,4 @@
-from rank_filter cimport lineRankOrderFilter1D_floating_inplace, ndindex
+from rank_filter cimport lineRankOrderFilter1D_floating_inplace
 
 cimport cython
 
