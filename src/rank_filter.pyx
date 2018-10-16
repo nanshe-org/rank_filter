@@ -7,6 +7,8 @@ import numpy
 
 include "version.pxi"
 
+numpy.import_array()
+
 
 @cython.boundscheck(False)
 def lineRankOrderFilter(image not None,
