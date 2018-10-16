@@ -92,6 +92,10 @@ def lineRankOrderFilter(numpy.ndarray image not None,
     return(out)
 
 
+cdef extern from "numpy/arrayobject.h":
+    void* PyArray_GetPtr(numpy.ndarray, numpy.npy_intp*) nogil
+
+
 @cython.boundscheck(False)
 @cython.initializedcheck(False)
 @cython.nonecheck(False)
@@ -119,7 +123,7 @@ cdef inline void lineRankOrderFilter1D_floating_inplace_loop(numpy.ndarray out,
     cdef floating* out_strip = NULL
     cdef bint stop = False
     while not stop:
-        out_strip = <floating*>numpy.PyArray_GetPtr(out, idx_ptr)
+        out_strip = <floating*>PyArray_GetPtr(out, idx_ptr)
         lineRankOrderFilter1D_floating_inplace[floating](
             out_strip, axis_len, half_length, rank
         )
