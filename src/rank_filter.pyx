@@ -100,6 +100,6 @@ def lineRankOrderFilter(numpy.ndarray image not None,
 
     out_swap = numpy.PyArray_SwapAxes(out_swap, out.ndim - 1, axis)
     if numpy.PyArray_CopyInto(out, out_swap) == -1:
-        raise RuntimeError("Unable to copy `out` to `out_swap`.")
+        raise RuntimeError("Unable to copy `out_swap` to `out`.")
 
     return(out)
