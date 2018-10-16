@@ -50,7 +50,7 @@ def lineRankOrderFilter(image not None,
     if out is None:
         out = out_arr = numpy.PyArray_NewCopy(image_arr, numpy.NPY_CORDER)
     else:
-        assert (image.dtype == out.dtype), \
+        assert (image_arr.descr.type_num == out_arr.descr.type_num), \
                 "Both `image` and `out` must have the same type."
         assert (image.shape == out.shape), \
                 "Both `image` and `out` must have the same shape."
