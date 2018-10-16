@@ -51,8 +51,8 @@ def lineRankOrderFilter(numpy.ndarray image not None,
     if not ((half_length + 1) <= image.shape[axis]):
         raise ValueError("Window must be no bigger than the image.")
 
-    assert (0.0 <= rank <= 1.0), \
-            "The rank must be between 0.0 and 1.0."
+    if not (0.0 <= rank <= 1.0):
+        raise ValueError("The rank must be between 0.0 and 1.0.")
 
     if out is None:
         out = numpy.PyArray_NewCopy(image, numpy.NPY_CORDER)
