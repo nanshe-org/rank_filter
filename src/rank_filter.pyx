@@ -69,7 +69,7 @@ def lineRankOrderFilter(numpy.ndarray image not None,
     out_swap = numpy.PyArray_SwapAxes(out, axis, out.ndim - 1)
     out_swap = numpy.PyArray_GETCONTIGUOUS(out_swap)
 
-    cdef numpy.npy_intp axis_len = out.shape[axis]
+    cdef size_t axis_len = out.shape[axis]
     cdef numpy.npy_intp idx_len = out_swap.ndim
     cdef numpy.npy_intp[::1] out_swap_shape = <numpy.npy_intp[:idx_len]>(
         out_swap.shape
@@ -83,14 +83,14 @@ def lineRankOrderFilter(numpy.ndarray image not None,
         while not stop:
             out_strip = numpy.PyArray_GetPtr(out_swap, &idx[0])
             lineRankOrderFilter1D_floating_inplace[float](
-                <float[:axis_len]>(<float*>out_strip), half_length, rank
+                <float*>out_strip, axis_len, half_length, rank
             )
             stop = ndindex(out_swap_shape[:-1], idx[:-1])
     elif out_type_num == numpy.NPY_FLOAT64:
         while not stop:
             out_strip = numpy.PyArray_GetPtr(out_swap, &idx[0])
             lineRankOrderFilter1D_floating_inplace[double](
-                <double[:axis_len]>(<double*>out_strip), half_length, rank
+                <double*>out_strip, axis_len, half_length, rank
             )
             stop = ndindex(out_swap_shape[:-1], idx[:-1])
     else:
