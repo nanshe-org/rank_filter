@@ -62,6 +62,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Find window offset corresponding to this rank.
     const I_diff_t rank_pos = static_cast<I_diff_t>(boost::math::round(rank * (2 * half_length)));
 
+    // Track values in window both in sorted and sequential order.
     multiset sorted_window;
     deque window_iters(2 * half_length + 1);
 
