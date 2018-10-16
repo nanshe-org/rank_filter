@@ -79,6 +79,8 @@ def lineRankOrderFilter(image not None,
             "Only `float32` and `float64` are supported for `image` and `out`."
         )
 
-    numpy.copyto(out, out_swap.swapaxes(-1, axis))
+    out_swap = numpy.PyArray_SwapAxes(out_swap, out.ndim - 1, axis)
+    if numpy.PyArray_CopyInto(out_arr, out_swap) == -1:
+        raise RuntimeError("Unable to copy `out` to `out_swap`.")
 
     return(out)
