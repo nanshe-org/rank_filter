@@ -1,4 +1,4 @@
-from rank_filter cimport lineRankOrderFilter1D_floating
+from rank_filter cimport lineRankOrderFilter1D_floating_inplace
 
 cimport cython
 
@@ -52,25 +52,23 @@ def lineRankOrderFilter(image not None,
                 "Both `image` and `out` must have the same shape."
         numpy.copyto(out, image)
 
-    lineRankOrderFilter1D = None
+    out_swap = numpy.ascontiguousarray(out.swapaxes(axis, -1))
+    out_strip_indices = numpy.ndindex(out_swap.shape[:-1])
+
     if out.dtype.type == numpy.float32:
-        lineRankOrderFilter1D = lambda a1, a2: \
-            lineRankOrderFilter1D_floating[float](a1, a2, half_length, rank)
+        for idx in out_strip_indices:
+            lineRankOrderFilter1D_floating_inplace[float](
+                out_swap[idx], half_length, rank
+            )
     elif out.dtype.type == numpy.float64:
-        lineRankOrderFilter1D = lambda a1, a2: \
-            lineRankOrderFilter1D_floating[double](a1, a2, half_length, rank)
+        for idx in out_strip_indices:
+            lineRankOrderFilter1D_floating_inplace[double](
+                out_swap[idx], half_length, rank
+            )
     else:
         raise TypeError(
             "Only `float32` and `float64` are supported for `image` and `out`."
         )
-
-    out_swap = numpy.ascontiguousarray(out.swapaxes(axis, -1))
-    out_strip_indices = numpy.ndindex(out_swap.shape[:-1])
-    out_strip = None
-
-    for idx in out_strip_indices:
-        out_strip = out_swap[idx]
-        lineRankOrderFilter1D(out_strip, out_strip)
 
     numpy.copyto(out, out_swap.swapaxes(-1, axis))
 
