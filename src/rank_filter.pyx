@@ -77,8 +77,7 @@ def lineRankOrderFilter(numpy.ndarray image not None,
     cdef numpy.npy_intp[::1] idx = numpy.PyArray_ZEROS(
         1, &idx_len, numpy.NPY_INTP, 0
     )
-    cdef numpy.npy_intp[::1] out_swap_shape_1 = out_swap_shape[:-1]
-    cdef numpy.npy_intp[::1] idx_1 = idx[:-1]
+    cdef numpy.npy_intp* out_swap_shape_ptr = &out_swap_shape[0]
     cdef numpy.npy_intp* idx_ptr = &idx[0]
     cdef void* out_strip
     cdef bint stop = False
@@ -88,14 +87,14 @@ def lineRankOrderFilter(numpy.ndarray image not None,
             lineRankOrderFilter1D_floating_inplace[float](
                 <float*>out_strip, axis_len, half_length, rank
             )
-            stop = ndindex(out_swap_shape_1, idx_1)
+            stop = ndindex(out_swap_shape_ptr, idx_ptr, idx_len - 1)
     elif out_type_num == numpy.NPY_FLOAT64:
         while not stop:
             out_strip = numpy.PyArray_GetPtr(out_swap, idx_ptr)
             lineRankOrderFilter1D_floating_inplace[double](
                 <double*>out_strip, axis_len, half_length, rank
             )
-            stop = ndindex(out_swap_shape_1, idx_1)
+            stop = ndindex(out_swap_shape_ptr, idx_ptr, idx_len - 1)
     else:
         raise TypeError(
             "Only `float32` and `float64` are supported for `image` and `out`."
