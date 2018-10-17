@@ -60,9 +60,6 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     multiset sorted_window;
     deque window_iters(2 * half_length + 1);
 
-    // The position of the window.
-    I_diff_t window_begin = 0;
-
     // Get the initial sorted window.
     // Include the reflection.
     for (I_diff_t j = 0; j < half_length; j++)
@@ -88,6 +85,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     typename multiset::iterator prev_iter;
     T prev_value;
     T next_value;
+    I_diff_t window_begin = 0;
     while ( window_begin < src_size )
     {
         dest_begin[window_begin] = *rank_point;
