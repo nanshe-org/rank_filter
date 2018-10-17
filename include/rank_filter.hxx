@@ -86,6 +86,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         rank_point++;
     }
 
+    // Roll window forward one value at a time.
     typename multiset::iterator prev_iter;
     T prev_value;
     T next_value;
