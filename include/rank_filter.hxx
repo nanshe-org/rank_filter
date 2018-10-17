@@ -80,12 +80,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Window position corresponding to this rank.
     const I_diff_t rank_pos = static_cast<I_diff_t>(boost::math::round(rank * (2 * half_length)));
     typename multiset::iterator rank_point = sorted_window.begin();
-
-    // Move our selection point to the corresponding rank.
-    for (I_diff_t i = 0; i < rank_pos; i++)
-    {
-        rank_point++;
-    }
+    std::advance(rank_point, rank_pos);
 
     // Roll window forward one value at a time.
     typename multiset::iterator prev_iter;
