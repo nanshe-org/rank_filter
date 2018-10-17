@@ -67,11 +67,11 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Include the reflection.
     for (I_diff_t j = 0; j < half_length; j++)
     {
-        window_iters[j] = sorted_window.insert(src_begin[window_begin + half_length - j]);
+        window_iters[j] = sorted_window.insert(src_begin[half_length - j]);
     }
     for (I_diff_t j = half_length; j < (2 * half_length + 1); j++)
     {
-        window_iters[j] = sorted_window.insert(src_begin[window_begin + j - half_length]);
+        window_iters[j] = sorted_window.insert(src_begin[j - half_length]);
     }
 
     // Window position corresponding to this rank.
