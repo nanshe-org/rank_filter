@@ -91,8 +91,8 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     typename multiset::iterator prev_iter;
     T prev_value;
     T next_value;
-    I_diff_t window_reflect_pos = 2 * half_length - 2;
-    while ( window_reflect_pos >= -2 )
+    I_diff_t window_reflect_pos = 2 * half_length;
+    while ( window_reflect_pos >= 0 )
     {
         *(dest_pos++) = *rank_point;
 
@@ -102,15 +102,15 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
 
 	// Determine next value to add to window.
 	// Handle special cases like reflection at the end.
-        if ( window_reflect_pos == -2 )
+        if ( window_reflect_pos == 0 )
         {
-            next_value = prev_value;
             window_reflect_pos -= 2;
+            next_value = prev_value;
         }
         else if ( src_pos == src_end )
         {
-            next_value = *(window_iters[window_reflect_pos]);
             window_reflect_pos -= 2;
+            next_value = *(window_iters[window_reflect_pos]);
         }
         else
         {
