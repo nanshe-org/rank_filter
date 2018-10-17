@@ -105,8 +105,8 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         prev_value = *prev_iter;
         window_iters.pop_front();
 
-	// Determine next value to add to window.
-	// Handle special cases like reflection at the end.
+        // Determine next value to add to window.
+        // Handle special cases like reflection at the end.
         if ( src_pos == src_end )
         {
             if ( window_reflect_pos == 0 )
@@ -125,9 +125,9 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
             next_value = *(src_pos++);
         }
 
-	// Remove old value and add new value to the window.
-	// Handle special cases where `rank_pos` may have an adjusted position
-	// due to where the old and new values are inserted.
+        // Remove old value and add new value to the window.
+        // Handle special cases where `rank_pos` may have an adjusted position
+        // due to where the old and new values are inserted.
         if ( ( rank_value < prev_value ) && ( rank_value <= next_value ) )
         {
             sorted_window.erase(prev_iter);
