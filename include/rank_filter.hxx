@@ -64,15 +64,21 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     I1 src_pos = src_begin;
     I1 dest_pos = dest_begin;
 
-    // Get the initial sorted window.
-    // Include the reflection.
-    for (I_diff_t j = 0; j < half_length; j++)
+    // Get the initial window in sequential order with reflection
+    // Insert elements in order to the multiset for sorting.
+    // Store all multiset iterators into the deque in sequential order.
+    std::deque<T> window_init(2 * half_length + 1);
+    window_init[half_length] = *(src_pos++);
+    for (I_diff_t j = 1; j < half_length + 1; j++)
     {
-        window_iters[j] = sorted_window.insert(src_begin[half_length - j]);
+        window_init[half_length - j] = *src_pos;
+        window_init[half_length + j] = *src_pos;
+        src_pos++;
     }
-    for (I_diff_t j = half_length; j < (2 * half_length + 1); j++)
+    for (I_diff_t j = 0; j < 2 * half_length + 1; j++)
     {
-        window_iters[j] = sorted_window.insert(src_begin[j - half_length]);
+        window_iters[j] = sorted_window.insert(window_init.front());
+        window_init.pop_front();
     }
 
     // Window position corresponding to this rank.
