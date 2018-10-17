@@ -79,7 +79,6 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     }
 
     rank_point = sorted_window.begin();
-
     for (I_diff_t i = 0; i < rank_pos; i++)
     {
         rank_point++;
