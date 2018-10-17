@@ -115,6 +115,9 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
             next_value = *(window_iters[(2 * (src_size - (window_begin + 1)))]);
         }
 
+	// Remove old value and add new value to the window.
+	// Handle special cases where `rank_pos` may have an adjusted position
+	// due to where the old and new values are inserted.
         if ( ( *rank_point < prev_value ) && ( *rank_point <= next_value ) )
         {
             sorted_window.erase(prev_iter);
