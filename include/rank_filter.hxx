@@ -60,6 +60,10 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     multiset sorted_window;
     deque window_iters(2 * half_length + 1);
 
+    // Iterators in source and destination
+    I1 src_pos = src_begin;
+    I1 dest_pos = dest_begin;
+
     // Get the initial sorted window.
     // Include the reflection.
     for (I_diff_t j = 0; j < half_length; j++)
