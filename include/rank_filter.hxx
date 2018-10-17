@@ -111,15 +111,15 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         {
             next_value = *(src_pos++);
         }
-        else if ( window_reflect_pos == 0 )
+        else if ( window_reflect_pos > 0 )
         {
             window_reflect_pos -= 2;
-            next_value = prev_value;
+            next_value = *(window_iters[window_reflect_pos]);
         }
         else
         {
             window_reflect_pos -= 2;
-            next_value = *(window_iters[window_reflect_pos]);
+            next_value = prev_value;
         }
 
         // Remove old value and add new value to the window.
