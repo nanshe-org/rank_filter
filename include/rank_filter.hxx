@@ -78,6 +78,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         window_iters[j] = sorted_window.insert(src_begin[window_begin + j - half_length]);
     }
 
+    // Move our selection point to the corresponding rank.
     rank_pos = static_cast<I_diff_t>(boost::math::round(rank * (2 * half_length)));
     rank_point = sorted_window.begin();
     for (I_diff_t i = 0; i < rank_pos; i++)
