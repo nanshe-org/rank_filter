@@ -112,7 +112,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         {
             next_value = prev_value;
         }
-        else if ( window_begin < (src_size - half_length) )
+        else if ( src_pos != src_end )
         {
             next_value = *(src_pos++);
         }
