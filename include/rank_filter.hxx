@@ -43,18 +43,23 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
             boost::container::tree_assoc_options< boost::container::tree_type<boost::container::scapegoat_tree> >::type> multiset;
     typedef std::deque< typename multiset::iterator > deque;
 
+    // Precompute some window lengths.
+    const size_t half_length_add_1 = half_length + 1;
+    const size_t length_sub_1 = 2 * half_length;
+    const size_t length = length_sub_1 + 1;
+
     // Ensure the result will fit.
     assert(std::distance(src_begin, src_end) <= std::distance(dest_begin, dest_end));
 
     // Window length cannot exceed input data with reflection.
-    assert((half_length + 1) <= std::distance(src_begin, src_end));
+    assert(half_length_add_1 <= std::distance(src_begin, src_end));
 
     // Rank must be in the range 0 to 1.
     assert((0 <= rank) && (rank <= 1));
 
     // Track values in window both in sorted and sequential order.
     multiset sorted_window;
-    deque window_iters(2 * half_length + 1);
+    deque window_iters(length);
 
     // Iterators in source and destination
     I1 src_pos = src_begin;
@@ -64,8 +69,8 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Insert elements in order to the multiset for sorting.
     // Store all multiset iterators into the deque in sequential order.
     {
-        std::deque<T> window_init(half_length + 1);
-        for (I_diff_t j = half_length + 1; j > 0;)
+        std::deque<T> window_init(half_length_add_1);
+        for (I_diff_t j = half_length_add_1; j > 0;)
         {
             window_init[--j] = *(src_pos++);
         }
@@ -73,7 +78,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         {
             window_iters[j] = sorted_window.insert(window_init[j]);
         }
-        for (I_diff_t j = half_length; j < 2 * half_length + 1; j++)
+        for (I_diff_t j = half_length; j < length; j++)
         {
             window_iters[j] = sorted_window.insert(window_init.back());
             window_init.pop_back();
@@ -81,7 +86,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     }
 
     // Window position corresponding to this rank.
-    const I_diff_t rank_pos = static_cast<I_diff_t>(boost::math::round(rank * (2 * half_length)));
+    const I_diff_t rank_pos = static_cast<I_diff_t>(boost::math::round(rank * length_sub_1));
     typename multiset::iterator rank_point = sorted_window.begin();
     std::advance(rank_point, rank_pos);
 
@@ -89,7 +94,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     typename multiset::iterator prev_iter;
     T prev_value;
     T next_value;
-    I_diff_t window_reflect_pos = 2 * half_length;
+    I_diff_t window_reflect_pos = length_sub_1;
     while ( window_reflect_pos >= 0 )
     {
         *(dest_pos++) = *rank_point;
