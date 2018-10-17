@@ -93,11 +93,13 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Roll window forward one value at a time.
     typename multiset::iterator prev_iter;
     T prev_value;
+    T rank_value;
     T next_value;
     I_diff_t window_reflect_pos = length_sub_1;
     while ( window_reflect_pos >= 0 )
     {
-        *(dest_pos++) = *rank_point;
+        rank_value = *rank_point;
+        *(dest_pos++) = rank_value;
 
         prev_iter = window_iters.front();
         prev_value = *prev_iter;
@@ -126,12 +128,12 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
 	// Remove old value and add new value to the window.
 	// Handle special cases where `rank_pos` may have an adjusted position
 	// due to where the old and new values are inserted.
-        if ( ( *rank_point < prev_value ) && ( *rank_point <= next_value ) )
+        if ( ( rank_value < prev_value ) && ( rank_value <= next_value ) )
         {
             sorted_window.erase(prev_iter);
             window_iters.push_back(sorted_window.insert(next_value));
         }
-        else if ( ( *rank_point >= prev_value ) && ( *rank_point > next_value ) )
+        else if ( ( rank_value >= prev_value ) && ( rank_value > next_value ) )
         {
             if ( rank_point == prev_iter )
             {
@@ -146,14 +148,14 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
                 window_iters.push_back(sorted_window.insert(next_value));
             }
         }
-        else if ( ( *rank_point < prev_value ) && ( *rank_point > next_value ) )
+        else if ( ( rank_value < prev_value ) && ( rank_value > next_value ) )
         {
             sorted_window.erase(prev_iter);
             window_iters.push_back(sorted_window.insert(next_value));
 
             rank_point--;
         }
-        else if ( ( *rank_point >= prev_value ) && ( *rank_point <= next_value ) )
+        else if ( ( rank_value >= prev_value ) && ( rank_value <= next_value ) )
         {
             if (rank_point == prev_iter)
             {
