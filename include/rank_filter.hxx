@@ -59,7 +59,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // The position of the window.
     I_diff_t window_begin = 0;
 
-    // Find window offset corresponding to this rank.
+    // Window position corresponding to this rank.
     const I_diff_t rank_pos = static_cast<I_diff_t>(boost::math::round(rank * (2 * half_length)));
     typename multiset::iterator rank_point;
 
