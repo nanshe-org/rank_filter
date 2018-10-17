@@ -43,15 +43,11 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
             boost::container::tree_assoc_options< boost::container::tree_type<boost::container::scapegoat_tree> >::type> multiset;
     typedef std::deque< typename multiset::iterator > deque;
 
-    // Lengths.
-    const I_diff_t src_size = std::distance(src_begin, src_end);
-    const I_diff_t dest_size = std::distance(dest_begin, dest_end);
-
     // Ensure the result will fit.
-    assert(src_size <= dest_size);
+    assert(std::distance(src_begin, src_end) <= std::distance(dest_begin, dest_end));
 
     // Window length cannot exceed input data with reflection.
-    assert((half_length + 1) <= src_size);
+    assert((half_length + 1) <= std::distance(src_begin, src_end));
 
     // Rank must be in the range 0 to 1.
     assert((0 <= rank) && (rank <= 1));
@@ -95,8 +91,9 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     typename multiset::iterator prev_iter;
     T prev_value;
     T next_value;
-    I_diff_t window_begin = 0;
-    while ( window_begin < src_size )
+    I1 src_window_center = src_begin;
+    I_diff_t window_reflect_pos = 2 * half_length - 2;
+    while ( src_window_center != src_end )
     {
         *(dest_pos++) = *rank_point;
 
@@ -104,17 +101,18 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         prev_value = *prev_iter;
         window_iters.pop_front();
 
-        window_begin++;
+        src_window_center++;
 
 	// Determine next value to add to window.
 	// Handle special cases like reflection at the end.
-        if ( window_begin == src_size )
+        if ( src_window_center == src_end )
         {
             next_value = prev_value;
         }
         else if ( src_pos == src_end )
         {
-            next_value = *(window_iters[(2 * (src_size - (window_begin + 1)))]);
+            next_value = *(window_iters[window_reflect_pos]);
+            window_reflect_pos -= 2;
         }
         else
         {
