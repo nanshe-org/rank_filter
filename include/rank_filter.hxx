@@ -100,6 +100,8 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
 
         window_begin++;
 
+	// Determine next value to add to window.
+	// Handle special cases like reflection at the end.
         if ( window_begin == src_size )
         {
             next_value = prev_value;
