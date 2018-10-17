@@ -36,27 +36,32 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     typedef T1 T;
     typedef typename boost::common_type<I1_diff_t, I2_diff_t>::type I_diff_t;
 
-    // Rank must be in the range 0 to 1
-    assert((0 <= rank) && (rank <= 1));
-
-    const I_diff_t rank_pos = static_cast<I_diff_t>(boost::math::round(rank * (2 * half_length)));
-
-    // The position of the window.
-    I_diff_t window_begin = 0;
+    // Define container types that will be used.
+    typedef boost::container::multiset< T,
+            std::less<T>,
+            boost::container::node_allocator<T>,
+            boost::container::tree_assoc_options< boost::container::tree_type<boost::container::scapegoat_tree> >::type> multiset;
+    typedef std::deque< typename multiset::iterator > deque;
 
     // Lengths.
     const I_diff_t src_size = std::distance(src_begin, src_end);
     const I_diff_t dest_size = std::distance(dest_begin, dest_end);
 
-    typedef boost::container::multiset< T,
-            std::less<T>,
-            boost::container::node_allocator<T>,
-            boost::container::tree_assoc_options< boost::container::tree_type<boost::container::scapegoat_tree> >::type> multiset;
+    // Ensure the result will fit.
+    assert(src_size <= dest_size);
 
-    typedef std::deque< typename multiset::iterator > deque;
+    // Window length cannot exceed input data with reflection.
+    assert((half_length + 1) <= src_size);
 
+    // Rank must be in the range 0 to 1.
+    assert((0 <= rank) && (rank <= 1));
+
+    // Track values in window both in sorted and sequential order.
     multiset sorted_window;
     deque window_iters(2 * half_length + 1);
+
+    // The position of the window.
+    I_diff_t window_begin = 0;
 
     // Get the initial sorted window.
     // Include the reflection.
@@ -69,13 +74,17 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         window_iters[j] = sorted_window.insert(src_begin[window_begin + j - half_length]);
     }
 
+    // Window position corresponding to this rank.
+    const I_diff_t rank_pos = static_cast<I_diff_t>(boost::math::round(rank * (2 * half_length)));
     typename multiset::iterator rank_point = sorted_window.begin();
 
+    // Move our selection point to the corresponding rank.
     for (I_diff_t i = 0; i < rank_pos; i++)
     {
         rank_point++;
     }
 
+    // Roll window forward one value at a time.
     typename multiset::iterator prev_iter;
     T prev_value;
     T next_value;
@@ -89,6 +98,8 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
 
         window_begin++;
 
+	// Determine next value to add to window.
+	// Handle special cases like reflection at the end.
         if ( window_begin == src_size )
         {
             next_value = prev_value;
@@ -102,6 +113,9 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
             next_value = *(window_iters[(2 * (src_size - (window_begin + 1)))]);
         }
 
+	// Remove old value and add new value to the window.
+	// Handle special cases where `rank_pos` may have an adjusted position
+	// due to where the old and new values are inserted.
         if ( ( *rank_point < prev_value ) && ( *rank_point <= next_value ) )
         {
             sorted_window.erase(prev_iter);
