@@ -48,7 +48,7 @@ def lineRankOrderFilter(numpy.ndarray a not None,
     elif not (0 <= axis < a.ndim):
         raise ValueError("`axis` needs to be within `a.ndim`")
 
-    if not ((half_length + 1) <= a.shape[axis]):
+    if not ((half_length + 1) <= <size_t>(a.shape[axis])):
         raise ValueError("Window must be no bigger than `a.shape[axis]`.")
 
     if not (0.0 <= rank <= 1.0):
