@@ -5,6 +5,7 @@ env:
     - PYTHON_VERSION="2.7"
     - PYTHON_VERSION="3.5"
     - PYTHON_VERSION="3.6"
+    - PYTHON_VERSION="3.7"
 before_install:
   # Move out of git directory to build root.
   - git fetch --unshallow --tags
@@ -43,6 +44,7 @@ install:
 script:
   # Building the recipe will run the tests too.
   - mv .git/shallow .git/shallow-not || true
+  - conda config --add channels conda-forge/label/gcc7
   - conda build --python $PYTHON_VERSION rank_filter.recipe
   - mv .git/shallow-not .git/shallow || true
   # Run the benchmarks.
