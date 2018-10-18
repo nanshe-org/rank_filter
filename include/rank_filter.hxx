@@ -28,13 +28,10 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Types in use.
     typedef typename std::iterator_traits<I1>::value_type T1;
     typedef typename std::iterator_traits<I2>::value_type T2;
-    typedef typename std::iterator_traits<I1>::difference_type I1_diff_t;
-    typedef typename std::iterator_traits<I2>::difference_type I2_diff_t;
 
     // Establish common types to work with source and destination values.
     BOOST_STATIC_ASSERT((boost::is_same<T1, T2>::value));
     typedef T1 T;
-    typedef typename boost::common_type<I1_diff_t, I2_diff_t>::type I_diff_t;
 
     // Define container types that will be used.
     typedef boost::container::multiset< T,
