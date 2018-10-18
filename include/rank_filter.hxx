@@ -90,15 +90,13 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Roll window forward one value at a time.
     typename multiset::iterator prev_iter;
     T prev_value;
-    T rank_value;
+    T rank_value = *rank_point;
+    *dest_pos = rank_value;
     T next_value;
     size_t window_reflect_pos = length_sub_1;
     bool src_not_empty = ( src_pos != src_end );
     while ( src_not_empty || ( window_reflect_pos > 0 ) )
     {
-        rank_value = *rank_point;
-        *(dest_pos++) = rank_value;
-
         prev_iter = window_iters.front();
         prev_value = *prev_iter;
         window_iters.pop_front();
@@ -159,10 +157,10 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
                 rank_point++;
             }
         }
-    }
 
-    // Store final result in the destination.
-    *dest_pos = *rank_point;
+        // Store rank value in the destination.
+        *(++dest_pos) = rank_value = *rank_point;
+    }
 }
 
 }
