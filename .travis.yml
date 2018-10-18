@@ -44,9 +44,7 @@ install:
 script:
   # Building the recipe will run the tests too.
   - mv .git/shallow .git/shallow-not || true
-  - if [[ "${PYTHON_VERSION}" == "3.7" ]]; then
-        conda config --add channels conda-forge/label/gcc7;
-    fi
+  - conda config --add channels conda-forge/label/gcc7
   - conda build --python $PYTHON_VERSION rank_filter.recipe
   - mv .git/shallow-not .git/shallow || true
   # Run the benchmarks.
