@@ -96,7 +96,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     T rank_value;
     T next_value;
     I_diff_t window_reflect_pos = length_sub_1;
-    while ( window_reflect_pos >= 0 )
+    while ( ( src_pos != src_end ) || ( window_reflect_pos > 0 ) )
     {
         rank_value = *rank_point;
         *(dest_pos++) = rank_value;
@@ -111,15 +111,10 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         {
             next_value = *(src_pos++);
         }
-        else if ( window_reflect_pos > 0 )
-        {
-            window_reflect_pos -= 2;
-            next_value = *(window_iters[window_reflect_pos]);
-        }
         else
         {
             window_reflect_pos -= 2;
-            next_value = prev_value;
+            next_value = *(window_iters[window_reflect_pos]);
         }
 
         // Remove old value and add new value to the window.
@@ -166,6 +161,9 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
             }
         }
     }
+
+    // Store final result in the destination.
+    *dest_pos = *rank_point;
 }
 
 }
