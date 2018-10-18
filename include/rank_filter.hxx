@@ -70,15 +70,15 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Store all multiset iterators into the deque in sequential order.
     {
         std::deque<T> window_init(half_length_add_1);
-        for (I_diff_t j = half_length_add_1; j > 0;)
+        for (size_t j = half_length_add_1; j > 0;)
         {
             window_init[--j] = *(src_pos++);
         }
-        for (I_diff_t j = 0; j < half_length; j++)
+        for (size_t j = 0; j < half_length; j++)
         {
             window_iters[j] = sorted_window.insert(window_init[j]);
         }
-        for (I_diff_t j = half_length; j < length; j++)
+        for (size_t j = half_length; j < length; j++)
         {
             window_iters[j] = sorted_window.insert(window_init.back());
             window_init.pop_back();
@@ -86,7 +86,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     }
 
     // Window position corresponding to this rank.
-    const I_diff_t rank_pos = static_cast<I_diff_t>(boost::math::round(rank * length_sub_1));
+    const size_t rank_pos = static_cast<size_t>(boost::math::round(rank * length_sub_1));
     typename multiset::iterator rank_point = sorted_window.begin();
     std::advance(rank_point, rank_pos);
 
@@ -95,7 +95,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     T prev_value;
     T rank_value;
     T next_value;
-    I_diff_t window_reflect_pos = length_sub_1;
+    size_t window_reflect_pos = length_sub_1;
     bool src_not_empty = ( src_pos != src_end );
     while ( src_not_empty || ( window_reflect_pos > 0 ) )
     {
