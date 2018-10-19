@@ -129,7 +129,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
             if ( rank_point == prev_iter )
             {
                 window_iters.push_back(sorted_window.insert(next_value));
-                rank_point--;
+                --rank_point;
                 sorted_window.erase(prev_iter);
             }
             else
@@ -142,21 +142,21 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         {
             sorted_window.erase(prev_iter);
             window_iters.push_back(sorted_window.insert(next_value));
-            rank_point--;
+            --rank_point;
         }
         else if ( ( rank_value >= prev_value ) && ( rank_value <= next_value ) )
         {
             if (rank_point == prev_iter)
             {
                 window_iters.push_back(sorted_window.insert(next_value));
-                rank_point++;
+                ++rank_point;
                 sorted_window.erase(prev_iter);
             }
             else
             {
                 sorted_window.erase(prev_iter);
                 window_iters.push_back(sorted_window.insert(next_value));
-                rank_point++;
+                ++rank_point;
             }
         }
 
