@@ -69,7 +69,8 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         std::deque<T> window_init(half_length_add_1);
         for (size_t j = half_length_add_1; j > 0;)
         {
-            window_init[--j] = *(src_pos++);
+            window_init[--j] = *src_pos;
+            ++src_pos;
         }
         for (size_t j = 0; j < half_length; j++)
         {
@@ -105,7 +106,8 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         // Handle special cases like reflection at the end.
         if ( src_not_empty )
         {
-            next_value = *(src_pos++);
+            next_value = *src_pos;
+            ++src_pos;
             src_not_empty = ( src_pos != src_end );
         }
         else
