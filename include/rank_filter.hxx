@@ -69,13 +69,14 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         std::deque<T> window_init(half_length_add_1);
         for (size_t j = half_length_add_1; j > 0;)
         {
-            window_init[--j] = *(src_pos++);
+            window_init[--j] = *src_pos;
+            ++src_pos;
         }
-        for (size_t j = 0; j < half_length; j++)
+        for (size_t j = 0; j < half_length; ++j)
         {
             window_iters[j] = sorted_window.insert(window_init[j]);
         }
-        for (size_t j = half_length; j < length; j++)
+        for (size_t j = half_length; j < length; ++j)
         {
             window_iters[j] = sorted_window.insert(window_init.back());
             window_init.pop_back();
@@ -105,7 +106,8 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         // Handle special cases like reflection at the end.
         if ( src_not_empty )
         {
-            next_value = *(src_pos++);
+            next_value = *src_pos;
+            ++src_pos;
             src_not_empty = ( src_pos != src_end );
         }
         else
@@ -127,7 +129,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
             if ( rank_point == prev_iter )
             {
                 window_iters.push_back(sorted_window.insert(next_value));
-                rank_point--;
+                --rank_point;
                 sorted_window.erase(prev_iter);
             }
             else
@@ -140,21 +142,21 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         {
             sorted_window.erase(prev_iter);
             window_iters.push_back(sorted_window.insert(next_value));
-            rank_point--;
+            --rank_point;
         }
         else if ( ( rank_value >= prev_value ) && ( rank_value <= next_value ) )
         {
             if (rank_point == prev_iter)
             {
                 window_iters.push_back(sorted_window.insert(next_value));
-                rank_point++;
+                ++rank_point;
                 sorted_window.erase(prev_iter);
             }
             else
             {
                 sorted_window.erase(prev_iter);
                 window_iters.push_back(sorted_window.insert(next_value));
-                rank_point++;
+                ++rank_point;
             }
         }
 
@@ -172,7 +174,7 @@ namespace std
     ostream& operator<<(ostream& out, const boost::array<T, N>& that)
     {
         out << "{ ";
-        for (unsigned int i = 0; i < (N - 1); i++)
+        for (unsigned int i = 0; i < (N - 1); ++i)
         {
             out << that[i] << ", ";
         }
