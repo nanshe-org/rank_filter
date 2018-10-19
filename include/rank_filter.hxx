@@ -72,11 +72,11 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
             window_init[--j] = *src_pos;
             ++src_pos;
         }
-        for (size_t j = 0; j < half_length; j++)
+        for (size_t j = 0; j < half_length; ++j)
         {
             window_iters[j] = sorted_window.insert(window_init[j]);
         }
-        for (size_t j = half_length; j < length; j++)
+        for (size_t j = half_length; j < length; ++j)
         {
             window_iters[j] = sorted_window.insert(window_init.back());
             window_init.pop_back();
@@ -174,7 +174,7 @@ namespace std
     ostream& operator<<(ostream& out, const boost::array<T, N>& that)
     {
         out << "{ ";
-        for (unsigned int i = 0; i < (N - 1); i++)
+        for (unsigned int i = 0; i < (N - 1); ++i)
         {
             out << that[i] << ", ";
         }
