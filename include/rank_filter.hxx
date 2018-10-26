@@ -58,11 +58,11 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     multiset sorted_window;
     deque window_iters(length);
 
-    // Iterators in source and destination
+    // Iterators in source and destination.
     I1 src_pos = src_begin;
     I1 dest_pos = dest_begin;
 
-    // Get the initial window in sequential order with reflection
+    // Get the initial window in sequential order with reflection.
     // Insert elements in order to the multiset for sorting.
     // Store all multiset iterators into the deque in sequential order.
     {
