@@ -98,6 +98,7 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     bool src_not_empty = ( src_pos != src_end );
     while ( src_not_empty || ( window_reflect_pos > 0 ) )
     {
+        // Get last value to remove from window.
         prev_iter = window_iters.front();
         prev_value = *prev_iter;
         window_iters.pop_front();
