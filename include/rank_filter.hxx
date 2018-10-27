@@ -79,11 +79,15 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
         {
             window_iters[j] = sorted_window.insert(window_init[j]);
         }
-        for (size_t j = half_length; j < length; ++j)
+        window_iters[half_length] = sorted_window.insert(
+            window_init[half_length]
+        );
+        for (size_t j = half_length_add_1; j < length; ++j)
         {
-            window_iters[j] = sorted_window.insert(window_init.back());
             window_init.pop_back();
+            window_iters[j] = sorted_window.insert(window_init.back());
         }
+        window_init.pop_back();
     }
 
     // Window position corresponding to this rank.
