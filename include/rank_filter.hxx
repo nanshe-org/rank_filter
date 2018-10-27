@@ -67,11 +67,14 @@ inline void lineRankOrderFilter1D(const I1& src_begin, const I1& src_end,
     // Store all multiset iterators into the deque in sequential order.
     {
         std::deque<T> window_init(half_length_add_1);
-        for (size_t j = half_length_add_1; j > 0;)
+
+        window_init[half_length] = *src_pos;
+        for (size_t j = half_length; j > 0;)
         {
-            window_init[--j] = *src_pos;
-            ++src_pos;
+            window_init[--j] = *(++src_pos);
         }
+        ++src_pos;
+
         for (size_t j = 0; j < half_length; ++j)
         {
             window_iters[j] = sorted_window.insert(window_init[j]);
